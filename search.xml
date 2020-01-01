@@ -6,50 +6,26 @@
     <content><![CDATA[<h1 id="你好啊一"><a href="#你好啊一" class="headerlink" title="你好啊一"></a>你好啊一</h1><h2 id="二级"><a href="#二级" class="headerlink" title="二级"></a>二级</h2>]]></content>
   </entry>
   <entry>
-    <title>我的新博客up</title>
-    <url>/xinkuiwu.github.io/2018/12/31/%E6%88%91%E7%9A%84%E6%96%B0%E5%8D%9A%E5%AE%A2up/</url>
-    <content><![CDATA[<hr>
-<p>摘要</p>
-<p>在配置了GUN C的编译系统的系统中，C编译器是gcc(1),cc被链接到gcc</p>
-<ol>
-<li>文件描述符是一个小的非负整数</li>
-<li>运行程序是，shell打开三个文件描述符，标准输入/标准输出/标准错误，不做特殊处理，这三个描述符都链接向终端，这三个描述符都能重新定向到某个文件</li>
-</ol>
+    <title>前端JavaScript书籍阅读</title>
+    <url>/xinkuiwu.github.io/2019/09/14/%E5%89%8D%E7%AB%AFJavaScript%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/</url>
+    <content><![CDATA[<p>作为一个想从事前端工作，目前还是零基础的菜鸟，我想通过合理学习，让自己成为能有比较全局观念（前端-后端分离，工程化等），又在前端又能熟练掌握并灵活使用技术的前端工程师。下面是我自己看了一些知乎，豆瓣，博客总结出来一些比较好、经典的JavaScript书籍（好书太多，我也是挑了基本看上去比较适合我的），与大家分享。（这也是我接下来要看书单，因为本人现在还没看完，看完了我再分享一下阅读心得，怎么去把这些“厚书”快速读完）</p>
 <a id="more"></a> 
 
-<p>正文asd asd </p>
-<p>sad啊</p>
-<h1 id="一"><a href="#一" class="headerlink" title="一"></a>一</h1><h2 id="二级"><a href="#二级" class="headerlink" title="二级"></a>二级</h2><h3 id="新年好三"><a href="#新年好三" class="headerlink" title="新年好三"></a>新年好三</h3><p><strong>i</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">90</span></span><br><span class="line"><span class="keyword">for</span> (i)</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>s </li>
-<li>8</li>
-</ul>
-<ul>
-<li>s </li>
-</ul>
-<ul>
-<li>sa </li>
-</ul>
-<ol>
-<li></li>
-<li>sa </li>
-</ol>
-<p><img src="/xinkuiwu.github.io/.io//C:%5CUsers%5CWUWU%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200101085949968.png" alt="image-20200101085949968"></p>
-<p>种常见的网络请求方式就是JSONP。使用JSONP最主要的原因往往就是为了解决跨域访问的问题。</p>
-<p>　　JSONP的原理是：</p>
-<p><img src="https://img2018.cnblogs.com/i-beta/1803687/201912/1803687-20191230204423639-369560790.png" alt="img"></p>
-<p>和使用Vue CLI2 和 Vue CLI3。如果了解webpack如何一步步配置的，建议可以先看我的前一个博客：<a href="https://www.cnblogs.com/yuebanquan/p/10941057.html" target="_blank" rel="noopener">前端框架Vue自学之webpack（四）</a>。</p>
+<h2 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h2><p> 熟练掌握JavaScript技术（当然不仅是看书，还是得边看书边Coding，切勿“只看不做”）</p>
+<h2 id="书籍阅读："><a href="#书籍阅读：" class="headerlink" title="书籍阅读："></a>书籍阅读：</h2><h3 id="1、JavaScript高级程序设计（Professional-JavaScript-for-Web-Developers）"><a href="#1、JavaScript高级程序设计（Professional-JavaScript-for-Web-Developers）" class="headerlink" title="1、JavaScript高级程序设计（Professional JavaScript for Web Developers）"></a>1、JavaScript高级程序设计（Professional JavaScript for Web Developers）</h3><p>　　JS红宝书，虽说高级，里面却是基础中的基础，但是很厚，建议还是老老实实读下去。也有不少读者觉得这个入门前端的话太过于枯燥（鉴于我之前在W3C School网站看完了Web的JS,CSS,HTML知识看再JS书籍的，所以我是想通过红宝书强化记忆），不少读者推荐《你不知道的JavaScript（上卷）》入门JS，比较轻松有趣。</p>
+<h3 id="2、ES6标准入门"><a href="#2、ES6标准入门" class="headerlink" title="2、ES6标准入门"></a>2、ES6标准入门</h3><p>　　JS红宝书可以了解到很多基本概念，其中第六章中，因为 ES6 增加了 class 的概念等，改进很多，第六章可以接着看这个本书的ES6全部。ES6标准比较新，红宝书大都是ES5标准的，建议看完红宝书就看ES6相关书籍。</p>
+<p>　　本书的开源代码和电子书，在其Github上，电子书在：<a href="http://es6.ruanyifeng.com/#docs/string" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/string</a></p>
+<h3 id="3、学习JavaScript数据结构与算法"><a href="#3、学习JavaScript数据结构与算法" class="headerlink" title="3、学习JavaScript数据结构与算法"></a>3、学习JavaScript数据结构与算法</h3><p>　　对任何专业技术人员来说，理解数据结构都非常重要。我们要能借助编程语言来解决问题，而数据结构是这些问题的解决方案中不可或缺的一部分。可以通过对该书籍相关知识的学习，去理解，并自己用JS去实现，增强对JS的掌握。</p>
+<p>　　本书的所有代码实现在我的博客和Github上，欢迎一起讨论。地址：<a href="https://github.com/xinkuiwu/ES6_JavaScript_data_structures_and_algorithms" target="_blank" rel="noopener">https://github.com/xinkuiwu/ES6_JavaScript_data_structures_and_algorithms</a></p>
+<h3 id="4、高性能JavaScript"><a href="#4、高性能JavaScript" class="headerlink" title="4、高性能JavaScript"></a>4、高性能JavaScript</h3><p>　　《高性能JavaScript》揭示的技术和策略能帮助你在开发过程中消除性能瓶颈。你将会了解如何提升各方面的性能，包括代码的加载、运行、DOM交互、页面生存周期等。这个是为了进一步理解如何提升JS性能而看的，红宝书里面也有一些简单说明，可以先看红宝书的相应内容，然后转入该书进行进一步学习。</p>
+<h3 id="5、JavaScript设计模式与开发实践"><a href="#5、JavaScript设计模式与开发实践" class="headerlink" title="5、JavaScript设计模式与开发实践"></a>5、JavaScript设计模式与开发实践</h3><p>　　本书的主题是设计模式，本书在尊重《设计模式》原意的同时，针对JavaScript语言特性全面介绍了更适合JavaScript程序员的了16个常用的设计模式，讲解了JavaScript面向对象和函数式编程方面的基础知识，介绍了面向对象的设计原则及其在设计模式中的体现，还分享了面向对象编程技巧和日常开发中的代码重构。红宝书的第七章讲私有变量的部分也有提及设计模式，可以先看一下红宝书相关内容，然后在看这本书，去进一步理解与应用。</p>
 ]]></content>
       <categories>
-        <category>搭建博客</category>
+        <category>前端书籍</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>npm</tag>
+        <tag>web</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
 </search>
