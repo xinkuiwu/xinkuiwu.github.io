@@ -47,12 +47,12 @@
 <p>　　例如我们把第二章的两个请求当做并发请求。</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231102141694-2056172387-1577951703501.png" alt="img"></p>
 <p> 　最后结构是一样的。结果是一个数组。</p>
-<p>　　<img src="https://img2018.cnblogs.com/i-beta/1803687/201912/1803687-20191231102219213-1472780078.png" alt="img"></p>
+<p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231102219213-1472780078-1577954049980.png" alt="img"></p>
 <p> 　如果我们想把数组展开，使用axios.spread可以将数组[res1,res2]展开为res1, res2。</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231102701821-1234238183-1577951707858.png" alt="img">　</p>
 <h3 id="四、axios的配置信息相关"><a href="#四、axios的配置信息相关" class="headerlink" title="四、axios的配置信息相关"></a>四、axios的配置信息相关</h3><p>　　1、全局配置</p>
 <p>　　在上面一些例子中，我们的BaseURL是固定的。事实上，在开发中可能很多参数都是固定的（例如一些headers请求）。</p>
-<p>　　<img src="https://img2018.cnblogs.com/i-beta/1803687/201912/1803687-20191231103408055-355586521.png" alt="img"></p>
+<p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231103408055-355586521-1577954057741.png" alt="img"></p>
 <p>　　这个时候我们可以进行一些抽取，也可以利用axios的全局配置。　　</p>
 <p>　　利用axios.defaults可以对一些属性进行全局配置，例如baseURL。</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231103511919-1925934584-1577951717494.png" alt="img"></p>
@@ -100,11 +100,11 @@
 <p>　　实例拦截：（instance.interceptors.request.use请求拦截，instance.interceptors.response.use响应拦截）</p>
 <p>　　请求拦截，instance.interceptors.request.use里面有两个参数（看源码），一个是拦截成功的函数，一个是拦截失败的函数。</p>
 <p><img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231153456750-1301827046-1577951750558.png" alt="img"> （源码）</p>
-<p>　　<img src="https://img2018.cnblogs.com/i-beta/1803687/201912/1803687-20191231153226704-697213940.png" alt="img"> </p>
+<p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231153226704-697213940-1577954073593.png" alt="img"> </p>
 <p> 　此时，拦截了请求，在控制台打印了结果，但是报了一个错误。是由于请求被拦截了，如果没有使用reture把请求结果返回，则出错误信息。</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231153622306-1450709588-1577951754531.png" alt="img"></p>
 <p> 　所以，使用拦截器的时候记得加上reture把结果返回。</p>
-<p>　　<img src="https://img2018.cnblogs.com/i-beta/1803687/201912/1803687-20191231153947863-1135295801.png" alt="img"></p>
+<p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231153947863-1135295801-1577954077008.png" alt="img"></p>
 <p> 　此时就没有报错了。</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231153937116-559052576-1577951758568.png" alt="img"></p>
 <p>　　2、请求情况分析</p>
@@ -116,7 +116,7 @@
 <p>　　instance.interceptors.response.use 响应拦截，也有有两个参数。第一个是结果。由于服务器响应过了，这里拿到的是结构。第二个是失败的情况。</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231155536241-301510393-1577951761523.png" alt="img"></p>
 <p> 　结果显示。</p>
-<p>　　<img src="https://img2018.cnblogs.com/i-beta/1803687/201912/1803687-20191231155709901-2060069190.png" alt="img"></p>
+<p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231155709901-2060069190-1577954085111.png" alt="img"></p>
 <p> 　当我们（人为）让请求失败，例如给个错误的url。则正常输出错误结果。</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/30/blog37/1803687-20191231155848854-1617542865-1577951764526.png" alt="img"></p>
 <p>　　一样地，当我们拦截后，必须返回结果，不然请求的东西是会报错的。</p>
@@ -132,9 +132,9 @@
         <tag>JavaScript</tag>
         <tag>框架</tag>
         <tag>vue</tag>
+        <tag>promise</tag>
         <tag>axios</tag>
         <tag>网络请求封装</tag>
-        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -234,7 +234,7 @@
 <p> 　然后，在App.vue导入这个常量。（不是默认导出，记得用大括号哦）</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/29/blog36/1803687-20191230152543450-1362617266-1577951392162.png" alt="img">（App.vue）</p>
 <p> 　对应我们commit使用这个常量，就很简单了，不用来回看了。</p>
-<p>　　<img src="https://img2018.cnblogs.com/i-beta/1803687/201912/1803687-20191230152643796-1488877844.png" alt="img"></p>
+<p>　　<img src="/xinkuiwu.github.io/2019/12/29/blog36/1803687-20191230152643796-1488877844-1577954134780.png" alt="img"></p>
 <p> 　但是我们还得保证mutation定义的时候，方法名没有写错，所以，我们也把这个常量导入到index.js中。</p>
 <p>　　<img src="/xinkuiwu.github.io/2019/12/29/blog36/1803687-20191230152854482-2135310890-1577951397343.png" alt="img"></p>
 <p> 　修改成[‘XX’]的方式，然后用常量代替。</p>
@@ -1088,6 +1088,97 @@
       </tags>
   </entry>
   <entry>
+    <title>前端框架Vue自学之ES6基本语法（补充）</title>
+    <url>/xinkuiwu.github.io/2019/12/13/blog28/</url>
+    <content><![CDATA[<p>本博客目的：记录Vue学习的进度和心得（ES6基本语法）</p>
+<p>内容：掌握Vue中常用的ES6基础语法。</p>
+<p>正文：</p>
+<h3 id="ES6基本语法"><a href="#ES6基本语法" class="headerlink" title="ES6基本语法"></a>ES6基本语法</h3><h3 id="一、let与var（闭包，块级作用域）"><a href="#一、let与var（闭包，块级作用域）" class="headerlink" title="一、let与var（闭包，块级作用域）"></a>一、let与var（闭包，块级作用域）</h3><p>　　1、事实上var的设计可以看成JavaScript语言设计上的错误，但是这种错误多半不能修复和移除，因为需要向后兼容。例如if/for的块级的影响（ES5中if、for没有作用域，只有函数有作用域），因而JS作者引入了let，我们可以将let看成更完美的var（let有块级作用域（作用域：在一定范围内是可用的），var通常是定义全局变量的）。</p>
+<p>　　2、先前for的块级影响，通常的解决方法是使用闭包（因为函数有自己的作用域，应用外面的变量，能正确解决传参的问题）。（闭包是指有权访问另一个函数作用域中的变量的函数，或者说，函数对象可以通过作用域关联起来，函数体内的变量都可以保存在函数作用域内，这在计算机科学文献中称为“闭包”,所有的javascirpt函数都是闭包）</p>
+<p>　　3、ES6中let具有块级作用域。ES5中var是没有块级作用域的。</p>
+<h3 id="二、const"><a href="#二、const" class="headerlink" title="二、const"></a>二、const</h3><p>　　1、在JavaScript中，使用const修饰的标识符为常量。不可再次赋值，可以用来保证数据的安全性。</p>
+<p>　　2、建议：在ES6开发中，优先使用const，只有需要改变某一个标识符额时候才使用let。</p>
+<p>　　3、在使用const定义标识符时，必须进行赋值。</p>
+<p>　　4、常量的含义是向的对象不能修改，但是可以改变对象内部的属性。（相当于是在内存空间，const指定了一个固定的对象内存地址（指向对象），但是我们可以修改内部的数据）</p>
+<h3 id="三、对象字面量的增强写法"><a href="#三、对象字面量的增强写法" class="headerlink" title="三、对象字面量的增强写法"></a>三、对象字面量的增强写法</h3><p>　　1、属性的增强写法。相当于把变量名称作为key，对应的值作为value。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">'abc'</span>;</span><br><span class="line"><span class="keyword">const</span> height = <span class="number">1.80</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name,</span><br><span class="line">    height,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj);<span class="comment">//&#123; name: 'abc', height: 1.8 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、函数的增强写法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    run()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    done()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、for循环"><a href="#四、for循环" class="headerlink" title="四、for循环"></a>四、for循环</h3><p>　　1、普通的for循环。用具有块作用域的let控制循环变量。如for(let i = 0; i &lt; item.length; i++){item[i]…}。</p>
+<p>　　2、for(let i in items){i…..} 。{}里面可以正确调用i的索引。</p>
+<p>　　3、for(let item of items){item}。{}里面可以直接遍历items，生成一个个item对象。</p>
+<p>　　4、reduce/filter/map。对于数组来说：（看代码例子）【超级好用!】</p>
+<p>　　filter函数的使用。filter中的回调函数有一个要求：必须返回一个布尔值，当返回true时，函数内部会自动将这次回调的参数加入到新的数组中，当返回false时，函数内部会过滤掉这个参数。</p>
+<p>　　map函数的使用。对数组的每个元素都进行处理，返回处理后的结果。</p>
+<p>　　reduce函数的使用。reduce是对数组中所有的内容进行汇总。可以传入两个参数，第一个参数是个函数，第二个参数是初始返回值。</p>
+<p>　　上述函数可以链式组合。（这就是函数式编程）（tips：编程范式分类：命令式编程/声明式编程；面向对象编程（第一公民：对象）/函数式编程（第一公民：函数）。例如vue、react框架就是声明式编程，JavaScript就是函数式编程。）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">420</span>, <span class="number">50</span>, <span class="number">40</span>,]</span><br><span class="line"><span class="keyword">let</span> newNums = nums.filter(<span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &lt; <span class="number">100</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newNums);<span class="comment">//[ 10, 20, 50, 40 ]</span></span><br><span class="line"><span class="keyword">let</span> new2Nums = newNums.map(<span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(new2Nums);<span class="comment">//[ 20, 40, 100, 80 ]</span></span><br><span class="line"><span class="keyword">let</span> new3Nums = new2Nums.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">preValue, n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preValue + n;</span><br><span class="line">&#125;,<span class="number">0</span>);</span><br><span class="line"><span class="comment">//一共遍历4次，第1次：preValue 0 n 20 返回20（0+20）</span></span><br><span class="line"><span class="comment">//第2次：preValue 20 n 40 返回 60;</span></span><br><span class="line"><span class="comment">//第3次：preValue 60 n 100 返回 160;</span></span><br><span class="line"><span class="comment">//第4次：preValue 160 n 80 返回 240;</span></span><br><span class="line"><span class="built_in">console</span>.log(new3Nums);<span class="comment">//240</span></span><br><span class="line"><span class="comment">//上述函数可以链式组合</span></span><br><span class="line"><span class="keyword">let</span> finalResult = nums.filter(<span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &lt; <span class="number">100</span>;</span><br><span class="line">&#125;).map(<span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="number">2</span>;</span><br><span class="line">&#125;).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">preValue, n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preValue + n;</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(finalResult);<span class="comment">//240</span></span><br><span class="line"><span class="comment">//还可以结合ES6的箭头函数写法</span></span><br><span class="line"><span class="keyword">let</span> finalResult2 = nums.filter(<span class="function"><span class="params">n</span> =&gt;</span> n &lt; <span class="number">100</span>).map(<span class="function"><span class="params">n</span> =&gt;</span> n * <span class="number">2</span>).reduce(<span class="function">(<span class="params">pre, n</span>) =&gt;</span> pre + n,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">console</span>.log(finalResult2);<span class="comment">//240</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、箭头函数的使用和this指向"><a href="#五、箭头函数的使用和this指向" class="headerlink" title="五、箭头函数的使用和this指向"></a>五、箭头函数的使用和this指向</h3><p>　　1、箭头函数</p>
+<p>　　箭头函数是ES6特有的一种函数的写法，其目的是简化写法。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式1：</span></span><br><span class="line"><span class="comment">// const a = (参数列表) =&gt;&#123;</span></span><br><span class="line"><span class="comment">//     // 函数体</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// 例子1: 两个参数</span></span><br><span class="line"><span class="keyword">const</span> sum = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num1 + num2</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 例子2：一个参数时，小括号可以省略</span></span><br><span class="line"><span class="keyword">const</span> power = <span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num * num</span><br><span class="line">&#125;<span class="comment">//等价于 const power = num =&gt; num * num</span></span><br></pre></td></tr></table></figure>
+
+<p>　　当函数体代码块只有一行代码时，还可以简写，把return省略。</p>
+<p> 1 const sum2 = (num1, num2) =&gt; num1 + num2 </p>
+<p>　　2、箭头函数的this指向（可以参考这个博客：<a href="https://segmentfault.com/a/1190000009069167" target="_blank" rel="noopener">js的this指向问题</a>）</p>
+<p>　　ES5中，this总是指向调用的对象。　　</p>
+<p>　　箭头函数中的this是向外层作用域中， 一层层查找this，直到有this的定义（父级作用域的this保持一致）。下例中，第一个this，setTimeout中的function可以理解为callback（回调函数）,相当于在setTimeout调用一个外部定义的函数，而这个函数没有显式绑定对象，所以其this指向window对象。而第二个this，由于使用的是箭头函数，箭头函数的this会绑定父级作用域，所以虽然在setTimeout调用一个外部定义的函数，这个箭头函数的外层作用域是aaa函数，这个aaa函数作用域的this，就是指向这个obj。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    aaa() &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//指向window对象</span></span><br><span class="line">        &#125;)</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//指向obj对象</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="六、Promise"><a href="#六、Promise" class="headerlink" title="六、Promise"></a>六、Promise</h3><p>　　1、什么是promise及基本使用</p>
+<p>　　<strong>promise是异步（async）编程的一种解决方案</strong>。（ES6引入）</p>
+<p>　　同步（sync）的缺点就是可能会产生阻塞，例如，用户在往服务器请求一些数据，如果使用的是同步，那么用户只能等待请求完数据才能进行别的操作，即产生了阻塞，这样用户体验是非常不好的。</p>
+<p>　　处理异步事件的一种很常见的场景是<strong>网络请求</strong>。我们封装一个网络请求的函数，因为不能立即拿到结果，所以不能像简单的3+4=7一样将结果返回。所以往往我们会传入另外一个函数，在数据请求成功时，将数据通过传入的函数回调出去。如果只是一个简单的网络请求，那么这种方案不会给我们带来很大的麻烦。但是当网络请求非常复杂时，就会出现<strong>回调地狱（callback hell），回调中嵌套着回调</strong>。</p>
+<p>　　所以使用promise可以解决这个问题。</p>
+<p>　　这里，我们用一个定时器（setTImeout）来模拟异步事件：假设下面的data是从网络上1秒后请求的数据，console.log就是我们的处理方式。</p>
+<p>　　<img src="/xinkuiwu.github.io/2019/12/13/blog28/1803687-20191229144512170-1734542055.png" alt="img"></p>
+<p> 　我们将它换成promise代码，即进行promise封装。</p>
+<p><img src="/xinkuiwu.github.io/2019/12/13/blog28/1803687-20191229144552827-1960788008.png" alt="img"></p>
+<p> 　其中，Promise是一个类，里面以一个函数作为参数，这个函数本身又包含两个参数：resolve，reject。resolve，reject本身又是函数。然后异步操作放置在promise中，但是我们不希望所有异步操作（如果很多个的话）都集中写在里面（不然和没有封装一样了，还是会出现回调地狱），我们需要调用resolve函数，resolve函数匹配一个函数叫then，然后把异步操作的代码放置在此，resolve把一些数据会传给then。注意then可以返回的一个新建的promise对象，在这个对象可以封装着另一个异步操作（这样代码结构逻辑就很清晰了）。这就是<strong>链式编程</strong>。</p>
+<p>　　<strong>异步请求成功了调用resolve，失败了调用reject</strong>。对应地，reject函数对应一个函数叫catch，捕获错误，reject函数把这些数据传给catch，并执行catch函数。</p>
+<p>　　当我们使用new Promise()时，new就会执行Promise类的构造函数（<strong>保存了一些状态信息；执行传入的函数</strong>），在执行传入的回调函数时，传入两个参数，resolve和reject。　　</p>
+<p>　　2、Promise的三种状态和另外处理方式</p>
+<p>　　首先，当我们开发中有异步操作时，就可以给异步操作包装一个Promise。异步操作之后会有三种状态：</p>
+<p>　　pending：等待状态，比如正在进行网络请求，或者定时器没有到时间。</p>
+<p>　　fulfill：满足状态，当我们主动回调了resolve时，就处于该状态，并且会回调.then()。</p>
+<p>　　reject：拒绝状态，当我们主动回调了reject时，就处于该状态，并且会回调.catch()。</p>
+<p> 　我们也可以在then里面把错误的情况写在里面。即then里面可以使用两个函数，函数1对应resolve传入的数据做处理，函数2对应reject传入的数据做处理（相当于catch()）。</p>
+<p>　　<img src="/xinkuiwu.github.io/2019/12/13/blog28/1803687-20191229152514924-1928114536.png" alt="img">)（此时，执行的是consolo.log(err)）</p>
+<p> 　3、Promise的链式调用</p>
+<p>　　我们在看Promise的流程图时，发现无论是then还是catch都可以<strong>返回一个Promise对象</strong>。所以，我们的代码其实是可以进行<strong>链式调用</strong>的。</p>
+<p><img src="/xinkuiwu.github.io/2019/12/13/blog28/1803687-20191229153835957-2146113745.png" alt="img"></p>
+<p>　　这里我们直接通过Promise包装了一下新的数据，将Promise对象返回了：Promise.resovle()：将数据包装成Promise对象，并且在内部回调resolve函数；Promise.reject()：将数据包装成Promise对象，并且在内部回调reject函数。</p>
+<p>　　（进一步简化）　　<img src="/xinkuiwu.github.io/2019/12/13/blog28/1803687-20191229152942821-705812272.png" alt="img"></p>
+<p>　　还可以进一步简化，<strong>then里面的return的对象会被promise封装的</strong>。　　<img src="/xinkuiwu.github.io/2019/12/13/blog28/1803687-20191229154119502-300852127.png" alt="img"></p>
+<p>　　但并不是每次都是异步请求成功的，所以当有reject时，后续的then是不执行的，但catch可以捕获错误。　　<img src="/xinkuiwu.github.io/2019/12/13/blog28/1803687-20191229154429045-804354438.png" alt="img"></p>
+<p> 　其也有简写，即使用<strong>Promise.reject()</strong>。此外，也可以是 <strong>throw ‘error’</strong>来代替return Promise.reject(‘error’)来抛出异常，也是可以被catch()捕获的。</p>
+<p> 　　4、Promise的all方法使用</p>
+<p>　　假设我们需求本身需要两个网络请求，请求一和请求二。如何判断两个请求结果都有了呢？使用Promise.all（）。只有都完成了，才会执行这个promise的then函数。results（是个iterator）返回的是上述请求的结果（两个）。　　<img src="/xinkuiwu.github.io/2019/12/13/blog28/1803687-20191229155808005-796957343.png" alt="img"></p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>ES6</tag>
+        <tag>JavaScript</tag>
+        <tag>框架</tag>
+        <tag>vue</tag>
+        <tag>语法</tag>
+        <tag>promise</tag>
+        <tag>let</tag>
+        <tag>var</tag>
+        <tag>闭包</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端框架Vue自学之Vue基础语法（二）</title>
     <url>/xinkuiwu.github.io/2019/12/12/blog27/</url>
     <content><![CDATA[<p>终极目标：掌握和使用Vue（全家桶：Core+Vue-router+Vuex）</p>
@@ -1201,21 +1292,6 @@
       <categories>
         <category>vue</category>
         <category>初见</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>框架</tag>
-        <tag>vue</tag>
-        <tag>MVVM</tag>
-        <tag>生命周期</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端框架Vue自学之初见Vue（3）</title>
-    <url>/xinkuiwu.github.io/2019/12/12/blog28/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>vue</category>
       </categories>
       <tags>
         <tag>JavaScript</tag>
