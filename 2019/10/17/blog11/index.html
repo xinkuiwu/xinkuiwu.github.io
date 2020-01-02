@@ -94,14 +94,14 @@
 
 
 
-<meta name="description" content="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）所有源码在我的Github上（如果觉得不错记得给星鼓励我哦）：ES6的JavaScript数据结构实现之递归 一、递归基础应用1、计算一个数的阶乘1.1迭代阶乘（循环实现）123456789101112function factorialIte">
+<meta name="description" content="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发） 内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6的JavaScript数据结构实现之递归">
 <meta property="og:url" content="https://xinkuiwu.github.io/2019/10/17/blog11/index.html">
 <meta property="og:site_name" content="Secret_wu&#39;s coding note">
-<meta property="og:description" content="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）所有源码在我的Github上（如果觉得不错记得给星鼓励我哦）：ES6的JavaScript数据结构实现之递归 一、递归基础应用1、计算一个数的阶乘1.1迭代阶乘（循环实现）123456789101112function factorialIte">
+<meta property="og:description" content="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发） 内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）">
 <meta property="article:published_time" content="2019-10-17T11:11:48.000Z">
-<meta property="article:modified_time" content="2020-01-02T02:15:34.614Z">
+<meta property="article:modified_time" content="2020-01-02T08:25:52.439Z">
 <meta property="article:author" content="Secret_wu">
 <meta property="article:tag" content="ES6">
 <meta property="article:tag" content="数据结构">
@@ -365,6 +365,17 @@
 
                 
                 
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/xinkuiwu.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92/" itemprop="url" rel="index">
+                    <span itemprop="name">递归</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -426,7 +437,11 @@
       
 
       
-        <h3 id="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）"><a href="#目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）" class="headerlink" title="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）"></a>目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）</h3><h3 id="内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）"><a href="#内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）" class="headerlink" title="内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）"></a>内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）</h3><p>所有源码在我的Github上（如果觉得不错记得给星鼓励我哦）：<a href="https://github.com/xinkuiwu/ES6_JavaScript_data_structures_and_algorithms/tree/master/data_structures/recursion" target="_blank" rel="noopener">ES6的JavaScript数据结构实现之递归</a></p>
+        <p>目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）</p>
+<p>内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）</p>
+<a id="more"></a>
+
+<p>所有源码在我的Github上（如果觉得不错记得给星鼓励我哦）：<a href="https://github.com/xinkuiwu/ES6_JavaScript_data_structures_and_algorithms/tree/master/data_structures/recursion" target="_blank" rel="noopener">ES6的JavaScript数据结构实现之递归</a></p>
 <h3 id="一、递归基础应用"><a href="#一、递归基础应用" class="headerlink" title="一、递归基础应用"></a>一、递归基础应用</h3><h4 id="1、计算一个数的阶乘"><a href="#1、计算一个数的阶乘" class="headerlink" title="1、计算一个数的阶乘"></a>1、计算一个数的阶乘</h4><h5 id="1-1迭代阶乘（循环实现）"><a href="#1-1迭代阶乘（循环实现）" class="headerlink" title="1.1迭代阶乘（循环实现）"></a>1.1迭代阶乘（循环实现）</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorialIterative</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (number &lt; <span class="number">0</span> ) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> total = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> n = number; n &gt; <span class="number">1</span>; n--) &#123;</span><br><span class="line">    total = total * n ;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> total;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(factorialIterative(<span class="number">5</span>)); <span class="comment">//120</span></span><br></pre></td></tr></table></figure>
 
 
@@ -584,7 +599,7 @@
               
                 <a href="/xinkuiwu.github.io/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -595,7 +610,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/xinkuiwu.github.io/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -606,7 +621,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/xinkuiwu.github.io/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -673,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）"><span class="nav-number">1.</span> <span class="nav-text">目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）"><span class="nav-number">2.</span> <span class="nav-text">内容：递归。（递归会使得操作树和图数据结构变得更简单。所以要理解递归。）（未完成，待继续）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、递归基础应用"><span class="nav-number">3.</span> <span class="nav-text">一、递归基础应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、计算一个数的阶乘"><span class="nav-number">3.1.</span> <span class="nav-text">1、计算一个数的阶乘</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1迭代阶乘（循环实现）"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1迭代阶乘（循环实现）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2递归阶乘（使用递归时，要找到原始问题和子问题是什么。例如factorial-5-5-factorial-4-）"><span class="nav-number">3.1.2.</span> <span class="nav-text">1.2递归阶乘（使用递归时，要找到原始问题和子问题是什么。例如factorial(5)&#x3D;5*factorial(4)）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、斐波那契数列。（斐波那契数列是另一个可以用递归解决的问题。）"><span class="nav-number">3.2.</span> <span class="nav-text">2、斐波那契数列。（斐波那契数列是另一个可以用递归解决的问题。）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1迭代求斐波那契数"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.1迭代求斐波那契数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2递归求斐波那契数"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2递归求斐波那契数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3记忆化斐波那契数"><span class="nav-number">3.3.</span> <span class="nav-text">2.3记忆化斐波那契数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、递归基础应用"><span class="nav-number">1.</span> <span class="nav-text">一、递归基础应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、计算一个数的阶乘"><span class="nav-number">1.1.</span> <span class="nav-text">1、计算一个数的阶乘</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1迭代阶乘（循环实现）"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1迭代阶乘（循环实现）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2递归阶乘（使用递归时，要找到原始问题和子问题是什么。例如factorial-5-5-factorial-4-）"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2递归阶乘（使用递归时，要找到原始问题和子问题是什么。例如factorial(5)&#x3D;5*factorial(4)）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、斐波那契数列。（斐波那契数列是另一个可以用递归解决的问题。）"><span class="nav-number">1.2.</span> <span class="nav-text">2、斐波那契数列。（斐波那契数列是另一个可以用递归解决的问题。）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1迭代求斐波那契数"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1迭代求斐波那契数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2递归求斐波那契数"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2递归求斐波那契数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3记忆化斐波那契数"><span class="nav-number">1.3.</span> <span class="nav-text">2.3记忆化斐波那契数</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -707,7 +722,7 @@
   <span class="author" itemprop="copyrightHolder">Secret_wu</span>
 	<span class="post-meta-divider">|</span>
 	  <div class="powered-by"></div>
-  <span class="post-count">Site words total count: 57.1k</span>
+  <span class="post-count">Site words total count: 113.5k</span>
   
 </div>
 
@@ -728,7 +743,7 @@
 
 <!-- <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">Site words total count: 57.1k</span>
+  <span class="post-count">Site words total count: 113.5k</span>
 </div>
 -->
         

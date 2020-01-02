@@ -94,14 +94,14 @@
 
 
 
-<meta name="description" content="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）内容：栈。（未完成，待继续）所有源码在我的Github上（如果觉得不错记得给星鼓励我哦）：ES6的JavaScript数据结构实现之栈 一、基础数据结构1、栈（先入后出）1234567891011121314151617181920212223242526272829303132333435363738394041424344454">
+<meta name="description" content="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发） 内容：栈。（未完成，待继续）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6的JavaScript数据结构实现之栈">
 <meta property="og:url" content="https://xinkuiwu.github.io/2019/09/25/blog6/index.html">
 <meta property="og:site_name" content="Secret_wu&#39;s coding note">
-<meta property="og:description" content="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）内容：栈。（未完成，待继续）所有源码在我的Github上（如果觉得不错记得给星鼓励我哦）：ES6的JavaScript数据结构实现之栈 一、基础数据结构1、栈（先入后出）1234567891011121314151617181920212223242526272829303132333435363738394041424344454">
+<meta property="og:description" content="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发） 内容：栈。（未完成，待继续）">
 <meta property="article:published_time" content="2019-09-25T11:44:48.000Z">
-<meta property="article:modified_time" content="2020-01-02T01:54:59.138Z">
+<meta property="article:modified_time" content="2020-01-02T08:27:10.997Z">
 <meta property="article:author" content="Secret_wu">
 <meta property="article:tag" content="ES6">
 <meta property="article:tag" content="数据结构">
@@ -365,6 +365,17 @@
 
                 
                 
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/xinkuiwu.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%88/" itemprop="url" rel="index">
+                    <span itemprop="name">栈</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -426,7 +437,11 @@
       
 
       
-        <h3 id="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）"><a href="#目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）" class="headerlink" title="目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）"></a>目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）</h3><h3 id="内容：栈。（未完成，待继续）"><a href="#内容：栈。（未完成，待继续）" class="headerlink" title="内容：栈。（未完成，待继续）"></a>内容：栈。（未完成，待继续）</h3><p>所有源码在我的Github上（如果觉得不错记得给星鼓励我哦）：<a href="https://github.com/xinkuiwu/ES6_JavaScript_data_structures_and_algorithms/tree/master/data_structures/stack" target="_blank" rel="noopener">ES6的JavaScript数据结构实现之栈</a></p>
+        <p>目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）</p>
+<p>内容：栈。（未完成，待继续）</p>
+<a id="more"></a>
+
+<p>所有源码在我的Github上（如果觉得不错记得给星鼓励我哦）：<a href="https://github.com/xinkuiwu/ES6_JavaScript_data_structures_and_algorithms/tree/master/data_structures/stack" target="_blank" rel="noopener">ES6的JavaScript数据结构实现之栈</a></p>
 <h3 id="一、基础数据结构"><a href="#一、基础数据结构" class="headerlink" title="一、基础数据结构"></a>一、基础数据结构</h3><h4 id="1、栈（先入后出）"><a href="#1、栈（先入后出）" class="headerlink" title="1、栈（先入后出）"></a>1、栈（先入后出）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @ts-check</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line"><span class="keyword">constructor</span>() &#123;</span><br><span class="line"><span class="keyword">this</span>.count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">this</span>.items = &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">push(element) &#123;</span><br><span class="line"><span class="keyword">this</span>.items[<span class="keyword">this</span>.count] = element;</span><br><span class="line"><span class="keyword">this</span>.count++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pop() &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty()) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">this</span>.count--;</span><br><span class="line"><span class="keyword">const</span> result = <span class="keyword">this</span>.items[<span class="keyword">this</span>.count];</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">this</span>.items[<span class="keyword">this</span>.count];</span><br><span class="line"><span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">peek() &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty()) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="keyword">this</span>.count - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isEmpty() &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.count === <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">size() &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">clear() &#123;</span><br><span class="line"><span class="comment">/* while (!this.isEmpty()) &#123;</span></span><br><span class="line"><span class="comment">this.pop();</span></span><br><span class="line"><span class="comment">&#125; */</span></span><br><span class="line"><span class="keyword">this</span>.items = &#123;&#125;;</span><br><span class="line"><span class="keyword">this</span>.count = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">toString() &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty()) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> objString = <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.items[<span class="number">0</span>]&#125;</span>`</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.count; i++) &#123;</span><br><span class="line">objString = <span class="string">`<span class="subst">$&#123;objString&#125;</span>,<span class="subst">$&#123;<span class="keyword">this</span>.items[i]&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> objString;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> stack = <span class="keyword">new</span> Stack(); <span class="comment">// new StackArray();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// using WeakMap to store Stack items we ensure true privacy</span></span><br><span class="line"><span class="comment">// console.log(Object.getOwnPropertyNames(stack));</span></span><br><span class="line"><span class="comment">// console.log(Object.keys(stack));</span></span><br><span class="line"><span class="comment">// console.log(stack.items);</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'stack.isEmpty() =&gt; '</span>, stack.isEmpty()); <span class="comment">// outputs true</span></span><br><span class="line"></span><br><span class="line">stack.push(<span class="number">6</span>);</span><br><span class="line">stack.push(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'stack after push 5 and 8 =&gt; '</span>, stack.toString());</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'stack.peek() =&gt; '</span>, stack.peek()); <span class="comment">// outputs 8</span></span><br><span class="line"></span><br><span class="line">stack.push(<span class="number">11</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'stack.size() after push 11 =&gt; '</span>, stack.size()); <span class="comment">// outputs 3</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'stack.isEmpty() =&gt; '</span>, stack.isEmpty()); <span class="comment">// outputs false</span></span><br><span class="line"></span><br><span class="line">stack.push(<span class="number">15</span>);</span><br><span class="line"></span><br><span class="line">stack.pop();</span><br><span class="line">stack.pop();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'stack.size() after push 15 and pop twice =&gt; '</span>, stack.size());</span><br><span class="line"></span><br><span class="line">Stack</span><br></pre></td></tr></table></figure>
 
 
@@ -584,7 +599,7 @@
               
                 <a href="/xinkuiwu.github.io/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -595,7 +610,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/xinkuiwu.github.io/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -606,7 +621,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/xinkuiwu.github.io/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -673,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）"><span class="nav-number">1.</span> <span class="nav-text">目的：ES6标准下的JS数据结构的一些实现代码。（作为记录和启发）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容：栈。（未完成，待继续）"><span class="nav-number">2.</span> <span class="nav-text">内容：栈。（未完成，待继续）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基础数据结构"><span class="nav-number">3.</span> <span class="nav-text">一、基础数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、栈（先入后出）"><span class="nav-number">3.1.</span> <span class="nav-text">1、栈（先入后出）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、栈应用：数据进制转换；平衡圆括号；汉诺塔"><span class="nav-number">4.</span> <span class="nav-text">二、栈应用：数据进制转换；平衡圆括号；汉诺塔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、由十进制传为二进制。"><span class="nav-number">4.1.</span> <span class="nav-text">1、由十进制传为二进制。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、同理，可以把任意十进制转为2-36进制"><span class="nav-number">4.2.</span> <span class="nav-text">2、同理，可以把任意十进制转为2-36进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、平衡圆括号"><span class="nav-number">4.3.</span> <span class="nav-text">3、平衡圆括号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、汉诺塔"><span class="nav-number">4.4.</span> <span class="nav-text">4、汉诺塔</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基础数据结构"><span class="nav-number">1.</span> <span class="nav-text">一、基础数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、栈（先入后出）"><span class="nav-number">1.1.</span> <span class="nav-text">1、栈（先入后出）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、栈应用：数据进制转换；平衡圆括号；汉诺塔"><span class="nav-number">2.</span> <span class="nav-text">二、栈应用：数据进制转换；平衡圆括号；汉诺塔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、由十进制传为二进制。"><span class="nav-number">2.1.</span> <span class="nav-text">1、由十进制传为二进制。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、同理，可以把任意十进制转为2-36进制"><span class="nav-number">2.2.</span> <span class="nav-text">2、同理，可以把任意十进制转为2-36进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、平衡圆括号"><span class="nav-number">2.3.</span> <span class="nav-text">3、平衡圆括号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、汉诺塔"><span class="nav-number">2.4.</span> <span class="nav-text">4、汉诺塔</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -707,7 +722,7 @@
   <span class="author" itemprop="copyrightHolder">Secret_wu</span>
 	<span class="post-meta-divider">|</span>
 	  <div class="powered-by"></div>
-  <span class="post-count">Site words total count: 57.1k</span>
+  <span class="post-count">Site words total count: 113.5k</span>
   
 </div>
 
@@ -728,7 +743,7 @@
 
 <!-- <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">Site words total count: 57.1k</span>
+  <span class="post-count">Site words total count: 113.5k</span>
 </div>
 -->
         
