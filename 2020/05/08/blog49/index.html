@@ -168,66 +168,66 @@
 <p>​	<code>var http = require(&quot;http&quot;);</code></p>
 <p>创建服务器</p>
 <p>​	使用http.createServer() 方法创建服务器，并使用listen 方法绑定8888 端口（通常端口设置大于3000，避免端口冲突）。函数通过request, response 参数来接收和响应数据。</p>
-<p><img src="/.com//image-20200508164008971.png" alt="image-20200508164008971"></p>
+<p><img src="/blog49/image-20200508164008971.png" alt="image-20200508164008971"></p>
 <p>在终端运行程序：</p>
 <p>​	cd到文件目录，然后node 文件名 运行，接着用浏览器点开响应链接观察结果。</p>
-<p><img src="/.com//image-20200508164355806.png" alt="image-20200508164355806"></p>
+<p><img src="/blog49/image-20200508164355806.png" alt="image-20200508164355806"></p>
 <p>浏览器结果：</p>
 <p>​	响应了正确的文字，和H2标题，请求了两个文件，响应中地址和状态码信息都符合我们的设置。</p>
-<p><img src="/.com//image-20200508164037143.png" alt="image-20200508164037143"></p>
-<p><img src="/.com//image-20200508164118199.png" alt="image-20200508164118199"></p>
+<p><img src="/blog49/image-20200508164037143.png" alt="image-20200508164037143"></p>
+<p><img src="/blog49/image-20200508164118199.png" alt="image-20200508164118199"></p>
 <p>小结：<strong>也就是说，我们本地写一个js，打死都不能直接拖入浏览器运行，但是有了node，我们任何一个js 文件，都可以通过node 来运行。也就是说，node 就是一个js 的执行环境。</strong></p>
 <p>​	此外，来看一下req 里面能够使用的东西。最关键的就是req.url 属性，表示用户的请求URL 地址。所有的路由设计，都是通过req.url来实现的。<br>​	我们比较关心的不是拿到URL，而是识别这个URL。这个时候可以使用url模块。</p>
 <h4 id="url模块"><a href="#url模块" class="headerlink" title="url模块"></a>url模块</h4><p>​	使用url模块时，先require引入，然后使用url.parse() 解析URL</p>
-<p><img src="/.com//image-20200508165756612.png" alt="image-20200508165756612"></p>
+<p><img src="/blog49/image-20200508165756612.png" alt="image-20200508165756612"></p>
 <p>输出一个url对象</p>
-<p><img src="/.com//image-20200508165814675.png" alt="image-20200508165814675"></p>
+<p><img src="/blog49/image-20200508165814675.png" alt="image-20200508165814675"></p>
 <p>让我们向解析url的query时，parse()方法里面，设置第二个参数为true:</p>
-<p><img src="/.com//image-20200508165927433.png" alt="image-20200508165927433"></p>
-<p><img src="/.com//image-20200508165951426.png" alt="image-20200508165951426"></p>
+<p><img src="/blog49/image-20200508165927433.png" alt="image-20200508165927433"></p>
+<p><img src="/blog49/image-20200508165951426.png" alt="image-20200508165951426"></p>
 <p><strong>url的其他方法</strong>：</p>
 <p>url.format(urlObject) &#x2F;&#x2F;是上面url.parse() 操作的逆向操作<br>url.resolve(from, to) 添加或者替换地址</p>
 <h4 id="http模块与url模型的结合使用"><a href="#http模块与url模型的结合使用" class="headerlink" title="http模块与url模型的结合使用"></a>http模块与url模型的结合使用</h4><p>通常，浏览器（客户端）输入的url会带有一些查询（参数）。</p>
-<p><img src="/.com//image-20200508171358359.png" alt="image-20200508171358359"></p>
+<p><img src="/blog49/image-20200508171358359.png" alt="image-20200508171358359"></p>
 <p>这个时候，服务器可能需要知道，甚至解析这个ur。这个时候就使用到req对象了。</p>
 <p>http的req对象其实里面有很多属性(即存在很多信息)</p>
-<p><img src="/.com//image-20200508170530432.png" alt="image-20200508170530432"></p>
-<p><img src="/.com//image-20200508170622481.png" alt="image-20200508170622481"></p>
+<p><img src="/blog49/image-20200508170530432.png" alt="image-20200508170530432"></p>
+<p><img src="/blog49/image-20200508170622481.png" alt="image-20200508170622481"></p>
 <p>其中，有个属性是url，获取浏览器访问的地址</p>
-<p><img src="/.com//image-20200508171509440.png" alt="image-20200508171509440"></p>
+<p><img src="/blog49/image-20200508171509440.png" alt="image-20200508171509440"></p>
 <p>结果：</p>
-<p><img src="/.com//image-20200508171500542.png" alt="image-20200508171500542"></p>
+<p><img src="/blog49/image-20200508171500542.png" alt="image-20200508171500542"></p>
 <p>浏览器也确实反映了需要这两个文件：</p>
-<p><img src="/.com//image-20200508171735535.png" alt="image-20200508171735535"></p>
+<p><img src="/blog49/image-20200508171735535.png" alt="image-20200508171735535"></p>
 <p>相当于服务器获取到了这两个请求，但实际上可能我们需要的是第一个请求，并且解析它（让这个请求解析为一个对象）并做一些处理：</p>
-<p><img src="/.com//image-20200508172135269.png" alt="image-20200508172135269"></p>
-<p><img src="/.com//image-20200508172205135.png" alt="image-20200508172205135"></p>
+<p><img src="/blog49/image-20200508172135269.png" alt="image-20200508172135269"></p>
+<p><img src="/blog49/image-20200508172205135.png" alt="image-20200508172205135"></p>
 <p>结果：（每次结果要记得现在保存修改，结束服务器控制台CTRL+C，然后重新运行文件，刷新浏览器，才可以观察结果）</p>
-<p><img src="/.com//image-20200508172221383.png" alt="image-20200508172221383"></p>
+<p><img src="/blog49/image-20200508172221383.png" alt="image-20200508172221383"></p>
 <p>小结：<strong>这样就可以获取url的get传值。</strong></p>
 <h4 id="Nodejs-自启动工具supervisor"><a href="#Nodejs-自启动工具supervisor" class="headerlink" title="Nodejs 自启动工具supervisor"></a>Nodejs 自启动工具supervisor</h4><p>​	之前的调试，可以发现，当修改js文件时，需要保存，结束服务器控制台CTRL+C，然后重新运行文件，刷新浏览器，才可以观察结果。</p>
 <p>​	supervisor 会不停的watch 你应用下面的所有文件，发现有文件被修改，就重新载入程序文件这样就实现了部署，修改了程序文件后马上就能看到变更后的结果。</p>
 <p>​	supervisor也是node内置的一个模块，使用它时，首先全局安装：</p>
-<p><img src="/.com//image-20200508172945630.png" alt="image-20200508172945630"></p>
+<p><img src="/blog49/image-20200508172945630.png" alt="image-20200508172945630"></p>
 <p>​	然后，使用supervisor 关键词代替node 命令启动应用：</p>
-<p><img src="/.com//image-20200508173410091.png" alt="image-20200508173410091"></p>
+<p><img src="/blog49/image-20200508173410091.png" alt="image-20200508173410091"></p>
 <p>​	举例1：</p>
 <p>​	例如，一开始浏览器请求为：</p>
-<p><img src="/.com//image-20200508173347708.png" alt="image-20200508173347708"></p>
+<p><img src="/blog49/image-20200508173347708.png" alt="image-20200508173347708"></p>
 <p>​	回车后，服务器控制台输出：</p>
-<p><img src="/.com//image-20200508173503610.png" alt="image-20200508173503610"></p>
+<p><img src="/blog49/image-20200508173503610.png" alt="image-20200508173503610"></p>
 <p>​	当修改浏览器请求时：</p>
-<p><img src="/.com//image-20200508173523515.png" alt="image-20200508173523515"></p>
+<p><img src="/blog49/image-20200508173523515.png" alt="image-20200508173523515"></p>
 <p>​	回车后，结果改为：</p>
-<p><img src="/.com//image-20200508173543026.png" alt="image-20200508173543026"></p>
+<p><img src="/blog49/image-20200508173543026.png" alt="image-20200508173543026"></p>
 <p>​	</p>
 <p>​	举例2：</p>
 <p>​	当修改服务器文件时：（加多一个name字段）</p>
-<p><img src="/.com//image-20200508173719962.png" alt="image-20200508173719962"></p>
+<p><img src="/blog49/image-20200508173719962.png" alt="image-20200508173719962"></p>
 <p>​	保存文件，此时服务器控制台，重启：</p>
-<p><img src="/.com//image-20200508173819570.png" alt="image-20200508173819570"></p>
+<p><img src="/blog49/image-20200508173819570.png" alt="image-20200508173819570"></p>
 <p>​	浏览器点开页面（刷新），一样可以获取相关信息：</p>
-<p>​	<img src="/.com//image-20200508173846747.png" alt="image-20200508173846747"></p>
+<p>​	<img src="/blog49/image-20200508173846747.png" alt="image-20200508173846747"></p>
 <p><strong>小结：这样调试就比之前的要方便很多了。</strong></p>
 <p><strong>其他补充：</strong></p>
 <p>当然，如果npm安装比较慢，也可以修改npm为cnpm，使用淘宝的镜像文件来安装。</p>
