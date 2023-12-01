@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>node自学之NodeJs WEB服务器、静态文件托管、 路由、EJS模板引擎、GET、POST | 伍新奎的博客空间</title><meta name="author" content="Xinkui Wu"><meta name="copyright" content="Xinkui Wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="终极目标：掌握和使用node 本博客目的：记录node学习的进度和心得 内容：Nodejs中的NodeJs WEB服务器、静态文件托管、 路由、EJS模板引擎、GET、POST。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node自学之NodeJs WEB服务器、静态文件托管、 路由、EJS模板引擎、GET、POST">
+<meta property="og:url" content="http://example.com/2020/05/15/blog55/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="终极目标：掌握和使用node 本博客目的：记录node学习的进度和心得 内容：Nodejs中的NodeJs WEB服务器、静态文件托管、 路由、EJS模板引擎、GET、POST。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2020-05-15T06:02:06.000Z">
+<meta property="article:modified_time" content="2020-05-16T07:05:22.783Z">
+<meta property="article:author" content="Xinkui Wu">
+<meta property="article:tag" content="路由">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="WEB服务器">
+<meta property="article:tag" content="静态文件托管">
+<meta property="article:tag" content="EJS模板引擎">
+<meta property="article:tag" content="GET">
+<meta property="article:tag" content="POST">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/05/15/blog55/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'node自学之NodeJs WEB服务器、静态文件托管、 路由、EJS模板引擎、GET、POST',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-05-16 15:05:22'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">node自学之NodeJs WEB服务器、静态文件托管、 路由、EJS模板引擎、GET、POST</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-05-15T06:02:06.000Z" title="Created 2020-05-15 14:02:06">2020-05-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-05-16T07:05:22.783Z" title="Updated 2020-05-16 15:05:22">2020-05-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/node/">node</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="node自学之NodeJs WEB服务器、静态文件托管、 路由、EJS模板引擎、GET、POST"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>终极目标：掌握和使用node</p>
+<p>本博客目的：记录node学习的进度和心得</p>
+<p>内容：Nodejs中的NodeJs WEB服务器、静态文件托管、 路由、EJS模板引擎、GET、POST。</p>
+<span id="more"></span>
+
+<h3 id="Nodejs-静态文件托管"><a href="#Nodejs-静态文件托管" class="headerlink" title="Nodejs 静态文件托管"></a>Nodejs 静态文件托管</h3><p>​	上一个blog介绍了如何使用nodejs创建一个WEB服务器，用于静态文件托管。</p>
+<p>​	但我们会发现，大量的代码写在一块，比较混乱。其实我们可以把一些代码封装为一个模块（router.js），然后使得服务器代码简化：</p>
+<p><img src="/blog55/image-20200515154119924.png" alt="image-20200515154119924"></p>
+<p>​	即大量的读取文件等操作（路由操作），封装为一个router.js文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs=<span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> path=<span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);  </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url=<span class="built_in">require</span>(<span class="string">&#x27;url&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getMime</span>(<span class="params">extname,callback</span>)&#123;  </span><br><span class="line"></span><br><span class="line">    fs.<span class="title function_">readFile</span>(<span class="string">&#x27;./mime.json&#x27;</span>,<span class="keyword">function</span>(<span class="params">err,data</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">           </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//console.log(data.toString());</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> <span class="title class_">Mimes</span>=<span class="title class_">JSON</span>.<span class="title function_">parse</span>(data.<span class="title function_">toString</span>());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> result= <span class="title class_">Mimes</span>[extname] || <span class="string">&#x27;text/html&#x27;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title function_">callback</span>(result)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">statics</span>=<span class="keyword">function</span>(<span class="params">req,res,staticpath</span>)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> pathname=url.<span class="title function_">parse</span>(req.<span class="property">url</span>).<span class="property">pathname</span>;   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(pathname==<span class="string">&#x27;/&#x27;</span>)&#123;</span><br><span class="line">        pathname=<span class="string">&#x27;/index.html&#x27;</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> extname=path.<span class="title function_">extname</span>(pathname);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(pathname!=<span class="string">&#x27;/favicon.ico&#x27;</span>)&#123;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        fs.<span class="title function_">readFile</span>(staticpath+<span class="string">&#x27;/&#x27;</span>+pathname,<span class="keyword">function</span>(<span class="params">err,data</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(err)&#123;  </span><br><span class="line"></span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;404&#x27;</span>);</span><br><span class="line"></span><br><span class="line">                fs.<span class="title function_">readFile</span>(staticpath+<span class="string">&#x27;/404.html&#x27;</span>,<span class="keyword">function</span>(<span class="params">error,data404</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(error)&#123;</span><br><span class="line">                        <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">                    &#125;</span><br><span class="line">                    res.<span class="title function_">writeHead</span>(<span class="number">404</span>,&#123;<span class="string">&quot;Content-Type&quot;</span>:<span class="string">&quot;text/html;charset=&#x27;utf-8&#x27;&quot;</span>&#125;);</span><br><span class="line">                    res.<span class="title function_">write</span>(data404);</span><br><span class="line">                    res.<span class="title function_">end</span>(); </span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123; </span><br><span class="line"></span><br><span class="line">               <span class="title function_">getMime</span>(extname,<span class="keyword">function</span>(<span class="params">mime</span>)&#123;</span><br><span class="line">                    res.<span class="title function_">writeHead</span>(<span class="number">200</span>,&#123;<span class="string">&quot;Content-Type&quot;</span>:<span class="string">&quot;&quot;</span>+mime+<span class="string">&quot;;charset=&#x27;utf-8&#x27;&quot;</span>&#125;);</span><br><span class="line">                    res.<span class="title function_">write</span>(data);</span><br><span class="line">                    res.<span class="title function_">end</span>(); </span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​	这样同样能够实现之前写的静态服务器的功能。</p>
+<p>​	</p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>​	路由（Routing）是由一个 URI（或者叫路径）和一个特定的 HTTP 方法（GET、POST 等）组成的，涉及到应用如何响应客户端对某个网站节点的访问。</p>
+<p>​	即路由指的就是针对不同请求的URL，处理不同的业务逻辑。</p>
+<p><img src="/blog55/image-20200515153020139.png" alt="image-20200515153020139"></p>
+<p>​	通常我们要获取URL，从而执行不同的操作，这就是nodejs的路由。</p>
+<p>​	例如url的pathname存在login或register，要进行一些操作时：</p>
+<p><img src="/blog55/image-20200515155114068.png" alt="image-20200515155114068"></p>
+<p>当<img src="/blog55/image-20200515155148412.png" alt="image-20200515155148412"></p>
+<p>当<img src="/blog55/image-20200515155215506.png" alt="image-20200515155215506"></p>
+<p>类似地，可以通过根据URL，来自定义自己想要的操作。	</p>
+<p>​	但是，我们发现这样的写法，还是有点混乱。这时候我们可以使用模板引擎。</p>
+<h3 id="EJS模块引擎（属于后台渲染）"><a href="#EJS模块引擎（属于后台渲染）" class="headerlink" title="EJS模块引擎（属于后台渲染）"></a>EJS模块引擎（属于后台渲染）</h3><p>​	我们学的EJS是后台模板，可以把我们数据库和文件读取的数据显示到Html页面上面。</p>
+<p>它是一个第三方模块，需要通过npm安装<br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/ejs">https://www.npmjs.com/package/ejs</a></p>
+<p><code>npm install ejs -–save</code></p>
+<p>（CMD当前目录，安装。会自动在项目中生成package.json。但通常还是在写项目初期，使用npm init来生成）</p>
+<p>​	现在，我们还是想服务器能够根据不同的URL，执行一些不同的操作。例如，我们输入login的URL时，要加载login的页面，但是按照之前的方法，只能加载之前写好在静态文件夹中的静态文件，我们希望的是能够把（后台）数据库的数据渲染到模板上。</p>
+<p>​	这时可以使用EJS模块引擎。EJS提供了renderFile方法，用于渲染模板。</p>
+<p>​	还有一些常用标签：</p>
+<p>​	&lt;% %&gt;流程控制标签 </p>
+<p>​	 &lt;%&#x3D; %&gt;输出标签（原文输出HTML标签） </p>
+<p>​	 &lt;%- %&gt;输出标签（HTML会被浏览器解析）</p>
+<p>​	因此，首先，通常我们会在项目中，创建视图文件夹（放置模板）views，然后在里面创建.ejs为后缀名的模板。（.ejs是为了能够使用ejs的语法）</p>
+<p><img src="/blog55/image-20200515161252637.png" alt="image-20200515161252637"></p>
+<p>​	<img src="/blog55/image-20200515162226112.png" alt="image-20200515162226112"></p>
+<p>​	现在就是想输入带login的URL就转入到这个login.ejs页面，并且传入一些数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入http模块</span></span><br><span class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url=<span class="built_in">require</span>(<span class="string">&#x27;url&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ejs=<span class="built_in">require</span>(<span class="string">&#x27;ejs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//路由:指的就是针对不同请求的 URL，处理不同的业务逻辑。</span></span><br><span class="line">http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req,res</span>)&#123;</span><br><span class="line"></span><br><span class="line">	res.<span class="title function_">writeHead</span>(<span class="number">200</span>,&#123;<span class="string">&quot;Content-Type&quot;</span>:<span class="string">&quot;text/html;charset=&#x27;utf-8&#x27;&quot;</span>&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> pathname=url.<span class="title function_">parse</span>(req.<span class="property">url</span>).<span class="property">pathname</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(pathname==<span class="string">&#x27;/login&#x27;</span>)&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> data=<span class="string">&#x27;i am backend data &#x27;</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> list=[</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			<span class="string">&#x27;1111&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;2222&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;3333&#x27;</span>,</span><br><span class="line">		];</span><br><span class="line"></span><br><span class="line">		<span class="comment">//把数据库的数据渲染到模板上面</span></span><br><span class="line">		ejs.<span class="title function_">renderFile</span>(<span class="string">&#x27;views/login.ejs&#x27;</span>,&#123;</span><br><span class="line">			<span class="attr">msg</span>:data,</span><br><span class="line">			<span class="attr">list</span>:list</span><br><span class="line">		&#125;,<span class="keyword">function</span>(<span class="params">err,data</span>)&#123;</span><br><span class="line"></span><br><span class="line">			res.<span class="title function_">end</span>(data);</span><br><span class="line"></span><br><span class="line">		&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;).<span class="title function_">listen</span>(<span class="number">8001</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>页面结果：</p>
+<p><img src="/blog55/image-20200515162716412.png" alt="image-20200515162716412"></p>
+<p>​	类似地，我们还可以定义很多views，例如register等。</p>
+<p>​	这样就实现了后台渲染。（之前vue学习的单页应用是前端渲染）</p>
+<p>​	</p>
+<h3 id="Get、Post"><a href="#Get、Post" class="headerlink" title="Get、Post"></a>Get、Post</h3><p>​	超文本传输协议（HTTP）的设计目的是保证客户端机器与服务器之间的通信。 在客户端和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。 </p>
+<p>GET - 从指定的资源请求数据。（一般用于获取数据）</p>
+<p>POST - 向指定的资源提交要被处理的数据。（一般用于提交数据）</p>
+<p>​	</p>
+<p>​	现在，我们有个需求，当打开&#x2F;login的url时，显示登录页面，例如一个登录的表单（通常表单的提交信息是通过post，提交给服务器）：</p>
+<p><img src="/blog55/image-20200515193645489.png" alt="image-20200515193645489"></p>
+<p>当url带login时，渲染到form.ejs页面</p>
+<p><img src="/blog55/image-20200515193708858.png" alt="image-20200515193708858"></p>
+<p><img src="/blog55/image-20200515193855994.png" alt="image-20200515193855994"></p>
+<p>​	所以，通常我们是在打开登录页面，输入用户名和密码，然后提交。</p>
+<p>​	首先，我们要判断客户端请求的方法是get还是post。（通过req对象method属性）</p>
+<p>​	获取请求的方法，判断是post还是get：</p>
+<p><img src="/blog55/image-20200515194203770.png" alt="image-20200515194203770"></p>
+<p>​	如果客户端请求方法是get，则这个信息会query字段拼接在URL后面。服务器要获取这个信息，需要对这个URL进行解析。</p>
+<p>​	如果表单为get方法：</p>
+<p>​	<img src="/blog55/image-20200515195020064.png" alt="image-20200515195020064"></p>
+<p>​	例如输入wu12和123，然后点击登录：</p>
+<p>​	<img src="/blog55/image-20200515194935674.png" alt="image-20200515194935674"></p>
+<p>注意：当提交表单时，我们修改了路径：</p>
+<p><img src="/blog55/image-20200515195721831.png" alt="image-20200515195721831"></p>
+<p>所以是在这个路径下拼接了query信息。</p>
+<p><img src="/blog55/image-20200515194947895.png" alt="image-20200515194947895"></p>
+<p>打开控制台，的确是以get方法，请求数据，query的参数也正确：</p>
+<p><img src="/blog55/image-20200515200449838.png" alt="image-20200515200449838"></p>
+<p>​		服务器可直接解析这个url：</p>
+<p><img src="/blog55/image-20200515195312424.png" alt="image-20200515195312424"></p>
+<p><img src="/blog55/image-20200515195321959.png" alt="image-20200515195321959"></p>
+<p>​	可以获取客户端提交的信息。</p>
+<p>​	如果表单以post方法：</p>
+<p>​	<img src="/blog55/image-20200515195113481.png" alt="image-20200515195113481"></p>
+<p>​	例如分别输入wu123和123，然后点击登录：</p>
+<p><img src="/blog55/image-20200515194352025.png" alt="image-20200515194352025"></p>
+<p>我们可以设置一个弹窗alert，说明登录成功：</p>
+<p><img src="/blog55/image-20200515201333965.png" alt="image-20200515201333965"></p>
+<p><img src="/blog55/image-20200515194433532.png" alt="image-20200515194433532"></p>
+<p>注意：此时，post方式不会把数据像get方式哪样拼接在url后面，而是放在请求头里。</p>
+<p>打开浏览器控制台，的确是post方式，参数也正确：</p>
+<p><img src="/blog55/image-20200515200658929.png" alt="image-20200515200658929"></p>
+<p><img src="/blog55/image-20200515200725397.png" alt="image-20200515200725397"></p>
+<p>服务器也正确获取数据：</p>
+<p><img src="/blog55/image-20200515194521441.png" alt="image-20200515194521441"></p>
+<p>同时，我们还可以设置服务器获取传值，然后写入login.txt保存数据（后面学习数据库还会使用数据库，继续加深理解）：</p>
+<p><img src="/blog55/image-20200515195954343.png" alt="image-20200515195954343"></p>
+<p><img src="/blog55/image-20200515200008095.png" alt="image-20200515200008095"></p>
+<p>再之后，通常如果认证成功，则会让客户端进行页面跳转。</p>
+<p><strong>小结：这样就可以用nodejs实现后端路由，即根据不同URL和请求方法，执行不同操作，例如网页跳转，数据展示，数据获取等。</strong></p>
+<p>但是，我们把get和post操作都写到了服务器代码中，显得很大很臃肿，后续应该进行封装（封装仿照express框架的路由）。</p>
+<p>完整代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//引入http模块</span></span><br><span class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url=<span class="built_in">require</span>(<span class="string">&#x27;url&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ejs=<span class="built_in">require</span>(<span class="string">&#x27;ejs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fs=<span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//路由:指的就是针对不同请求的 URL，处理不同的业务逻辑。</span></span><br><span class="line">http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req,res</span>)&#123;</span><br><span class="line"></span><br><span class="line">	res.<span class="title function_">writeHead</span>(<span class="number">200</span>,&#123;<span class="string">&quot;Content-Type&quot;</span>:<span class="string">&quot;text/html;charset=&#x27;utf-8&#x27;&quot;</span>&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取get 还是post请求</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> method=req.<span class="property">method</span>.<span class="title function_">toLowerCase</span>();</span><br><span class="line">	<span class="comment">//console.log(method);</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> pathname=url.<span class="title function_">parse</span>(req.<span class="property">url</span>,<span class="literal">true</span>).<span class="property">pathname</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(pathname==<span class="string">&#x27;/login&#x27;</span>)&#123;  <span class="comment">/*显示登录页面*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		ejs.<span class="title function_">renderFile</span>(<span class="string">&#x27;views/form.ejs&#x27;</span>,&#123;</span><br><span class="line"></span><br><span class="line">		&#125;,<span class="keyword">function</span>(<span class="params">err,data</span>)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			res.<span class="title function_">end</span>(data);</span><br><span class="line"></span><br><span class="line">		&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(pathname==<span class="string">&#x27;/dologin&#x27;</span> &amp;&amp;method==<span class="string">&#x27;get&#x27;</span>)&#123;  <span class="comment">/*执行登录的操作*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">//get获取数据</span></span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(url.<span class="title function_">parse</span>(req.<span class="property">url</span>,<span class="literal">true</span>).<span class="property">query</span>);</span><br><span class="line"></span><br><span class="line">		res.<span class="title function_">end</span>(<span class="string">&#x27;dologin&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(pathname==<span class="string">&#x27;/dologin&#x27;</span> &amp;&amp;method==<span class="string">&#x27;post&#x27;</span>)&#123;  <span class="comment">/*执行登录的操作*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> postStr=<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">		req.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>,<span class="keyword">function</span>(<span class="params">chunk</span>)&#123;</span><br><span class="line"></span><br><span class="line">			postStr+=chunk;</span><br><span class="line">		&#125;)</span><br><span class="line">		req.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>,<span class="keyword">function</span>(<span class="params">err,chunk</span>)&#123;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//res.end(postStr);</span></span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(postStr);</span><br><span class="line"></span><br><span class="line">			fs.<span class="title function_">appendFile</span>(<span class="string">&#x27;login.txt&#x27;</span>,postStr+<span class="string">&#x27;\n&#x27;</span>,<span class="keyword">function</span>(<span class="params">err</span>)&#123;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(err)&#123;</span><br><span class="line">					<span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;写入数据成功&#x27;</span>);</span><br><span class="line">			&#125;)</span><br><span class="line"></span><br><span class="line">			res.<span class="title function_">end</span>(<span class="string">&quot;&lt;script&gt;alert(&#x27;登录成功&#x27;);history.back();&lt;/script&gt;&quot;</span>)</span><br><span class="line"></span><br><span class="line">		&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">		ejs.<span class="title function_">renderFile</span>(<span class="string">&#x27;views/index.ejs&#x27;</span>,&#123;</span><br><span class="line"></span><br><span class="line">		&#125;,<span class="keyword">function</span>(<span class="params">err,data</span>)&#123;</span><br><span class="line"></span><br><span class="line">			res.<span class="title function_">end</span>(data);</span><br><span class="line"></span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;).<span class="title function_">listen</span>(<span class="number">8001</span>);</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Xinkui Wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2020/05/15/blog55/">http://example.com/2020/05/15/blog55/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%B7%AF%E7%94%B1/">路由</a><a class="post-meta__tags" href="/tags/node/">node</a><a class="post-meta__tags" href="/tags/WEB%E6%9C%8D%E5%8A%A1%E5%99%A8/">WEB服务器</a><a class="post-meta__tags" href="/tags/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%89%98%E7%AE%A1/">静态文件托管</a><a class="post-meta__tags" href="/tags/EJS%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">EJS模板引擎</a><a class="post-meta__tags" href="/tags/GET/">GET</a><a class="post-meta__tags" href="/tags/POST/">POST</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/16/blog56/" title="node自学之Nodejs 路由模块封装、封装仿照express的路由"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">node自学之Nodejs 路由模块封装、封装仿照express的路由</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/14/blog54/" title="node自学之Nodejs的非阻塞I/O、异步、事件驱动"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">node自学之Nodejs的非阻塞I/O、异步、事件驱动</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/05/14/blog53/" title="node自学之利用HTTP模块 URl模块 PATH模块 FS模块创建一个WEB服务器"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-14</div><div class="title">node自学之利用HTTP模块 URl模块 PATH模块 FS模块创建一个WEB服务器</div></div></a></div><div><a href="/2019/12/24/blog33/" title="前端框架Vue自学之Vue router（六）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-24</div><div class="title">前端框架Vue自学之Vue router（六）</div></div></a></div><div><a href="/2020/05/08/blog48/" title="NodeJS介绍&amp;安装&amp;开发工具配置"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-08</div><div class="title">NodeJS介绍&amp;安装&amp;开发工具配置</div></div></a></div><div><a href="/2020/05/08/blog49/" title="node自学之HTTP 模块、URL 模块、supervisor 工具"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-08</div><div class="title">node自学之HTTP 模块、URL 模块、supervisor 工具</div></div></a></div><div><a href="/2020/05/09/blog50/" title="node自学之CommonJs 和Nodejs 模块、自定义模块"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-09</div><div class="title">node自学之CommonJs 和Nodejs 模块、自定义模块</div></div></a></div><div><a href="/2020/05/12/blog52/" title="node自学之Nodejs中的fs模块的使用,异步处理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-12</div><div class="title">node自学之Nodejs中的fs模块的使用,异步处理</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xinkui Wu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nodejs-%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%89%98%E7%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">Nodejs 静态文件托管</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1"><span class="toc-number">2.</span> <span class="toc-text">路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EJS%E6%A8%A1%E5%9D%97%E5%BC%95%E6%93%8E%EF%BC%88%E5%B1%9E%E4%BA%8E%E5%90%8E%E5%8F%B0%E6%B8%B2%E6%9F%93%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">EJS模块引擎（属于后台渲染）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Get%E3%80%81Post"><span class="toc-number">4.</span> <span class="toc-text">Get、Post</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/test-wxk/" title="test wxk">test wxk</a><time datetime="2023-11-24T01:54:20.000Z" title="Created 2023-11-24 09:54:20">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/hello-world/" title="Hello World">Hello World</a><time datetime="2023-11-24T01:50:41.118Z" title="Created 2023-11-24 09:50:41">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/16/blog58/" title="虾皮">虾皮</a><time datetime="2021-07-16T08:00:01.000Z" title="Created 2021-07-16 16:00:01">2021-07-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/08/16/blog57/" title="腾讯实习总结">腾讯实习总结</a><time datetime="2020-08-16T08:00:01.000Z" title="Created 2020-08-16 16:00:01">2020-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/05/16/blog56/" title="node自学之Nodejs 路由模块封装、封装仿照express的路由">node自学之Nodejs 路由模块封装、封装仿照express的路由</a><time datetime="2020-05-16T07:12:00.000Z" title="Created 2020-05-16 15:12:00">2020-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Xinkui Wu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

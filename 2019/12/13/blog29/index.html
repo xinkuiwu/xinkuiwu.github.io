@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>前端框架Vue自学之Vue组件化开发（三） | 伍新奎的博客空间</title><meta name="author" content="Xinkui Wu"><meta name="copyright" content="Xinkui Wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="终极目标：掌握和使用Vue（全家桶：Core+Vue-router+Vuex） 本博客目的：记录Vue学习的进度和心得（Vue组件化开发） 内容：通过官网说明，掌握Vue组件化开发。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端框架Vue自学之Vue组件化开发（三）">
+<meta property="og:url" content="http://example.com/2019/12/13/blog29/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="终极目标：掌握和使用Vue（全家桶：Core+Vue-router+Vuex） 本博客目的：记录Vue学习的进度和心得（Vue组件化开发） 内容：通过官网说明，掌握Vue组件化开发。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2019-12-13T13:02:28.000Z">
+<meta property="article:modified_time" content="2020-01-02T08:16:30.913Z">
+<meta property="article:author" content="Xinkui Wu">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="框架">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="组件">
+<meta property="article:tag" content="组件化">
+<meta property="article:tag" content="插槽">
+<meta property="article:tag" content="组件通信">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2019/12/13/blog29/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端框架Vue自学之Vue组件化开发（三）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-01-02 16:16:30'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端框架Vue自学之Vue组件化开发（三）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-12-13T13:02:28.000Z" title="Created 2019-12-13 21:02:28">2019-12-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-01-02T08:16:30.913Z" title="Updated 2020-01-02 16:16:30">2020-01-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/vue/">vue</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/vue/%E7%BB%84%E4%BB%B6/">组件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端框架Vue自学之Vue组件化开发（三）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>终极目标：掌握和使用Vue（全家桶：Core+Vue-router+Vuex）</p>
+<p>本博客目的：记录Vue学习的进度和心得（Vue组件化开发）</p>
+<p>内容：通过<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/syntax.html">官网说明</a>，掌握Vue组件化开发。</p>
+<span id="more"></span>
+
+<h3 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h3><p><strong>Vue组件化开发</strong></p>
+<h3 id="一、认识组件化"><a href="#一、认识组件化" class="headerlink" title="一、认识组件化"></a>一、认识组件化</h3><p>　　1、什么是组件化？</p>
+<p>　　任何一个人处理信息的逻辑能力都是有限的，所以，当面对一个非常复杂的问题时，我们不太可能一次性搞定一大堆的内容。但是，我们人有一种天生的能力，就是将问题进行拆解，如果讲一个复杂的问题，拆分成很多个可以处理的小问题，再将其放在整体当中，你会发现大的问题也会迎刃而解。</p>
+<p>　　组件化也是类似思想：如果我们将一个页面中所有的处理逻辑全部放在一起，处理起来就会变得非常复杂，而且不利于后续的管理以及扩展。但如果，我们将一个页面拆分成一个个小的功能块，每个功能块完成属于自己这部分独立的功能，那么之后整个页面的管理和维护就变得非常容易了。</p>
+<p>　　2、Vue组件化思想</p>
+<p>　　组件化是Vue.js中的重要思想。它提供了一种抽象，让我们可以开发出一个个独立可复用的小组件来构造我们的应用，<strong>任何的应用都会被抽象成一颗组件树</strong>。</p>
+<p>　　3、组件化思想的应用</p>
+<p>　　有了组件化的思想，我们在之后得开发中就要充分地利用它。尽可能地将页面拆分成一个个小的、可复用的组件。这样让我们的代码更加方便组织和管理，并且扩展性也更强。（避免大量重复代码）</p>
+<h3 id="二、组件化基础之注册组件"><a href="#二、组件化基础之注册组件" class="headerlink" title="二、组件化基础之注册组件"></a>二、组件化基础之注册组件</h3><p>　　组件的使用分为三个步骤：创建组件构造器对象（调用Vue.extend()方法），注册组件（调用Vue.component()方法），使用组件（在Vue实例的作用范围内 ）。</p>
+<p>　　1、创建组件构造器对象（通常在最外层嵌套一层div）</p>
+<p>　　例如：const cpnC &#x3D; Vue.extend({ template:<code>&lt; div&gt;&lt; h2&gt;XX标题&lt;  /h2&gt;&lt; /dix&gt;</code>}) 注意，template是模板的意思，里面用的是&#96;&#96;（tab键上的波浪线键，ES6语法，可以用于字符串，有能自动换行的效果），该模板就是在使用到组件的地方，要显示的HTML代码。这种写法在Vue2.x文档没了，会使用一个语法糖的写法。</p>
+<p>　　2、注册组件（全局组件）</p>
+<p>　　Vue.component(‘组件名’，附件构造器对象)</p>
+<p>　　3、在Vue实例管理的HTML元素范围内调用组件（只有管理到的HTML，例如Vue实例通过id选择器选中下面这个div块）</p>
+<p>　　&lt; div id&#x3D;’app’&gt;&lt; 组件名&gt;&lt; 组件名&gt;&lt; &#x2F;div&gt;　</p>
+<p>　　4、全局组件与局部组件</p>
+<p>　　全局组件意味着可以在多个vue实例下面使用。局部组件就是在Vue实例定义下，注册组件，例如在vue的components属性对象中定义{cpn: cpnC}，其中cpn是组件名，cpnC是组件构造器对象。在开发中，使用比较多的是局部组件。</p>
+<p>　　5、父组件与子组件</p>
+<p>　　在组件2中，使用components属性定义以组件1的构造器注册组件1，也就是在组件2中，注册组件1，此时，组件2中的构建器对象中可以调用组件1（因为在其内部已经注册），接着再Vue实例中注册组件2（Vue的components属性内），这个时候就可以在Vue实例管理的HTML元素中，调用组件2，组件2里面还包含着组件1。所以组件2就是父组件，组件1就是子组件。（其实，Vue实例也是一个组件（最顶层组件，root组件），也有template属性可以定义。）注意，在Vue实例管理的HTML元素中调用组件1是没有效果的，因为其没有在Vue实例中注册，如果想用，应该在Vue实例中注册组件1。（这也可以理解为什么任何一个应用都能用组件树表示了。）</p>
+<p>　　6、注册组件的语法糖写法（内部还是会调用Vue.extend方法） </p>
+<p>　　就是把原来在组件构造器中的Vue.extend（）中的对象{template：XXX}，直接放入Vue.component(‘组件名’,{template：xxx})。注册局部组件也是一样的，把对象{template：XXX}直接放入Vue实例的components中{‘组件名’：{template:xxx}}。</p>
+<p>　　7、组件模板抽离的写法（后面用cli脚手架时，会有更好的写法）</p>
+<p>　　第一种写法：在外部写一个script标签并定义text&#x2F;x-template类型并绑定id，然后在里面写模板HTML信息，如&lt;  script type &#x3D;’text&#x2F;x-template’ id&#x3D;’cpn’&gt;&lt; div&gt;&lt; h2&gt;&lt; &#x2F;h2&gt;&lt; &#x2F;div&gt;&lt; &#x2F;script&gt;。然后在注册组件中的构造器中用id选择器选中这个模板，如Vue.component(‘组件名1’,{template: ‘#cpn’})，接着再使用即可。</p>
+<p>　　第二种写法：使用template标签，并且绑定id。例如，&lt; template id&#x3D;’cpn’&gt;div&gt;&lt; h2&gt;&lt; &#x2F;h2&gt;&lt; &#x2F;div&gt;&lt; &#x2F;template&gt; 。后面也是注册和使用。（推荐第二种）</p>
+<h3 id="二、组件化基础之数据传递（组件通信）"><a href="#二、组件化基础之数据传递（组件通信）" class="headerlink" title="二、组件化基础之数据传递（组件通信）"></a>二、组件化基础之数据传递（组件通信）</h3><p>　　1、为什么组件data必须是函数？（其实组件的原型就是一个Vue实例，Vue实例有的，组件也有，即data属性，methods）</p>
+<p>　　组件内部是不能直接访问vue实例内部的data属性的。 组件是一个单独功能模块的封装，这个模块有属于自己的HTML模板，也有属于自己的数据data。通过在组件构造器对象中的data属性方法（注意是方法，而不是属性对象），data方法要返回一个对象，该返回对象内部中，定义我们的具体的data。例如，&lt; template id&#x3D;’cpn’&gt;div&gt;&lt; h2&gt;前端框架Vue自学之Vue组件化开发（三）&lt;  &#x2F;h2&gt;&lt; &#x2F;div&gt;&lt; &#x2F;template&gt;，而在Vue.component(‘组件名1’,{template: ‘#cpn’, data() { return {title: ‘cba’}}})，这样就可以把模板的title用组件的data渲染出来了，为‘cba’。</p>
+<p>　　组件里面有着自己的作用域（封装），当组件想要有某些功能的时候，应该在组件内部定义methods方法。 由于组件应该是独立的（为了更好的复用），如果之前在组件内部定义的data是一个属性对象，那么当使用多个同一组件是，就会共享这个data属性对象，导致，在一个组件修改data时（相当于修改同一个对象），会影响另一个组件的data。所以data属性应该使用方法返回一个大的对象（记得<strong>要用大括号包括</strong>，即<strong>栈空间</strong>，能够为return返回的对象创建多个变量每次返回新的对象（新的地址），不然直接传入对象的话，就可以属性对象的是同一种情况了，即指向同一个内存地址了），对象里面包含要用的数据，使得在组件中的数据修改不会影响别的同一组件。</p>
+<p>　　2、父子组件通信之父传子</p>
+<p>　　之前我们提到，子组件是不能引用父组件或者Vue实例的数据的，但是，在开发中，往往一些数据确实需要从上层传递到下层，例如，一般数据获取是通过外层组件（父组件）向服务器发送请求，获取相关数据，不会让子组件再次发送一个网络请求（这样对服务器压力很大），而是由父组件传数据给内部子组件（遍历）进行展示渲染，这时候就涉及到父子组件通信的问题。</p>
+<p>　　<strong>Vue官方提到了两种方式：通过props向子组件传递数据（父传子）和通过事件向父组件发送消息（$emit event）（子传父）。</strong></p>
+<p>　　在真实开发中，Vue实例和子组件的通信和父组件和子组件的通信过程是一样的。因为Vue实例就是一个根组件（父组件）。</p>
+<p>　　即当我们要使用vue实例下面的data数据（变量2）时，通过在子组件定义props属性（可以是对象、字符串数组），格式为props:{变量1}，然后在使用这个子组件时，用v-bind绑定变量1到变量2上，此时就可以在子组件使用到data数据了，注意是调用变量1（其是调用变量2）。</p>
+<p>　　除了数组之外，我们也可以使用是对象，当需要对props进行类型等验证时，就需要对象写法了。类似于：props:{cmessage: String}。可以是多个类型。或者可以提供一些默认值，类似于：props:{cmessage: {type: String, default:’abc’}}。类型是对象或者数组时，默认值必须是一个函数（通过定义函数返回对象或者数组等）。里面还可以有required属性，当设置为true时，就会要求必须要外部传入这个变量（必传值）。注意，如果是在子组件内的props设置了一些默认值，当通过v-bind绑定有重复的变量的时候，就会把默认值覆盖。当然，也可以设置自己的自定义验证类型。</p>
+<p>　　父传子props中的驼峰标识。通常我们在写JS时，习惯使用驼峰标识。但是在v-bind后面是不支持驼峰标识识别的，必须把驼峰的地方用-连接，并且后面字符是小写。例如在props定义了cInfo，那么在v-bind后面用c-info。</p>
+<p>　　在子组件定义模板时（&lt; template&gt;），里面必须要有一个根元素，所以一般里面用div包裹起来。例如&lt; template&gt;&lt; h2&gt;&lt;  &#x2F;h2&gt;&lt; h2&gt;&lt;  &#x2F;h2&gt;&lt; &#x2F;template&gt;，这样会报错，因为没有根元素，要改成&lt; template&gt;&lt; div&gt;&lt; h2&gt;&lt;  &#x2F;h2&gt;&lt; h2&gt;&lt;  &#x2F;h2&gt;&lt; &#x2F;div&gt;&lt; &#x2F;template&gt;，这样就不会报错了。</p>
+<p>　　3、父子组件通信之子传父（自定义事件）</p>
+<p>　　在实际开发中，经常会发生，当子组件发生一些事件时，父组件要知道子组件发生了什么事并且是得知道那个子组件发生了事件，从而可以进行后续的一些处理。这时候就是子组件与父组件通信的问题了。</p>
+<p>　　通过在使用子组件的时候使用v-on监听事件，然后在子组件的methods里面定义方法，实现相关功能。但是注意，只是这样的话，是子组件监听子组件发生的事件。</p>
+<p>　　我们希望是子组件告诉父组件发生的事件，在子组件的methods里面定义方法是有要求的， 得使用this.$emit(‘事件1’，参数)方式发送事件（这个是自定义事件，可以带参数，这个参数是默认发送的参数，像之前如果没有写参数，是默认的发送event事件），然后在调用父组件中调用的子组件中，用v-on监听子组件的自定义事件（之前v-on用的都是常规的DOM事件，如click等，而这里是我们自定义的事件），类似v-on：事件1&#x3D;‘事件2’，然后在父组件中的methods里面定义我们的事件2并且它是可以接收到参数的。这样就完成了子传父的通信。</p>
+<p>　　4、在定义Vue组件时，一般封装为.vue文件。里面包含三大块：&lt; template&gt;&lt; &#x2F;template&gt;（写模代码），&lt; script&gt;&lt; &#x2F;script &gt;（写JS代码）和&lt; style&gt;&lt; &#x2F;style&gt;（写样式）。（tips：当组件被编译后，是没有模板&lt; template&gt;的，只有渲染函数render。）</p>
+<p>　　5、当我们需要在子组件双向绑定Vue实例data数据（和input标签）时，官方推荐，不要直接绑定props中的数据，而是v-bind绑定在子组件的data方法下返回定义的数据（可以使返回的数据指向props的数据），然后在子组件中v-on监听事件，并且在子组件定义methods方法，通过定义传入event（默认下）的函数，并把子组件内的事件和值用$emit传出去，接着再使用子组件的地方监听这个自定义事件，最后在Vue实例（父组件）的methods定义这个方法。（其实这就是v-model的本质，综合应用v-bind和v-on，实现双向绑定）</p>
+<p>　　6、watch。</p>
+<p>　　组件内也存在watch监听属性，能够监听某些变量的改变，并且会缓存两个值：改变前的变量值和改变后的变量值，watch内可以定义相关函数处理。</p>
+<p>　　7、父子组件的访问方式（通过访问对象的方法）</p>
+<p>　　有时候我们需要父组件直接访问子组件，子组件直接访问父组件或者是子附件访问根组件。</p>
+<p>　　父组件访问子组件：使用$children或$refs。这些都是对象，里面包含子组件的很多属性和方法。（reference引用的意思）$children会把父组件中的所有子组件作为一个对象，然后根据索引去控制使用哪个子组件。开发中，一般不用$children（因为索引会因为在中间插入别的组件时，不稳定会变化，导致取错子组件），而是使用$refs。 $refs的使用要求我们在想控制的子组件的属性加上ref引用属性，例如ref&#x3D;’abc’，然后通过$refs进行准确调用子组件对象了，例如this.$refs.aaa，就是刚刚那个子组件对象了并且与顺序索引无关。</p>
+<p>　　子组件访问父组件：使用$parent。$root（访问根组件）。在子组件内使用$parent，可以获取父组件对象。（开发里面用的比较少，因为这样的操作会使得子组件不独立了，子与父的耦合度太高了。）</p>
+<p>　　</p>
+<h3 id="三、组件化高级之插槽slot"><a href="#三、组件化高级之插槽slot" class="headerlink" title="三、组件化高级之插槽slot"></a>三、组件化高级之插槽slot</h3><p>　　1、为什么使用slot?</p>
+<p>　　组件的插槽是为了我们封装的组件更加具有扩展性，是让使用者可以决定组件内部的一些内容到底展示什么。例如在电商软件中，每个页面存在一个导航栏，我们可以看做一个nav-bar组件，但是会根据不同的状态显示不同的导航栏，如果我们想都应用这个组件，就可以通过加入插槽，通过根据不同的状态放入不同的扩展组件，实现同一个nav-bar组件的复用（提供一个大的相同结构，但是内容可以不一样（扩展组件））。</p>
+<p>　　2、封装与插槽</p>
+<p>　　抽取共性，保留不同。最好的封装方式就是将共性抽取到组件中，将不同暴露为插槽。一旦我们预留了插槽，就可以让 使用者根据自己的需求，决定插槽中插入什么内容。</p>
+<p>　　3、slot基本使用</p>
+<p>　　在组件模板&lt; template&gt;元素中添加插槽&lt; slot&gt;&lt; &#x2F;slot&gt;，作为组件预留扩展位置。然后在具体使用组件的时候，在内部把我们想用的组件（会当做一个整体）放进去（相当于对应于之前定义插槽位置），例如简单就放入一个button组件或者是一段HTML都行。 插槽里面可以定义默认值，当没有在使用组件时的其内部使用扩展组件，就会以默认的情况显示。</p>
+<p>　　3、具名插槽slot</p>
+<p>　　当我们在一个组件中使用了多个插槽，但是我们只想在使用组件的时候只改变某一个插槽（或者是插入别的组件），这时如果没有在模板的插槽中使用name属性，其会替换所有没有使用到name的插槽。所以我们应该对每个插槽使用name属性，然后在使用组件的时候，在要插入的元素中使用slot属性，让其等于要改变的插槽的name，指定该插槽。</p>
+<p>　　4、编译作用域</p>
+<p>　　变量编译的作用域是取决于在哪个模板内使用的变量。例如在vue实例定义了一个isActive变量为true，而在vue实例下的一个组件内定义了一个isActive变量为false。当在Vue实例下的使用这个组件，里面用了isActive变量，其值是为true，因为该变量是在Vue实例管理的模板里的。如果是在这个组件内的模板使用了isActive变量，则是为false，道理一样。（官方给出了一条准则：父组件模板的所有东西都会在父级作用域内编译；子组件模板的所有东西都会在子级作用域内编译。）</p>
+<p>　　5、作用域插槽</p>
+<p>　　父组件替换插槽的标签，但是内容由子组件来提供。类似于数据内容是由子组件提供，但是父组件在使用子组件的时候，需要一些改变，例如改变原来在子组件默认的显示方式，变为自己可以定义的方式去显示。此时，就可以把子组件的对应内容先用slot插槽包裹并且通过在这个slot内v-bind绑定子组件的数据（如&lt; slot :data&#x3D;’子组件数据’&gt;），然后在父组件内使用到的子组件中定义一个模板（&lt; template&gt;或者HTML元素（2.X版本）），并且使用到slot-scope属性（相当于对之前在子组件的定义slot内容）（如&lt; template slot-scope&#x3D;’slot1’&gt;），由于之前slot内v-bind绑定了子组件的数据，这个时候就可以在这个模板（&lt; template&gt;或者HTML元素（2.X版本））内通过使用slot-scope属性的值（如slot1.data），就可以使用子组件的数据data了。外部父组件可以利用子组件提供的数据进行一些应用。</p>
+<h3 id="四、组件化高级之动态组件"><a href="#四、组件化高级之动态组件" class="headerlink" title="四、组件化高级之动态组件"></a>四、组件化高级之动态组件</h3><h3 id="五、组件化高级之异步组件"><a href="#五、组件化高级之异步组件" class="headerlink" title="五、组件化高级之异步组件"></a>五、组件化高级之异步组件</h3><h3 id="六、组件声明周期"><a href="#六、组件声明周期" class="headerlink" title="六、组件声明周期"></a>六、组件声明周期</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Xinkui Wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2019/12/13/blog29/">http://example.com/2019/12/13/blog29/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/%E6%A1%86%E6%9E%B6/">框架</a><a class="post-meta__tags" href="/tags/vue/">vue</a><a class="post-meta__tags" href="/tags/%E7%BB%84%E4%BB%B6/">组件</a><a class="post-meta__tags" href="/tags/%E7%BB%84%E4%BB%B6%E5%8C%96/">组件化</a><a class="post-meta__tags" href="/tags/%E6%8F%92%E6%A7%BD/">插槽</a><a class="post-meta__tags" href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/12/14/blog30/" title="前端框架Vue自学之前端模块化（补充）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">前端框架Vue自学之前端模块化（补充）</div></div></a></div><div class="next-post pull-right"><a href="/2019/12/13/blog28/" title="前端框架Vue自学之ES6基本语法（补充）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">前端框架Vue自学之ES6基本语法（补充）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/11/20/blog18/" title="前端学习之JavaScript的框架"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-20</div><div class="title">前端学习之JavaScript的框架</div></div></a></div><div><a href="/2019/12/03/blog19/" title="前端框架Vue学习的心得记录（基础篇）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-03</div><div class="title">前端框架Vue学习的心得记录（基础篇）</div></div></a></div><div><a href="/2019/12/06/blog20/" title="前端框架Vue学习的心得记录（深入了解组件）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-06</div><div class="title">前端框架Vue学习的心得记录（深入了解组件）</div></div></a></div><div><a href="/2019/12/08/blog21/" title="前端框架Vue学习的心得记录（过渡&amp;动画）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-08</div><div class="title">前端框架Vue学习的心得记录（过渡&amp;动画）</div></div></a></div><div><a href="/2019/12/10/blog24/" title="前端框架Vue学习的心得记录（规模化）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-10</div><div class="title">前端框架Vue学习的心得记录（规模化）</div></div></a></div><div><a href="/2019/12/10/blog23/" title="前端框架Vue学习的心得记录（工具）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-10</div><div class="title">前端框架Vue学习的心得记录（工具）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xinkui Wu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">正文：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%AE%A4%E8%AF%86%E7%BB%84%E4%BB%B6%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">一、认识组件化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BB%84%E4%BB%B6%E5%8C%96%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B3%A8%E5%86%8C%E7%BB%84%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">二、组件化基础之注册组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BB%84%E4%BB%B6%E5%8C%96%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92%EF%BC%88%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">二、组件化基础之数据传递（组件通信）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BB%84%E4%BB%B6%E5%8C%96%E9%AB%98%E7%BA%A7%E4%B9%8B%E6%8F%92%E6%A7%BDslot"><span class="toc-number">5.</span> <span class="toc-text">三、组件化高级之插槽slot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BB%84%E4%BB%B6%E5%8C%96%E9%AB%98%E7%BA%A7%E4%B9%8B%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6"><span class="toc-number">6.</span> <span class="toc-text">四、组件化高级之动态组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%BB%84%E4%BB%B6%E5%8C%96%E9%AB%98%E7%BA%A7%E4%B9%8B%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="toc-number">7.</span> <span class="toc-text">五、组件化高级之异步组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%BB%84%E4%BB%B6%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F"><span class="toc-number">8.</span> <span class="toc-text">六、组件声明周期</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/test-wxk/" title="test wxk">test wxk</a><time datetime="2023-11-24T01:54:20.000Z" title="Created 2023-11-24 09:54:20">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/hello-world/" title="Hello World">Hello World</a><time datetime="2023-11-24T01:50:41.118Z" title="Created 2023-11-24 09:50:41">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/16/blog58/" title="虾皮">虾皮</a><time datetime="2021-07-16T08:00:01.000Z" title="Created 2021-07-16 16:00:01">2021-07-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/08/16/blog57/" title="腾讯实习总结">腾讯实习总结</a><time datetime="2020-08-16T08:00:01.000Z" title="Created 2020-08-16 16:00:01">2020-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/05/16/blog56/" title="node自学之Nodejs 路由模块封装、封装仿照express的路由">node自学之Nodejs 路由模块封装、封装仿照express的路由</a><time datetime="2020-05-16T07:12:00.000Z" title="Created 2020-05-16 15:12:00">2020-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Xinkui Wu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

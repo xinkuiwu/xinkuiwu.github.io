@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>前端框架Vue学习的心得记录（规模化） | 伍新奎的博客空间</title><meta name="author" content="Xinkui Wu"><meta name="copyright" content="Xinkui Wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="目标：深入了解Vue框架（2.x版本）的规模化 方法：通过看Vue的官方手册（Vue官方网站） 内容：本博客记录一些学习Vue中的心得，便于日后启发。（规模化）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端框架Vue学习的心得记录（规模化）">
+<meta property="og:url" content="http://example.com/2019/12/10/blog24/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="目标：深入了解Vue框架（2.x版本）的规模化 方法：通过看Vue的官方手册（Vue官方网站） 内容：本博客记录一些学习Vue中的心得，便于日后启发。（规模化）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2019-12-10T06:52:48.000Z">
+<meta property="article:modified_time" content="2020-01-02T08:22:20.853Z">
+<meta property="article:author" content="Xinkui Wu">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2019/12/10/blog24/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端框架Vue学习的心得记录（规模化）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-01-02 16:22:20'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端框架Vue学习的心得记录（规模化）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-12-10T06:52:48.000Z" title="Created 2019-12-10 14:52:48">2019-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-01-02T08:22:20.853Z" title="Updated 2020-01-02 16:22:20">2020-01-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/vue/">vue</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端框架Vue学习的心得记录（规模化）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>目标：深入了解Vue框架（2.x版本）的规模化</p>
+<p>方法：通过看Vue的官方手册（<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">Vue官方网站</a>）</p>
+<p>内容：本博客记录一些学习Vue中的心得，便于日后启发。（规模化）</p>
+<span id="more"></span>
+
+<p>注：遇到一些不懂的函数等，可以看官网的<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">API参考</a>。</p>
+<p>正文：</p>
+<p>一、路由</p>
+<p>1、官方路由</p>
+<p>对于大多数单页面应用，都推荐使用官方支持的 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-router">vue-router 库</a>。更多细节可以移步 <a target="_blank" rel="noopener" href="https://router.vuejs.org/">vue-router 文档</a>。</p>
+<p>2、从零开始简单的路由</p>
+<p>如果你只需要非常简单的路由而不想引入一个功能完整的路由库，可以像这样动态渲染一个页面级的组件：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/routing.html">实例</a>。结合 HTML5 History API，你可以建立一个麻雀虽小五脏俱全的客户端路由器。可以直接看<a target="_blank" rel="noopener" href="https://github.com/chrisvfritz/vue-2.0-simple-routing-example">实例应用</a>。</p>
+<p>3、整合第三方路由</p>
+<p>如果你有更偏爱的第三方路由，如 <a target="_blank" rel="noopener" href="https://github.com/visionmedia/page.js">Page.js</a> 或者 <a target="_blank" rel="noopener" href="https://github.com/flatiron/director">Director</a>，整合起来也<a target="_blank" rel="noopener" href="https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs">一样简单</a>。这里有一个使用了 Page.js 的<a target="_blank" rel="noopener" href="https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs">完整示例</a>。</p>
+<p>二、状态管理</p>
+<p>1、类Flux状态管理的官方实现</p>
+<p>由于状态零散地分布在许多组件和组件之间的交互中，大型应用复杂度也经常逐渐增长。为了解决这个问题，Vue 提供 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vuex">vuex</a>：我们有受到 Elm 启发的状态管理库。vuex 甚至集成到 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-devtools">vue-devtools</a>，无需配置即可进行<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif">时光旅行调试 (time travel debugging)</a>。</p>
+<p>如果你是来自 React 的开发者，你可能会对 Vuex 和 <a target="_blank" rel="noopener" href="https://github.com/reactjs/redux">Redux</a> 间的差异表示关注，Redux 是 React 生态环境中最流行的 Flux 实现。Redux 事实上无法感知视图层，所以它能够轻松的通过一些[简单绑定](<a target="_blank" rel="noopener" href="https://yarnpkg.com/en/packages?q=redux">https://yarnpkg.com/en/packages?q=redux</a> vue&amp;p&#x3D;1)和 Vue 一起使用。Vuex 区别在于它是一个专门为 Vue 应用所设计。这使得它能够更好地和 Vue 进行整合，同时提供简洁的 API 和改善过的开发体验。</p>
+<p>2、简单状态管理起步使用</p>
+<p>经常被忽略的是，Vue 应用中原始数据对象的实际来源 - 当访问数据对象时，一个 Vue 实例只是简单的代理访问。所以，如果你有一处需要被多个实例间共享的状态，可以简单地通过维护一份数据来实现共享。现在我们有了唯一的数据来源，但是，调试将会变为噩梦。任何时间，我们应用中的任何部分，在任何数据改变后，都不会留下变更过的记录。 为了解决这个问题，我们采用一个简单的 <a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/state-management.html">store 模式</a>。</p>
+<p>需要注意，所有 store 中 state 的改变，都放置在 store 自身的 action 中去管理。这种集中式状态管理能够被更容易地理解哪种类型的 mutation 将会发生，以及它们是如何被触发。当错误出现时，我们现在也会有一个 log 记录 bug 之前发生了什么。此外，每个实例&#x2F;组件仍然可以拥有和管理自己的私有状态。</p>
+<p>接着我们继续延伸约定，组件不允许直接修改属于 store 实例的 state，而应执行 action 来分发 (dispatch) 事件通知 store 去改变，我们最终达成了 <a target="_blank" rel="noopener" href="https://facebook.github.io/flux/">Flux</a> 架构。这样约定的好处是，我们能够记录所有 store 中发生的 state 改变，同时实现能做到记录变更 (mutation)、保存状态快照、历史回滚&#x2F;时光旅行的先进的调试工具。</p>
+<p>说了一圈其实又回到了<a target="_blank" rel="noopener" href="https://github.com/vuejs/vuex">vuex</a>，如果你已经读到这儿，或许可以去尝试一下！</p>
+<p>三、服务端渲染</p>
+<p>1、SSR完全指南</p>
+<p>在 2.3 发布后我们发布了一份完整的构建 Vue 服务端渲染应用的指南。这份指南非常深入，适合已经熟悉 Vue, webpack 和 Node.js 开发的开发者阅读。请移步 <a target="_blank" rel="noopener" href="https://ssr.vuejs.org/zh/">ssr.vuejs.org</a>。</p>
+<p>2、Nuxt.js</p>
+<p>从头搭建一个服务端渲染的应用是相当复杂的。幸运的是，我们有一个优秀的社区项目 <a target="_blank" rel="noopener" href="https://nuxtjs.org/">Nuxt.js</a> 让这一切变得非常简单。Nuxt 是一个基于 Vue 生态的更高层的框架，为开发服务端渲染的 Vue 应用提供了极其便利的开发体验。更酷的是，你甚至可以用它来做为静态站生成器。推荐尝试。</p>
+<p>3、Quasar Framework SSR + PWA</p>
+<p><a target="_blank" rel="noopener" href="https://quasar.dev/">Quasar Framework</a> 可以通过其一流的构建系统、合理的配置和开发者扩展性生成 (可选地和 PWA 互通的) SSR 应用，让你的想法的设计和构建变得轻而易举。你可以在服务端挑选执行超过上百款遵循“Material Design 2.0”的组件，并在浏览器端可用。你甚至可以管理网站的 &#96;&#96; 标签。Quasar 是一个基于 Node.js 和 webpack 的开发环境，它可以通过一套代码完成 SPA、PWA、SSR、Electron 和 Cordova 应用的快速开发。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Xinkui Wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2019/12/10/blog24/">http://example.com/2019/12/10/blog24/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/%E6%A1%86%E6%9E%B6/">框架</a><a class="post-meta__tags" href="/tags/vue/">vue</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/12/10/blog25/" title="前端框架Vue学习的心得记录（深入响应式原理）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">前端框架Vue学习的心得记录（深入响应式原理）</div></div></a></div><div class="next-post pull-right"><a href="/2019/12/10/blog23/" title="前端框架Vue学习的心得记录（工具）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">前端框架Vue学习的心得记录（工具）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/11/20/blog18/" title="前端学习之JavaScript的框架"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-20</div><div class="title">前端学习之JavaScript的框架</div></div></a></div><div><a href="/2019/12/03/blog19/" title="前端框架Vue学习的心得记录（基础篇）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-03</div><div class="title">前端框架Vue学习的心得记录（基础篇）</div></div></a></div><div><a href="/2019/12/06/blog20/" title="前端框架Vue学习的心得记录（深入了解组件）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-06</div><div class="title">前端框架Vue学习的心得记录（深入了解组件）</div></div></a></div><div><a href="/2019/12/08/blog21/" title="前端框架Vue学习的心得记录（过渡&amp;动画）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-08</div><div class="title">前端框架Vue学习的心得记录（过渡&amp;动画）</div></div></a></div><div><a href="/2019/12/10/blog23/" title="前端框架Vue学习的心得记录（工具）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-10</div><div class="title">前端框架Vue学习的心得记录（工具）</div></div></a></div><div><a href="/2019/12/10/blog25/" title="前端框架Vue学习的心得记录（深入响应式原理）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-10</div><div class="title">前端框架Vue学习的心得记录（深入响应式原理）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xinkui Wu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/test-wxk/" title="test wxk">test wxk</a><time datetime="2023-11-24T01:54:20.000Z" title="Created 2023-11-24 09:54:20">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/hello-world/" title="Hello World">Hello World</a><time datetime="2023-11-24T01:50:41.118Z" title="Created 2023-11-24 09:50:41">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/16/blog58/" title="虾皮">虾皮</a><time datetime="2021-07-16T08:00:01.000Z" title="Created 2021-07-16 16:00:01">2021-07-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/08/16/blog57/" title="腾讯实习总结">腾讯实习总结</a><time datetime="2020-08-16T08:00:01.000Z" title="Created 2020-08-16 16:00:01">2020-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/05/16/blog56/" title="node自学之Nodejs 路由模块封装、封装仿照express的路由">node自学之Nodejs 路由模块封装、封装仿照express的路由</a><time datetime="2020-05-16T07:12:00.000Z" title="Created 2020-05-16 15:12:00">2020-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Xinkui Wu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

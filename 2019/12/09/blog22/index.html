@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>前端框架Vue学习的心得记录（可复用性&amp;组合） | 伍新奎的博客空间</title><meta name="author" content="Xinkui Wu"><meta name="copyright" content="Xinkui Wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="目标：深入了解Vue框架（2.x版本）的可复用性和组合 方法：通过看Vue的官方手册（Vue官方网站） 内容：本博客记录一些学习Vue中的心得，便于日后启发。（可复用性&amp;组合）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端框架Vue学习的心得记录（可复用性&amp;组合）">
+<meta property="og:url" content="http://example.com/2019/12/09/blog22/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="目标：深入了解Vue框架（2.x版本）的可复用性和组合 方法：通过看Vue的官方手册（Vue官方网站） 内容：本博客记录一些学习Vue中的心得，便于日后启发。（可复用性&amp;组合）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2019-12-09T07:19:48.000Z">
+<meta property="article:modified_time" content="2020-01-02T08:22:25.534Z">
+<meta property="article:author" content="Xinkui Wu">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2019/12/09/blog22/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端框架Vue学习的心得记录（可复用性&组合）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-01-02 16:22:25'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端框架Vue学习的心得记录（可复用性&amp;组合）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-12-09T07:19:48.000Z" title="Created 2019-12-09 15:19:48">2019-12-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-01-02T08:22:25.534Z" title="Updated 2020-01-02 16:22:25">2020-01-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/vue/">vue</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端框架Vue学习的心得记录（可复用性&amp;组合）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>目标：深入了解Vue框架（2.x版本）的可复用性和组合</p>
+<p>方法：通过看Vue的官方手册（<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">Vue官方网站</a>）</p>
+<p>内容：本博客记录一些学习Vue中的心得，便于日后启发。（可复用性&amp;组合）</p>
+<span id="more"></span>
+
+<p>注：遇到一些不懂的函数等，可以看官网的<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">API参考</a>。</p>
+<p>正文：</p>
+<p>一、混入</p>
+<p>1.1 基础</p>
+<p>混入 (mixin) 提供了一种非常灵活的方式（Vue中的mixins:属性），来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。</p>
+<p>1.2 选项合并</p>
+<p>混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。同名钩子函数将合并为一个数组，因此都将被调用。另外，混入对象的钩子将在组件自身钩子之前调用。值为对象的选项，例如 methods、components 和 directives，将被合并为同一个对象。两个对象键名冲突时，取组件对象的键值对。注意：Vue.extend() 也使用同样的策略进行合并。</p>
+<p>1.3 全局混入</p>
+<p>混入也可以进行全局注册。使用时格外小心！一旦使用全局混入，它将影响每一个之后创建的 Vue 实例。使用恰当时，这可以用来为自定义选项注入处理逻辑。请谨慎使用全局混入，因为它会影响每个单独创建的 Vue 实例 (包括第三方组件)。大多数情况下，只应当应用于自定义选项，推荐将其作为插件发布，以避免重复应用混入。</p>
+<p>1.4 自定义选项合并策略</p>
+<p>自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向 Vue.config.optionMergeStrategies 添加一个符合自己意愿的函数。对于多数值为对象的选项，可以使用与 methods 相同的合并策略。</p>
+<p>二、自定义指令</p>
+<p>1、简介</p>
+<p>除了核心功能默认内置的指令 (v-model 和 v-show)，Vue 也允许注册自定义指令。注意，在 Vue2.0 中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令（Vue.directive定义，后面使用就变成了v-xx的形式）。</p>
+<p>2、钩子函数</p>
+<p>一个指令定义对象可以提供如下几个钩子函数 (均为可选)：</p>
+<p>　　bind：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。</p>
+<p>　　inserted：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。</p>
+<p>　　update：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 。</p>
+<p>　　componentUpdated：指令所在组件的 VNode 及其子 VNode 全部更新后调用。</p>
+<p>　　unbind：只调用一次，指令与元素解绑时调用。</p>
+<p>3、钩子函数的参数</p>
+<p>指令钩子函数会被传入以下参数：</p>
+<p>el：指令所绑定的元素，可以用来直接操作 DOM 。</p>
+<p>binding：一个对象，包含以下属性：</p>
+<p>　　name：指令名，不包括 v- 前缀。</p>
+<p>　　value：指令的绑定值，例如：v-my-directive&#x3D;”1 + 1” 中，绑定值为 2。</p>
+<p>　　oldValue：指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。</p>
+<p>　　 expression：字符串形式的指令表达式。例如 v-my-directive&#x3D;”1 + 1” 中，表达式为 “1 + 1”。</p>
+<p>　　arg：传给指令的参数，可选。例如 v-my-directive:foo 中，参数为 “foo”。</p>
+<p>　　modifiers：一个包含修饰符的对象。例如：v-my-directive.foo.bar 中，修饰符对象为 { foo: true, bar: true }。</p>
+<p>vnode：Vue 编译生成的虚拟节点。</p>
+<p>oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。</p>
+<p>注意，除了 el 之外，其它参数都应该是只读的，切勿进行修改。如果需要在钩子之间共享数据，建议通过元素的 dataset 来进行。</p>
+<p>指令的参数可以是动态的。指令的参数可以是动态的。这使得自定义指令可以在应用中被灵活使用。</p>
+<p>4、函数简写</p>
+<p>在很多时候，你可能想在 bind 和 update 时触发相同行为，而不关心其它的钩子。就可以函数简写。</p>
+<p>5、对象字面量</p>
+<p>如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法的 JavaScript 表达式。</p>
+<p>三、渲染函数&amp;JSX</p>
+<p>1、基础</p>
+<p>Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力。这时你可以用渲染函数，它比模板更接近编译器（使用Vue.component下的render函数）。</p>
+<p>2、节点、树以及虚拟DOM</p>
+<p>在深入渲染函数之前，了解一些浏览器的工作原理是很重要的。当浏览器读到一些HTML代码时，它会建立一个“DOM 节点”树来保持追踪所有内容，如同你会画一张家谱树来追踪家庭成员的发展一样。每个元素都是一个节点。每段文字也是一个节点。甚至注释也都是节点。一个节点就是页面的一个部分。就像家谱树一样，每个节点都可以有孩子节点 (也就是说每个部分可以包含其它的一些部分)。</p>
+<p>高效地更新所有这些节点会是比较困难的，不过所幸你不必手动完成这个工作。你只需要告诉 Vue 你希望页面上的 HTML 是什么，这可以是在一个模板里，或者一个渲染函数里（在这两种情况下，Vue 都会自动保持页面的更新）。</p>
+<p>Vue 通过建立一个虚拟 DOM 来追踪自己要如何改变真实 DOM。例如：</p>
+<p>　　return createElement(‘h1’, this.blogTitle)</p>
+<p>createElement 到底会返回什么呢？其实不是一个实际的 DOM 元素。它更准确的名字可能是 createNodeDescription，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的节点，包括及其子节点的描述信息。我们把这样的节点描述为“虚拟节点 (virtual node)”，也常简写它为“VNode”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。</p>
+<p>3、createElement参数</p>
+<p>3.1 深入数据对象</p>
+<p>有一点要注意：正如 v-bind:class 和 v-bind:style 在模板语法中会被特别对待一样，它们在 VNode 数据对象中也有对应的顶层字段。该对象也允许你绑定普通的 HTML 特性，也允许绑定如 innerHTML 这样的 DOM 属性 (这会覆盖 v-html 指令)。</p>
+<p>3.2 约束</p>
+<p>VNode必须唯一，组件树中的所有 VNode 必须是唯一的。如果你真的需要重复很多次的元素&#x2F;组件，你可以使用工厂函数来实现。（tips：所谓工厂函数，就是指这些内建函数都是类对象，当你调用他们时，实际上是创建了一个类实例）</p>
+<p>4、使用JavaScript代替模板功能</p>
+<p>4.1 v-if和v-for</p>
+<p>只要在原生的 JavaScript 中可以轻松完成的操作，Vue 的渲染函数就不会提供专有的替代方法。比如，在模板中使用的 v-if 和 v-for，都可以在渲染函数中用 JavaScript 的 if&#x2F;else 和 map 来重写。</p>
+<p>4.2 v-model</p>
+<p>渲染函数中没有与 v-model 的直接对应——你必须自己实现相应的逻辑。</p>
+<p>4.3 事件&amp;按键修饰符</p>
+<p>对于 .passive、.capture 和 .once 这些事件修饰符, Vue 提供了相应的前缀可以用于 on。对于所有其它的修饰符，私有前缀都不是必须的，因为你可以在事件处理函数中使用事件方法。</p>
+<p>4.4 插槽</p>
+<p>对于所有其它的修饰符，私有前缀都不是必须的，因为你可以在事件处理函数中使用事件方法。也可以通过 this.$scopedSlots 访问作用域插槽，每个作用域插槽都是一个返回若干 VNode 的函数。如果要用渲染函数向子组件中传递作用域插槽，可以利用 VNode 数据对象中的 scopedSlots 字段。</p>
+<p>5、JSX</p>
+<p> 一个 Babel 插件，用于在 Vue 中使用 JSX 语法，它可以让我们回到更接近于模板的语法上。</p>
+<p>6、函数式组件</p>
+<p>之前创建的锚点标题组件是比较简单，没有管理任何状态，也没有监听任何传递给它的状态，也没有生命周期方法。实际上，它只是一个接受一些 prop 的函数。 在这样的场景下，我们可以将组件标记为 functional，这意味它无状态 (没有响应式数据)，也没有实例 (没有 this 上下文)。</p>
+<p>注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 prop，则 props 选项是必须的。在 2.3.0 或以上的版本中，你可以省略 props 选项，所有组件上的特性都会被自动隐式解析为 prop。 当使用函数式组件时，该引用将会是 HTMLElement，因为他们是无状态的也是无实例的。</p>
+<p>组件需要的一切都是通过 context 参数传递，它是一个包括如下字段的对象：</p>
+<p>　　props：提供所有 prop 的对象</p>
+<p>　　children: VNode 子节点的数组</p>
+<p>　　slots: 一个函数，返回了包含所有插槽的对象</p>
+<p>　　scopedSlots: (2.6.0+) 一个暴露传入的作用域插槽的对象。也以函数形式暴露普通插槽。</p>
+<p>　　data：传递给组件的整个数据对象，作为 createElement 的第二个参数传入组件</p>
+<p>　　parent：对父组件的引用</p>
+<p>　　listeners: (2.3.0+) 一个包含了所有父组件为当前组件注册的事件监听器的对象。这是 data.on 的一个别名。</p>
+<p>　　injections: (2.3.0+) 如果使用了 inject 选项，则该对象包含了应当被注入的属性。</p>
+<p>因为函数式组件只是函数，所以渲染开销也低很多。 在作为包装组件时它们也同样非常有用。比如，当你需要做这些时： 程序化地在多个组件中选择一个来代为渲染； 在将 children、props、data 传递给子组件之前操作它们。</p>
+<p>在普通组件中，没有被定义为 prop 的特性会自动添加到组件的根元素上，将已有的同名特性进行替换或与其进行智能合并，然而函数式组件要求你显式定义该行为。如果你使用基于模板的函数式组件，那么你还需要手动添加特性和监听器。因为我们可以访问到其独立的上下文内容，所以我们可以使用 data.attrs 传递任何 HTML 特性，也可以使用 listeners (即 data.on 的别名) 传递任何事件监听器。</p>
+<p>7、模板编译</p>
+<p>你可能会有兴趣知道，Vue 的模板实际上被编译成了渲染函数。这是一个实现细节，通常不需要关心。但如果你想看看模板的功能具体是怎样被编译的，可能会发现会非常有意思。</p>
+<p>四、插件</p>
+<p>插件通常用来为 Vue 添加全局功能。插件的功能范围没有严格的限制——一般有下面几种：</p>
+<p>　　添加全局方法或者属性。如: vue-custom-element</p>
+<p>　　添加全局资源：指令&#x2F;过滤器&#x2F;过渡等。如 vue-touch</p>
+<p>　　通过全局混入来添加一些组件选项。如 vue-router</p>
+<p>　　添加 Vue 实例方法，通过把它们添加到 Vue.prototype 上实现。</p>
+<p>　　一个库，提供自己的 API，同时提供上面提到的一个或多个功能。如 vue-router</p>
+<p>1、使用插件</p>
+<p>通过全局方法 Vue.use() 使用插件。它需要在你调用 new Vue() 启动应用之前完成，也可以传入一个可选的选项对象。Vue.use 会自动阻止多次注册相同插件，届时即使多次调用也只会注册一次该插件。Vue.js 官方提供的一些插件 (例如 vue-router) 在检测到 Vue 是可访问的全局变量时会自动调用 Vue.use()。然而在像 CommonJS 这样的模块环境中，你应该始终显式地调用 Vue.use()。（<a target="_blank" rel="noopener" href="https://github.com/vuejs/awesome-vue#components--libraries">awesome-vue</a> 集合了大量由社区贡献的插件和库）</p>
+<p>2、开发插件</p>
+<p>Vue.js 的插件应该暴露一个 install 方法。这个方法的第一个参数是 Vue 构造器，第二个参数是一个可选的选项对象。</p>
+<p>五、过滤器</p>
+<p> Vue.js 允许你自定义过滤器，可被用于一些常见的文本格式化。过滤器可以用在两个地方：双花括号插值和 v-bind 表达式 (后者从 2.1.0+ 开始支持)。过滤器应该被添加在 JavaScript 表达式的尾部，由“管道”符号指示（“|”）。你可以在一个组件的选项中定义本地的过滤器，或者在创建 Vue 实例之前全局定义过滤器，当全局过滤器和局部过滤器重名时，会采用局部过滤器。过滤器可以串联，过滤器是 JavaScript 函数，因此可以接收参数。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Xinkui Wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2019/12/09/blog22/">http://example.com/2019/12/09/blog22/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a><a class="post-meta__tags" href="/tags/%E6%A1%86%E6%9E%B6/">框架</a><a class="post-meta__tags" href="/tags/vue/">vue</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/12/10/blog23/" title="前端框架Vue学习的心得记录（工具）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">前端框架Vue学习的心得记录（工具）</div></div></a></div><div class="next-post pull-right"><a href="/2019/12/08/blog21/" title="前端框架Vue学习的心得记录（过渡&amp;动画）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">前端框架Vue学习的心得记录（过渡&amp;动画）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/11/20/blog18/" title="前端学习之JavaScript的框架"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-20</div><div class="title">前端学习之JavaScript的框架</div></div></a></div><div><a href="/2019/12/03/blog19/" title="前端框架Vue学习的心得记录（基础篇）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-03</div><div class="title">前端框架Vue学习的心得记录（基础篇）</div></div></a></div><div><a href="/2019/12/06/blog20/" title="前端框架Vue学习的心得记录（深入了解组件）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-06</div><div class="title">前端框架Vue学习的心得记录（深入了解组件）</div></div></a></div><div><a href="/2019/12/08/blog21/" title="前端框架Vue学习的心得记录（过渡&amp;动画）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-08</div><div class="title">前端框架Vue学习的心得记录（过渡&amp;动画）</div></div></a></div><div><a href="/2019/12/10/blog24/" title="前端框架Vue学习的心得记录（规模化）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-10</div><div class="title">前端框架Vue学习的心得记录（规模化）</div></div></a></div><div><a href="/2019/12/10/blog23/" title="前端框架Vue学习的心得记录（工具）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-10</div><div class="title">前端框架Vue学习的心得记录（工具）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xinkui Wu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/test-wxk/" title="test wxk">test wxk</a><time datetime="2023-11-24T01:54:20.000Z" title="Created 2023-11-24 09:54:20">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/hello-world/" title="Hello World">Hello World</a><time datetime="2023-11-24T01:50:41.118Z" title="Created 2023-11-24 09:50:41">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/16/blog58/" title="虾皮">虾皮</a><time datetime="2021-07-16T08:00:01.000Z" title="Created 2021-07-16 16:00:01">2021-07-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/08/16/blog57/" title="腾讯实习总结">腾讯实习总结</a><time datetime="2020-08-16T08:00:01.000Z" title="Created 2020-08-16 16:00:01">2020-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/05/16/blog56/" title="node自学之Nodejs 路由模块封装、封装仿照express的路由">node自学之Nodejs 路由模块封装、封装仿照express的路由</a><time datetime="2020-05-16T07:12:00.000Z" title="Created 2020-05-16 15:12:00">2020-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Xinkui Wu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

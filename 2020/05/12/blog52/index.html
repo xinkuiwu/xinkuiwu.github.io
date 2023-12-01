@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>node自学之Nodejs中的fs模块的使用,异步处理 | 伍新奎的博客空间</title><meta name="author" content="Xinkui Wu"><meta name="copyright" content="Xinkui Wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="终极目标：掌握和使用node 本博客目的：记录node学习的进度和心得 内容：Nodejs中的fs模块的使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node自学之Nodejs中的fs模块的使用,异步处理">
+<meta property="og:url" content="http://example.com/2020/05/12/blog52/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="终极目标：掌握和使用node 本博客目的：记录node学习的进度和心得 内容：Nodejs中的fs模块的使用。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2020-05-12T08:08:10.000Z">
+<meta property="article:modified_time" content="2020-05-13T08:41:13.229Z">
+<meta property="article:author" content="Xinkui Wu">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="fs模块">
+<meta property="article:tag" content="管道流">
+<meta property="article:tag" content="async">
+<meta property="article:tag" content="await">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/05/12/blog52/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'node自学之Nodejs中的fs模块的使用,异步处理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-05-13 16:41:13'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">node自学之Nodejs中的fs模块的使用,异步处理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-05-12T08:08:10.000Z" title="Created 2020-05-12 16:08:10">2020-05-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-05-13T08:41:13.229Z" title="Updated 2020-05-13 16:41:13">2020-05-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/node/">node</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="node自学之Nodejs中的fs模块的使用,异步处理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>终极目标：掌握和使用node</p>
+<p>本博客目的：记录node学习的进度和心得</p>
+<p>内容：Nodejs中的fs模块的使用。</p>
+<span id="more"></span>
+
+<h3 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h3><p>​	fs模块用于文件操作，是node内置的模块。</p>
+<p>​	有大量的方法：（这些方法可以通过vscode中ctrl+鼠标点击打开源码，查看相关参数等）</p>
+<p><img src="/blog52/image-20200510161928651.png" alt="image-20200510161928651"></p>
+<p>​	为了举例说明相关操作，我们创建一个文件夹，里面先使用npm init –yes强制生成一个package.json文件。然后创建入口文件app.js。</p>
+<p><img src="/blog52/image-20200510162258361.png" alt="image-20200510162258361"></p>
+<p>​	首先，我们使用这个fs模块时，先导入<img src="/blog52/image-20200510162537977.png" alt="image-20200510162537977"></p>
+<ol>
+<li><p>fs.stat  检测是文件还是目录</p>
+<p>判断html是文件还是目录（先手动创建html文件夹）：</p>
+<p><img src="/blog52/image-20200510162708192.png" alt="image-20200510162708192"></p>
+<p>结果（命令行输入node app.js）：</p>
+<p><img src="/blog52/image-20200510162727095.png" alt="image-20200510162727095"></p>
+<p>当判断package.json是文件还是目录：</p>
+<p><img src="/blog52/image-20200510162848535.png" alt="image-20200510162848535"></p>
+<p><img src="/blog52/image-20200510162807784.png" alt="image-20200510162807784"></p>
+</li>
+<li><p>fs.mkdir 创建目录</p>
+<p>通常用于如果判断一个目录是否存在，如果不存在则用这个方法创建目录。</p>
+<p>例如用这个方法创建css目录：</p>
+<p><img src="/blog52/image-20200510163338487.png" alt="image-20200510163338487"></p>
+<p>如果目录以存在则报错说已存在，不存在则创建。上面的mode参数和callback参数可以不写。</p>
+</li>
+<li><p>fs.writeFile 创建写入文件</p>
+<p>例如我们可以在html文件夹里面创建index.html文件:</p>
+<p><img src="/blog52/image-20200510163728992.png" alt="image-20200510163728992"></p>
+<p>结果（写入成功）：</p>
+<p><img src="/blog52/image-20200510163846590.png" alt="image-20200510163846590"></p>
+<p>如果对同一个文件写入，则内容替换：</p>
+<p><img src="/blog52/image-20200510163945228.png" alt="image-20200510163945228"></p>
+<p><img src="/blog52/image-20200510163953989.png" alt="image-20200510163953989"></p>
+</li>
+<li><p>fs.appendFile 追加文件</p>
+<p>在之前的文件基础上进行追加，如果之前文件不存在，则是创建。</p>
+<p>例如在css文件夹里追加base.css，因为一开始不存在，则创建；之后继续再对这个文件追加其他信息，则在这个文件基础上，追加内容：</p>
+<p><img src="/blog52/image-20200510164212024.png" alt="image-20200510164212024"></p>
+<p><img src="/blog52/image-20200510164347535.png" alt="image-20200510164347535"></p>
+</li>
+<li><p>fs.readFile 读取文件</p>
+<p>例如读取之前我们创建好的html下的index.html:</p>
+<p><img src="/blog52/image-20200510164609301.png" alt="image-20200510164609301"></p>
+<p><img src="/blog52/image-20200510164721861.png" alt="image-20200510164721861"></p>
+<p>有16进制的buffer数据（原来的data）；</p>
+<p>需要通过toString()方法把buffer转换成string类型。</p>
+<p>如果路径写错了，会报错。</p>
+</li>
+<li><p>fs.readdir读取目录</p>
+<p>例如可以读取当前目录下目录和文件。</p>
+<p><img src="/blog52/image-20200510164949174.png" alt="image-20200510164949174"></p>
+<p><img src="/blog52/image-20200510165014086.png" alt="image-20200510165014086"></p>
+<p><img src="/blog52/image-20200510165028700.png" alt="image-20200510165028700"></p>
+</li>
+<li><p>fs.rename 重命名 移动文件</p>
+<p>有两个功能：功能:1、表示重命名 2、移动文件</p>
+<p><img src="/blog52/image-20200510165212013.png" alt="image-20200510165212013"></p>
+<p>把aaa.css修改为index.css。</p>
+<p><img src="/blog52/image-20200510165406301.png" alt="image-20200510165406301"></p>
+<p>把css下的aaa.css移动到html&#x2F;index.css下。</p>
+</li>
+<li><p>fs.rmdir 删除目录（remove）</p>
+<p><img src="/blog52/image-20200510165444859.png" alt="image-20200510165444859"></p>
+<p>如果目录里面有文件，这样删除会报错。</p>
+<p>所以需要把当前目录下的文件删除后，才能删除这个目录。</p>
+</li>
+<li><p>fs.unlink 删除文件</p>
+<p>删除文件：</p>
+<p><img src="/blog52/image-20200510165507108.png" alt="image-20200510165507108"></p>
+</li>
+</ol>
+<p>应用例子1：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断服务器上面有没有upload目录。如果没有创建这个目录，如果有的话不做操作。   </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> path=<span class="string">&#x27;./upload&#x27;</span>;</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">stat</span>(path,<span class="function">(<span class="params">err,data</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="comment">//执行创建目录</span></span><br><span class="line">        <span class="title function_">mkdir</span>(path);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!data.<span class="title function_">isDirectory</span>())&#123;</span><br><span class="line">         <span class="comment">//首先删除文件，再去执行创建目录</span></span><br><span class="line">         fs.<span class="title function_">unlink</span>(path,<span class="function">(<span class="params">err</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!err)&#123;</span><br><span class="line">                <span class="title function_">mkdir</span>(path);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请检测传入的数据是否正确&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建目录的方法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">mkdir</span>(<span class="params">dir</span>)&#123;</span><br><span class="line">    fs.<span class="title function_">mkdir</span>(dir,<span class="function">(<span class="params">err</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：upload如果事先是一个文件时，需要先删除文件，再去执行创建目录。直接mkdir(path)在有同名文件的时候，不会执行。</p>
+<p>这个例子也可以使用第三方包mkdirp，不仅能创建文件目录，还能创建层级目录。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1、https://www.npmjs.com/package/mkdirp</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">2、cnpm i mkdirp --save  /  npm i mkdirp --save </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">3、var mkdirp = require(&#x27;mkdirp&#x27;);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">4、看文档使用</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mkdirp = <span class="built_in">require</span>(<span class="string">&#x27;mkdirp&#x27;</span>);</span><br><span class="line"><span class="comment">//单层级目录</span></span><br><span class="line"><span class="comment">// mkdirp(&#x27;./upload&#x27;, function (err) &#123;</span></span><br><span class="line"><span class="comment">//     if (err) &#123;</span></span><br><span class="line"><span class="comment">//         console.error(err);</span></span><br><span class="line"><span class="comment">//     &#125;    </span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//单层级目录</span></span><br><span class="line"><span class="comment">// mkdirp(&#x27;./uploadDir&#x27;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//多层级目录</span></span><br><span class="line"><span class="title function_">mkdirp</span>(<span class="string">&#x27;./upload/aaa/xxxx&#x27;</span>, <span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>应用例子2：wwwroot文件夹下面有images css js 以及index.html , 找出 wwwroot目录下面的所有的目录，然后放在一个数组中</p>
+<p><img src="/blog52/image-20200511154027457.png" alt="image-20200511154027457"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//错误的写法  注意:fs里面的方法是异步</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    var path=&#x27;./wwwroot&#x27;;</span></span><br><span class="line"><span class="comment">    var dirArr=[];</span></span><br><span class="line"><span class="comment">    fs.readdir(path,(err,data)=&gt;&#123;</span></span><br><span class="line"><span class="comment">        if(err)&#123;</span></span><br><span class="line"><span class="comment">            console.log(err);</span></span><br><span class="line"><span class="comment">            return;</span></span><br><span class="line"><span class="comment">        &#125;    </span></span><br><span class="line"><span class="comment">        for(var i=0;i&lt;data.length;i++)&#123;</span></span><br><span class="line"><span class="comment">            fs.stat(path+&#x27;/&#x27;+data[i],(error,stats)=&gt;&#123;</span></span><br><span class="line"><span class="comment">                if(stats.isDirectory())&#123;</span></span><br><span class="line"><span class="comment">                    dirArr.push(data[i]);</span></span><br><span class="line"><span class="comment">                &#125;</span></span><br><span class="line"><span class="comment">            &#125;)</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        console.log(dirArr);</span></span><br><span class="line"><span class="comment">    &#125;)</span></span><br><span class="line"><span class="comment">    console.log(dirArr);</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//打印出 3个3</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        for(var i=0;i&lt;3;i++)&#123;</span></span><br><span class="line"><span class="comment">            setTimeout(function()&#123;</span></span><br><span class="line"><span class="comment">                console.log(i);</span></span><br><span class="line"><span class="comment">            &#125;,100)</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//1、改造for循环  递归实现      2、nodejs里面的新特性  async await</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> path=<span class="string">&#x27;./wwwroot&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> dirArr=[];</span><br><span class="line">fs.<span class="title function_">readdir</span>(path,<span class="function">(<span class="params">err,data</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">    (<span class="keyword">function</span> <span class="title function_">getDir</span>(<span class="params">i</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==data.<span class="property">length</span>)&#123; <span class="comment">//执行完成</span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(dirArr);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        fs.<span class="title function_">stat</span>(path+<span class="string">&#x27;/&#x27;</span>+data[i],<span class="function">(<span class="params">error,stats</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(stats.<span class="title function_">isDirectory</span>())&#123;</span><br><span class="line">                dirArr.<span class="title function_">push</span>(data[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">getDir</span>(i+<span class="number">1</span>)<span class="comment">//自执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)(<span class="number">0</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意：错误写法中，由于fs是异步的，对于异步操作：</p>
+<p>​	例如我们后面循环异步打印i，最后的输出结果是三个3，这是和JS事件循环机制有关。js事件处理器（DOM事件、timer、AJax）在（主）线程空闲时间不会优先运行处理，即先执行主线程的for循环的i赋值与迭代，当主线程结束后，才处理异步进程，导致最后运行这些异步事件的时候，输出的都是i最后的值。</p>
+<p>​	因此，我们的使用fs模型的第一块代码，由于i最后为真实data的length，而data[length]里面是为空，导致最后输出的数组为空数组。</p>
+<p>​	所以解决的方法有：</p>
+<p>​	1、改造for循环，用递归实现（但是可读性比较差，通常用方法2）</p>
+<p>​	写成匿名立即执行函数，相当于加一层闭包，i以函数参数形式传递给内层函数 。</p>
+<p>​	2、nodejs里面的新特性（8.x之后）  async await</p>
+<h4 id="nodejs里面的新特性（8-x之后）-async-await"><a href="#nodejs里面的新特性（8-x之后）-async-await" class="headerlink" title="nodejs里面的新特性（8.x之后）  async await"></a>nodejs里面的新特性（8.x之后）  async await</h4><p>​	首先，先介绍一下<strong>ES6的常用语法</strong>，主要有：</p>
+<ol>
+<li><p>let const (声明变量与常量)</p>
+</li>
+<li><p>箭头函数 （()&#x3D;&gt;{}，this指向上下文）</p>
+</li>
+<li><p>对象、属性的简写(属性名称与变量名一致时，</p>
+<p><img src="/blog52/image-20200513150812774.png" alt="image-20200513150812774"></p>
+<p><img src="/blog52/image-20200513151039781.png" alt="image-20200513151039781">）</p>
+</li>
+<li><p>模板字符串（<img src="/blog52/image-20200513150700789.png" alt="image-20200513150700789">）</p>
+</li>
+<li><p>Promise。主要用来处理异步（涉及JS事件循环）</p>
+<p>例子1：</p>
+<p><img src="/blog52/image-20200513151538108.png" alt="image-20200513151538108"></p>
+<p><img src="/blog52/image-20200513151548147.png" alt="image-20200513151548147"></p>
+<p>会报错说，name没有定义，因为setTimeout是异步方法，在运行打印及执行getData的主进程中，setTimeout还没执行（在异步进程队列中），因而里面name是取不到的。</p>
+<p>例子2：</p>
+<p>之前ES5通常的解决上述问题的方法是设置回调函数。</p>
+<p><img src="/blog52/image-20200513151851571.png" alt="image-20200513151851571"></p>
+<p><img src="/blog52/image-20200513151900580.png" alt="image-20200513151900580"></p>
+<p>打印函数是嵌套在setTimeout的外层，相当于提供了一个钩子，当setTimeout异步执行里面程序，1秒后，name赋值为张三，并且使用了callback，即正确打印了name。</p>
+<p>例子3：</p>
+<p>在ES6后，有了Promise的API，方便我们处理异步。</p>
+<p>Promise来处理异步 resolve 成功的回调函数（与.then()配合）  reject失败的回调函数（与.catch()配合）</p>
+<p>所以，上例子2可以改写为：</p>
+<p><img src="/blog52/image-20200513152817994.png" alt="image-20200513152817994"></p>
+<p>结果也是一秒后打印：”张三“</p>
+<h4 id="Async与Await和promise的使用"><a href="#Async与Await和promise的使用" class="headerlink" title="Async与Await和promise的使用"></a>Async与Await和promise的使用</h4><p>​	async 是“异步”的简写，而await 可以认为是async wait 的简写。所以应该很好理解async用于申明一个异步的function ，而await 用于等待一个异步方法执行完成。<br>简单理解：<br><strong>async 是让方法变成异步。</strong><br><strong>await 是等待异步方法执行完成。</strong></p>
+<p>详细说明：<br>async 是让方法变成异步（用于声明），在终端里用node 执行这段代码，你会发现输出了Promise {‘您好nodejs’ }，这时候会发现它返回的是封装的Promise。</p>
+<p><img src="/blog52/image-20200513153441050.png" alt="image-20200513153441050"></p>
+<p>如果我们直接向要’您好nodejs‘的字符串而不是promise，可以使用await获取数据。</p>
+<p>await 在等待async 方法执行完毕，其实await 等待的只是一个表达式，这个表达式在官方文档里说的是Promise 对象，但是它也可以接受普通值。注意：await 必须在async 方法中才可以使用因为await 访问本身就会造成程序停止堵塞，所以必须在异步方法中才可以使用。</p>
+<p>但下面的写法是错误的：</p>
+<p><img src="/blog52/image-20200513153829055.png" alt="image-20200513153829055"></p>
+<p>所以应该写成：</p>
+<p><img src="/blog52/image-20200513154140330.png" alt="image-20200513154140330"></p>
+<p>所以，通常使用async&#x2F;await来处理异步时，通常async 会将其后的函数（函数表达式或Lambda）的返回值封装成一个Promise 对象，而await 会等待这个Promise 完成，并将其resolve 的结果返回出来。</p>
+<p><img src="/blog52/image-20200513154919186.png" alt="image-20200513154919186"></p>
+<p><strong>小结：async和await可以方便我们处理node里的异步：异步方法封装成promise，然后async声明，最后使用await调用结果。</strong></p>
+<p>所以，之前的应用例子2：wwwroot文件夹下面有images css js 以及index.html , 找出 wwwroot目录下面的所有的目录，然后放在一个数组中。</p>
+<p>【使用node的async和await来做：】</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、定义一个isDir的方法判断一个资源到底是目录还是文件</span></span><br><span class="line"><span class="comment">//定义一个异步的方法，然后再外部通过await获取异步方法里面的数据</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">isDir</span>(<span class="params">path</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">      fs.<span class="title function_">stat</span>(path, <span class="function">(<span class="params">error, stats</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (error) &#123;</span><br><span class="line">              <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">              <span class="title function_">reject</span>(error)</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (stats.<span class="title function_">isDirectory</span>()) &#123;</span><br><span class="line">              <span class="title function_">resolve</span>(<span class="literal">true</span>);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="title function_">resolve</span>(<span class="literal">false</span>);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2、获取wwwroot里面的所有资源  循环遍历 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;<span class="comment">//不是 async function main()</span></span><br><span class="line">  <span class="keyword">var</span> path=<span class="string">&#x27;./wwwroot&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> dirArr=[];</span><br><span class="line">  fs.<span class="title function_">readdir</span>(path,<span class="keyword">async</span> (err,data)=&gt;&#123;  <span class="comment">//注意是包装await的外层方法用async声明，而不是main()</span></span><br><span class="line">      <span class="keyword">if</span>(err)&#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;    </span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;data.<span class="property">length</span>;i++)&#123;</span><br><span class="line">          <span class="keyword">if</span>(<span class="keyword">await</span> <span class="title function_">isDir</span>(path+<span class="string">&#x27;/&#x27;</span>+data[i]))&#123;</span><br><span class="line">              dirArr.<span class="title function_">push</span>(data[i]);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(dirArr);</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">main</span>();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/blog52/image-20200513160740951.png" alt="image-20200513160740951"></p>
+<p>知识补充：【后续要理解async&#x2F;await与promise的区别与联系；执行顺序问题，阻塞问题】</p>
+<h3 id="以流的方式读写文件"><a href="#以流的方式读写文件" class="headerlink" title="以流的方式读写文件"></a>以流的方式读写文件</h3><p>如果我们的文件比较大的时候，读取数据时，直接读取会存在问题，建议以流的形式读取。类似地，当要把一个大文件写入目录的时候，也以流的方法写入。</p>
+<p>流的方式：就是一点一点（以一定量大小）操作 </p>
+<ol start="10">
+<li><p>fs.createReadStream 从文件流中读取数据</p>
+<p><img src="/blog52/image-20200513162652628.png" alt="image-20200513162652628"></p>
+<p><img src="/blog52/image-20200513162817519.png" alt="image-20200513162817519"></p>
+<p>最后发现读取了6次。</p>
+</li>
+<li><p>fs.createWriteStream 写入文件</p>
+<p><img src="/blog52/image-20200513163106375.png" alt="image-20200513163106375"></p>
+<p>注意：</p>
+<p><img src="/blog52/image-20200513163222764.png" alt="image-20200513163222764"></p>
+<p>才能出发finish事件。</p>
+</li>
+<li><p>管道流</p>
+<p>​	管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。</p>
+<p><img src="/blog52/image-20200513163509010.png" alt="image-20200513163509010"></p>
+<p>如上面的图片所示，我们把文件比作装水的桶，而水就是文件里的内容，我们用一根管子(pipe)连接两个桶使得水从一个桶流入另一个桶，这样就慢慢的实现了<strong>大文件</strong>的复制过程。</p>
+<p>​	以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。</p>
+</li>
+</ol>
+<p><img src="/blog52/image-20200513163623342.png" alt="image-20200513163623342"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Xinkui Wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2020/05/12/blog52/">http://example.com/2020/05/12/blog52/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/node/">node</a><a class="post-meta__tags" href="/tags/fs%E6%A8%A1%E5%9D%97/">fs模块</a><a class="post-meta__tags" href="/tags/%E7%AE%A1%E9%81%93%E6%B5%81/">管道流</a><a class="post-meta__tags" href="/tags/async/">async</a><a class="post-meta__tags" href="/tags/await/">await</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/14/blog53/" title="node自学之利用HTTP模块 URl模块 PATH模块 FS模块创建一个WEB服务器"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">node自学之利用HTTP模块 URl模块 PATH模块 FS模块创建一个WEB服务器</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/10/blog51/" title="node自学之Nodejs中的包、npm 、第三方模块、package.json 以及cnpm"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">node自学之Nodejs中的包、npm 、第三方模块、package.json 以及cnpm</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/05/08/blog48/" title="NodeJS介绍&amp;安装&amp;开发工具配置"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-08</div><div class="title">NodeJS介绍&amp;安装&amp;开发工具配置</div></div></a></div><div><a href="/2020/05/08/blog49/" title="node自学之HTTP 模块、URL 模块、supervisor 工具"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-08</div><div class="title">node自学之HTTP 模块、URL 模块、supervisor 工具</div></div></a></div><div><a href="/2020/05/09/blog50/" title="node自学之CommonJs 和Nodejs 模块、自定义模块"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-09</div><div class="title">node自学之CommonJs 和Nodejs 模块、自定义模块</div></div></a></div><div><a href="/2020/05/10/blog51/" title="node自学之Nodejs中的包、npm 、第三方模块、package.json 以及cnpm"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-10</div><div class="title">node自学之Nodejs中的包、npm 、第三方模块、package.json 以及cnpm</div></div></a></div><div><a href="/2020/05/14/blog54/" title="node自学之Nodejs的非阻塞I&#x2F;O、异步、事件驱动"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-14</div><div class="title">node自学之Nodejs的非阻塞I&#x2F;O、异步、事件驱动</div></div></a></div><div><a href="/2020/05/14/blog53/" title="node自学之利用HTTP模块 URl模块 PATH模块 FS模块创建一个WEB服务器"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-14</div><div class="title">node自学之利用HTTP模块 URl模块 PATH模块 FS模块创建一个WEB服务器</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xinkui Wu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">105</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#fs%E6%A8%A1%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">fs模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nodejs%E9%87%8C%E9%9D%A2%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%888-x%E4%B9%8B%E5%90%8E%EF%BC%89-async-await"><span class="toc-number">1.1.</span> <span class="toc-text">nodejs里面的新特性（8.x之后）  async await</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Async%E4%B8%8EAwait%E5%92%8Cpromise%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Async与Await和promise的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E6%B5%81%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">以流的方式读写文件</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/test-wxk/" title="test wxk">test wxk</a><time datetime="2023-11-24T01:54:20.000Z" title="Created 2023-11-24 09:54:20">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/24/hello-world/" title="Hello World">Hello World</a><time datetime="2023-11-24T01:50:41.118Z" title="Created 2023-11-24 09:50:41">2023-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/16/blog58/" title="虾皮">虾皮</a><time datetime="2021-07-16T08:00:01.000Z" title="Created 2021-07-16 16:00:01">2021-07-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/08/16/blog57/" title="腾讯实习总结">腾讯实习总结</a><time datetime="2020-08-16T08:00:01.000Z" title="Created 2020-08-16 16:00:01">2020-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/05/16/blog56/" title="node自学之Nodejs 路由模块封装、封装仿照express的路由">node自学之Nodejs 路由模块封装、封装仿照express的路由</a><time datetime="2020-05-16T07:12:00.000Z" title="Created 2020-05-16 15:12:00">2020-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Xinkui Wu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
