@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>伍新奎的博客空间 - Talk is cheap, code the code</title><meta name="author" content="伍新奎"><meta name="copyright" content="伍新奎"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前端开发工程师">
+<meta property="og:type" content="website">
+<meta property="og:title" content="伍新奎的博客空间">
+<meta property="og:url" content="http://example.com/page/9/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="前端开发工程师">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/blog_wxk.jpg">
+<meta property="article:author" content="伍新奎">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/blog_wxk.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/9/index.html"><link rel="preconnect" href="https://lib.baomitu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://lib.baomitu.com/egjs-infinitegrid/4.10.1/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '伍新奎的博客空间',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-05 17:32:38'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_wxk.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">57</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/15/blog2/" title="JavaScript高级程序设计（Professional JavaScript for Web Developers）-阅读记录与心得">JavaScript高级程序设计（Professional JavaScript for Web Developers）-阅读记录与心得</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-09-15T07:32:53.000Z" title="Created 2019-09-15 15:32:53">2019-09-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E4%B9%A6%E7%B1%8D/">前端书籍</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/JavaScript/">JavaScript</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/web/">web</a></span></div><div class="content">目标：掌握JS的基本概念。（本书大都是ES5标准的，先用本书入门，在去看ES6标准的书籍）内容：（未完成，待继续）一、第一阶段：JavaScript基本内容1、第一章，主要讲的是JavaScript的历史发展与版本问题。本章节可以快速阅读，小结重点记忆：JS是由三个不同的部分组成：ECMAScript,DOM,BOM.
+2、第二章，主要讲script脚本元素、嵌入脚本及外部脚本等的基本概念。本章节可以快速阅读，其中XHTML的内容可以不看。（因为我们最好在学习的过程中遵从比较新的标准–HTML5）
+3、第三章，JS基本概念，包括语法，数据类型，函数等。如果读者有着其他编程语言基础，如C语言，Python语言等，本章节也是可以快速阅读的，但要注意JS语言的一些区别。如果没有，内容不多，还是建议仔细阅读。
+4、第四章，变量，作用域，垃圾回收。重点通过看举例理解变量的作用域问题。
+5、第五章，引用类型，包括有对象类型、数组类型、正则式类型、函数类型，基本包装类型。重点看每个引用类型的方法和一些使用技巧与区别。属于基础，需细看。
+6、第六章，面向对象的程序设计。JS用得最多的就是对面，本章若没 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/14/%E5%89%8D%E7%AB%AFJavaScript%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" title="前端JavaScript书籍阅读">前端JavaScript书籍阅读</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-09-14T03:02:43.000Z" title="Created 2019-09-14 11:02:43">2019-09-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E4%B9%A6%E7%B1%8D/">前端书籍</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/JavaScript/">JavaScript</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/web/">web</a></span></div><div class="content">作为一个想从事前端工作，目前还是零基础的菜鸟，我想通过合理学习，让自己成为能有比较全局观念（前端-后端分离，工程化等），又在前端又能熟练掌握并灵活使用技术的前端工程师。下面是我自己看了一些知乎，豆瓣，博客总结出来一些比较好、经典的JavaScript书籍（好书太多，我也是挑了基本看上去比较适合我的），与大家分享。（这也是我接下来要看书单，因为本人现在还没看完，看完了我再分享一下阅读心得，怎么去把这些“厚书”快速读完）
+ 
+
+目标： 熟练掌握JavaScript技术（当然不仅是看书，还是得边看书边Coding，切勿“只看不做”）
+书籍阅读：1、JavaScript高级程序设计（Professional JavaScript for Web Developers）　　JS红宝书，虽说高级，里面却是基础中的基础，但是很厚，建议还是老老实实读下去。也有不少读者觉得这个入门前端的话太过于枯燥（鉴于我之前在W3C School网站看完了Web的JS,CSS,HTML知识看再JS书籍的，所以我是想通过红宝书强化记忆），不少读者推荐《你不知道的JavaScript（上卷）》入门JS，比较轻松有趣。
+2 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/8/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="page-number current">9</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_wxk.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">伍新奎</div><div class="author-info__description">前端开发工程师</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">57</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinkuiwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/18/blog82/" title="组件设计原则">组件设计原则</a><time datetime="2023-03-18T10:01:00.000Z" title="Created 2023-03-18 18:01:00">2023-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/16/blog81/" title="vim|webstorm快捷键学习">vim|webstorm快捷键学习</a><time datetime="2023-02-16T03:01:00.000Z" title="Created 2023-02-16 11:01:00">2023-02-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/10/blog80/" title="chrome调试技巧 - network">chrome调试技巧 - network</a><time datetime="2023-01-10T04:01:00.000Z" title="Created 2023-01-10 12:01:00">2023-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/26/blog79/" title="PDF 下载">PDF 下载</a><time datetime="2022-12-26T03:02:03.000Z" title="Created 2022-12-26 11:02:03">2022-12-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/22/blog78/" title="后端常用工具简介">后端常用工具简介</a><time datetime="2022-11-22T08:02:03.000Z" title="Created 2022-11-22 16:02:03">2022-11-22</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="View More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/React/"><span class="card-category-list-name">React</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/VScode-%E9%85%8D%E7%BD%AE/"><span class="card-category-list-name">VScode 配置</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/antd/"><span class="card-category-list-name">antd</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/backend/"><span class="card-category-list-name">backend</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/chrome/"><span class="card-category-list-name">chrome</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hive/"><span class="card-category-list-name">hive</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/mysql/"><span class="card-category-list-name">mysql</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 1.1em; color: #999">异步</a> <a href="/tags/chrome/" style="font-size: 1.1em; color: #999">chrome</a> <a href="/tags/JavaScript/" style="font-size: 1.5em; color: #99a9bf">JavaScript</a> <a href="/tags/%E6%8F%92%E6%A7%BD/" style="font-size: 1.1em; color: #999">插槽</a> <a href="/tags/%E7%AE%A1%E9%81%93%E6%B5%81/" style="font-size: 1.1em; color: #999">管道流</a> <a href="/tags/React/" style="font-size: 1.26em; color: #999fa8">React</a> <a href="/tags/URl%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">URl模块</a> <a href="/tags/%E7%9B%91%E6%8E%A7/" style="font-size: 1.1em; color: #999">监控</a> <a href="/tags/POST/" style="font-size: 1.1em; color: #999">POST</a> <a href="/tags/this%E7%BB%91%E5%AE%9A/" style="font-size: 1.1em; color: #999">this绑定</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">自定义模块</a> <a href="/tags/npm/" style="font-size: 1.18em; color: #999ca1">npm</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 1.1em; color: #999">链表</a> <a href="/tags/vite/" style="font-size: 1.18em; color: #999ca1">vite</a> <a href="/tags/Nodejs-%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">Nodejs 模块</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 1.1em; color: #999">红黑树</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 1.1em; color: #999">剑指offer</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.34em; color: #99a3b0">数据结构</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 1.1em; color: #999">闭包</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5/" style="font-size: 1.1em; color: #999">代码检查</a> <a href="/tags/webstorm/" style="font-size: 1.1em; color: #999">webstorm</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 1.42em; color: #99a6b7">框架</a> <a href="/tags/%E7%8A%B6%E6%80%81/" style="font-size: 1.1em; color: #999">状态</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 1.18em; color: #999ca1">语法</a> <a href="/tags/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">回溯算法</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 1.1em; color: #999">集合</a> <a href="/tags/%E7%9B%91%E6%8E%A7%EF%BC%8Cnodejs/" style="font-size: 1.1em; color: #999">监控，nodejs</a> <a href="/tags/async/" style="font-size: 1.1em; color: #999">async</a> <a href="/tags/Babel/" style="font-size: 1.1em; color: #999">Babel</a> <a href="/tags/%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%EF%BC%8Cnode/" style="font-size: 1.1em; color: #999">运行环境，node</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 1.1em; color: #999">散列表</a> <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" style="font-size: 1.1em; color: #999">组件通信</a> <a href="/tags/HTTP%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">HTTP模块</a> <a href="/tags/%E9%98%9F%E5%88%97/" style="font-size: 1.1em; color: #999">队列</a> <a href="/tags/%E5%88%86%E8%80%8C%E6%B2%BB%E4%B9%8B/" style="font-size: 1.1em; color: #999">分而治之</a> <a href="/tags/AVL%E6%A0%91/" style="font-size: 1.1em; color: #999">AVL树</a> <a href="/tags/TEG-%E5%AE%9E%E4%B9%A0/" style="font-size: 1.1em; color: #999">TEG 实习</a> <a href="/tags/supervisor%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">supervisor工具</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 1.1em; color: #999">搜索</a> <a href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" style="font-size: 1.1em; color: #999">模块化</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 伍新奎</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>

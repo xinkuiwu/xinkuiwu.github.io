@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>组件设计原则 | 伍新奎的博客空间</title><meta name="author" content="伍新奎"><meta name="copyright" content="伍新奎"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="组件设计原则 原则  一句话总结: ui 组件设计看 antd&#x2F;element-ui，业务组件抽逻辑，dump 组件(展示型)纯模版，smart 组件带点 state。 组件分类: 一个模块下可能现有容器组件(layout&#x2F;container)，包含多个业务组件；一个业务组件可能包含多个 UI 组件和展示型组件； 组件的能力 ●资源高内聚（组件资源内部高内聚，组件资源由自身加载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组件设计原则">
+<meta property="og:url" content="http://example.com/2023/03/18/blog82/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="组件设计原则 原则  一句话总结: ui 组件设计看 antd&#x2F;element-ui，业务组件抽逻辑，dump 组件(展示型)纯模版，smart 组件带点 state。 组件分类: 一个模块下可能现有容器组件(layout&#x2F;container)，包含多个业务组件；一个业务组件可能包含多个 UI 组件和展示型组件； 组件的能力 ●资源高内聚（组件资源内部高内聚，组件资源由自身加载">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/blog_wxk.jpg">
+<meta property="article:published_time" content="2023-03-18T10:01:00.000Z">
+<meta property="article:modified_time" content="2023-12-05T09:32:24.530Z">
+<meta property="article:author" content="伍新奎">
+<meta property="article:tag" content="组件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/blog_wxk.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/03/18/blog82/index.html"><link rel="preconnect" href="https://lib.baomitu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://lib.baomitu.com/egjs-infinitegrid/4.10.1/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '组件设计原则',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-05 17:32:24'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_wxk.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">57</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">组件设计原则</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2023-03-18T10:01:00.000Z" title="Created 2023-03-18 18:01:00">2023-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BB%84%E4%BB%B6/">组件</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="组件设计原则"><a href="#组件设计原则" class="headerlink" title="组件设计原则"></a>组件设计原则</h1><p> 原则 </p>
+<p>一句话总结: ui 组件设计看 antd&#x2F;element-ui，业务组件抽逻辑，dump 组件(展示型)纯模版，smart 组件带点 state。</p>
+<p>组件分类: 一个模块下可能现有容器组件(layout&#x2F;container)，包含多个业务组件；一个业务组件可能包含多个 UI 组件和展示型组件；</p>
+<p>组件的能力</p>
+<p>●资源高内聚（组件资源内部高内聚，组件资源由自身加载控制）</p>
+<p>●作用域独立（内部结构密封，不与全局或其他组件产生影响）</p>
+<p>●自定义标签（定义组件的使用方式）</p>
+<p>●可相互组合（组件间组装整合）</p>
+<p>●接口规范化（组件接口有统一规范，或者是生命周期的管理）</p>
+<p>组件的内容</p>
+<p>●每个组件对应一个目录，组件所需的各种资源都在这个目录下就近维护；（最具软件工程价值）</p>
+<p>●页面上的每个独立的可视&#x2F;可交互区域视为一个组件；</p>
+<p>●由于组件具有独立性，可以自由组合；</p>
+<p>●页面是组件的容器，负责组合组件形成功能完整的界面；</p>
+<p>●当不需要某个组件，或者想要替换组件时，可以整个目录删除&#x2F;替换</p>
+<p>组件的设计原则</p>
+<p>●标准性: 任何一个组件都应该遵守一套标准，可以使得不同区域的开发人员据此标准开发出一套标准统一的组件</p>
+<p>●独立性: 描述了组件的细粒度，遵循单一职责原则，保持组件的纯粹性; 属性配置等 API 对外开放，组件内部状态对外封闭，尽可能的少与业务耦合</p>
+<p>●复用与易用: UI 差异，消化在组件内部（注意并不是写一堆 if&#x2F;else）; 输入输出友好，易用</p>
+<p>●追求短小精悍</p>
+<p>●适用 SPOT 法则: Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Unix Programming》</p>
+<p>●避免暴露组件内部实现</p>
+<p>●避免直接操作 DOM，避免使用 ref: 使用父组件的 state 控制子组件的状态而不是直接通过 ref 操作子组件</p>
+<p>●入口处检查参数的有效性，出口处检查返回的正确性</p>
+<p>●无环依赖原则(ADP): 如果组件之间存在循环依赖，会变成了“先有鸡还是先有蛋”的问题</p>
+<p>●稳定抽象原则(SAP): </p>
+<p>○组件的抽象程度与其稳定程度成正比,一个稳定的组件应该是抽象的（逻辑无关的）,一个不稳定的组件应该是具体的（逻辑相关的）</p>
+<p>○为降低组件之间的耦合度，我们要针对抽象组件编程，而不是针对业务实现编程</p>
+<p>●避免冗余状态 </p>
+<p>○如果一个数据可由另一个 state 变换得到，那么这个数据就不是一个 state，只需写一个变换的处理函数，在 Vue 中可以使用计算属性</p>
+<p>○如果一个数据是固定的，不会变化的常量，那么这个数据就如同 HTML 固定的站点标题一样，写死或作为全局配置属性等，不属于 state</p>
+<p>○如果兄弟组件拥有相同的 state，那么这个 state 应该放到更高的层级，使用 props 传递到两个组件中</p>
+<p>●合理的依赖关系: 父组件不依赖子组件，删除某个子组件不会造成功能异常</p>
+<p>●扁平化参数: 除了数据，避免复杂的对象，尽量只接收原始类型的值</p>
+<p>●良好的接口设计: 保证组件的属性和事件足够的给大多数的组件使用。</p>
+<p>●API 尽量和已知概念保持一致</p>
+<p>组件设计的边界</p>
+<p>●页面层级不宜嵌套超过三层，切勿过度设计。</p>
+<p>●这个组件可否（有必要）再分？太小会提升维护成本，太大又不够灵活和高复用性。性能是否会受影响。</p>
+<p>●这个组件的依赖是否可再缩减？缩减组件依赖可以提高组件的可复用度</p>
+<p>●这个组件是否对其它组件造成侵入？</p>
+<p>●这个组件可否复用于其它类似场景中？需要考虑需要适用的不同场景，在组件接口设计时进行必要的兼容</p>
+<p>●这个组件当别人用时，会怎么想？接口设计符合规范和大众习惯</p>
+<p>●假如业务需要不需要这个功能，是否方便清除？</p>
+<p>  组件二次封装原则(以 vue 为例) </p>
+<p>●主要以父组件传递数据给子组件来实现一些功能，子组件定义固定的展示样式，将具体要实现的业务逻辑抛出来给父组件处理 </p>
+<p>○不要在一个 vue 文件内，封装多个数据的入口处理，你应该遵守“单一职责”</p>
+<p>○如果一个组件要耦合多个数据入口时，把这个组件改造为纯展示组件，跟业务解耦，把业务请求交给父组件。</p>
+<p>●尽量保持 element-ui 组件原有的方法（可以使用 v-bind&#x3D;”$attrs” 和 v-on&#x3D;”$listeners”）</p>
+<p>●$listeners 对象在 Vue 3 中已被移除。事件监听器现在是 $attrs 的一部分.(参看<a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/components/attrs.html">透传 Attributes</a>) </p>
+<p>○它们可以使得封装后的组件， “继承”原组件的几乎所有 v-bind 属性和 v-on 事件，且用法和作用与在原组件一样。</p>
+<p>○如果确实要做更改组件原本的方法，也尽量让相似的方法方法名不变</p>
+<p>○必须暴露组件的所有 props、事件、插槽和方法 </p>
+<p>■1）绑定$attrs 暴露 props。实现思路：用计算属性获取this.$attrs的值，然后用 v-bind 绑定</p>
+<p>■2）绑定$listeners 暴露事件:v-on&#x3D;”$listeners”。 </p>
+<p>●如果你手动写了v-on&#x3D;”$listeners”，然后你又自己重写了其中的事件，那么这个事件就会执行两次。</p>
+<p>●解决方法: 去掉重新的事件，使用 new$listeners 继承原有属性，并覆盖原有事件</p>
+<p>■3）绑定 slots 和 scopedSlots 暴露插槽:插槽也是必须要暴露给父组件的，主要靠 Vue 提供的 slots 和 scopedSlots。</p>
+<p>■4）暴露实例的方法:二次封装的组件暴露出实例，利用实例再调用 element 内部的方法</p>
+<p>●搞清楚哪些是 props，不要修改 props 的数据</p>
+<p>●载体分离原则: 内容和载体要分两个 vue 文件，内容是页面的主要内容，载体是展示的方式，例如弹窗、抽屉等等。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BB%84%E4%BB%B6/">组件</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/02/16/blog81/" title="vim|webstorm快捷键学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">vim|webstorm快捷键学习</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/12/13/blog29/" title="前端框架Vue自学之Vue组件化开发（三）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-13</div><div class="title">前端框架Vue自学之Vue组件化开发（三）</div></div></a></div><div><a href="/2020/02/29/blog46/" title="前端框架react自学之react组件(五)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-02-29</div><div class="title">前端框架react自学之react组件(五)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_wxk.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">伍新奎</div><div class="author-info__description">前端开发工程师</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">57</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinkuiwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">1.</span> <span class="toc-text">组件设计原则</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/18/blog82/" title="组件设计原则">组件设计原则</a><time datetime="2023-03-18T10:01:00.000Z" title="Created 2023-03-18 18:01:00">2023-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/16/blog81/" title="vim|webstorm快捷键学习">vim|webstorm快捷键学习</a><time datetime="2023-02-16T03:01:00.000Z" title="Created 2023-02-16 11:01:00">2023-02-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/10/blog80/" title="chrome调试技巧 - network">chrome调试技巧 - network</a><time datetime="2023-01-10T04:01:00.000Z" title="Created 2023-01-10 12:01:00">2023-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/26/blog79/" title="PDF 下载">PDF 下载</a><time datetime="2022-12-26T03:02:03.000Z" title="Created 2022-12-26 11:02:03">2022-12-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/22/blog78/" title="后端常用工具简介">后端常用工具简介</a><time datetime="2022-11-22T08:02:03.000Z" title="Created 2022-11-22 16:02:03">2022-11-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 伍新奎</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>
