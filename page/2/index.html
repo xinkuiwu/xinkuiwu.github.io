@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-05 17:44:36'
+  postUpdate: '2023-12-05 21:17:05'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -150,132 +150,207 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_wxk.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">134</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">57</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/07/10/blog73/" title="Git 回滚规范">Git 回滚规范</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-07-10T03:02:03.000Z" title="Created 2022-07-10 11:02:03">2022-07-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%A7%84%E8%8C%83/">规范</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/git/">git</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E8%A7%84%E8%8C%83/">规范</a></span></div><div class="content">结论开发流程中，不免会遇到需要回滚 master 代码的时候。关于如何回滚，我们将统一采用 revert 方式进行回滚，以保留之前错误的提交，便于进行复盘与 CR
-回滚步骤如下
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_wxk.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">68</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/06/22/blog85/" title="vue使用svg">vue使用svg</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-06-22T07:01:00.000Z" title="Created 2023-06-22 15:01:00">2023-06-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue/">vue</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/vue/">vue</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/svg/">svg</a></span></div><div class="content">vue使用svgsvg-sprite-loader 的插件，用来根据导入的 svg 文件自动生成 symbol 标签并插入 html，接下来就可以在模版中方便地使用 svg-sprite 技术了。
+使用 svg-sprite 的好处如果不知道 svg-sprite 是什么，可以参考大神张鑫旭的文章：未来必热：SVG Sprite技术介绍
 
-git checkout master —— 分支切换到 master
-git pull —— 更新 master 代码为最新
-从 master 分支中开一个 feat 分支
-git log —— 查询提交记录，并找到需要回滚的 commit id
-git revert  或者 git revert -m 1 faulty merge —— 回滚
-push &amp; 提交与 master 分支的 mr
+页面代码清爽
+可使用 ID 随处重复调用
+每个 SVG 图标都可以更改大小颜色
 
-Checkout、reset、revert 的择决Checkoutgit checkout 是一种便捷的方式，来将快照「解包」到你的工作目录上去。 git checkout 可以检出提交、也可以检出单个文件甚至还可以检出分支
-1git checkout commitId
+使用方法1.安装依赖npm install svg-sprite-loader –save-dev2.在src&#x2F;components下新建文件夹及文件SvgIcon&#x2F;index.vue 组件
+123456789101112131415161718192021222324252627282930313233343536373839404142  &lt;svg :class=&quot;svgClass&quot; aria-hidden=&quot;true&quot; v-on=&quot;$listeners&quot;&gt;    &lt;u ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/24/blog87/" title="vue2.7 | vue3 ts sfc代码编写">vue2.7 | vue3 ts sfc代码编写</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-24T03:01:00.000Z" title="Created 2023-05-24 11:01:00">2023-05-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue/">vue</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/vue/">vue</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/typescript/">typescript</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/composition/">composition</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/sfc/">sfc</a></span></div><div class="content">单文件组件sfc编写模板声明使用ts，setup标识使用composion API，组件导入在script import即可，其他template、style模块和vue2一样。
+定义data、方法、生命周期函数、refs使用推荐使用ref定义数据，使用数据的时候，一些地方需要.value获取；注意：element ui 没有很好的TS类型支持，一些数据定义需要额外定义。(全局方法也是没有（需要全局定义type），好多需要补齐的地方，有点为了用而用了)此外，refs的用法注意，vue composition 里面没有this了。
+使用全局注册方法
+老项目体验（升级vue2.7+ts)因为项目比较老旧的原因，vue2.7还是对TS的支持还是不太够：例如取某个DOM定义的ref，获取元素调用某个方法时，需要定义：导致方法调用的可选链过长（不然会告警）：老项目存留的js方法重构ts的成本也比较大。（如果不修改的话，会有很多地方使用any，感觉为了ts而ts了)
+代码例子12345678910111213141516171819202122232425262728293031323334353 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/20/blog84/" title="vue2使用typescript | composition API + tsc or sfc">vue2使用typescript | composition API + tsc or sfc</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-20T03:01:00.000Z" title="Created 2023-05-20 11:01:00">2023-05-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue/">vue</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/vue/">vue</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/typescript/">typescript</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/composition/">composition</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/sfc/">sfc</a></span></div><div class="content">vue2使用typescript | composition API + tsc or sfcvue2升级到typescript的方案有很多种。vue2比较令人诟病的地方还是对ts的支持，对ts支持不好是vue2不适合大型项目的一个重要原因。其根本原因是Vue依赖单个this上下文来公开属性，并且vue中的this比在普通的javascript更具魔力（如methods对象下的单个method中的this并不指向methods，而是指向vue实例）。换句话说，尤大大在设计Option API时并没有考虑对ts引用的支持）。（由于Vue2.x版本有设计断层，导致很多类型是通过declare方式推导出，而不是基于class的API，这也是为什么Vue3.0用typescript重写的原因之一。）方案：
+传统方案：vue-property-decorator | vue class component | vue-facing-decoratorvue2对ts的支持主要是通过vue class component，vue-property-decorator这里主要依赖装饰器。vue-pro ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/25/blog83/" title="npm 发布小版本更新">npm 发布小版本更新</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-25T11:01:00.000Z" title="Created 2023-04-25 19:01:00">2023-04-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/npm/">npm</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/npm/">npm</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%8F%91%E5%B8%83/">发布</a></span></div><div class="content">npm 发布小版本更新步骤可以使用 npm version patch 命令来执行小版本更新。这个命令会自动递增 package.json 文件中的小版本号，并提交一个新的 Git 标签。
+下面是使用 npm version patch 命令进行小版本更新并上传到 npm 和 GitHub 的步骤：
 
-检出 commitId 对应的提交，你会发现当前工作目录和commitId完全一致，你可以查看这个版本的文件编辑、运行、测试都不会被保存 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/06/15/blog72/" title="lockfile效果调研">lockfile效果调研</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-06-15T08:02:03.000Z" title="Created 2022-06-15 16:02:03">2022-06-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/npm/">npm</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/npm/">npm</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/lockfile/">lockfile</a></span></div><div class="content">NPMnpm install
+在命令行窗口中，进入项目的根目录。
+运行以下命令来执行小版本更新：
 
+1npm version patch
 
+这将会自动递增 package.json 文件中的版本号，并创建一个新的 Git 标签。
 
-版本
-package.json
-package-lock.json
+确保您的代码处于一个可发布状态，并且没有包含任何敏感信息。您可以通过运行以下命令来忽略不需要发布的文件或目录：
 
-
-
-5.0.x
-忽略
-为准
-
-
-5.1.0 - 5.4.1
-为准
-忽略
+12echo &quot;dist/&quot; &gt;&gt; .npmignoreecho &quot;.git/&quot; &gt;&gt; .npmignore
 
 
-&gt;&#x3D;5.4.2
-两者版本不兼容时
-两者版本兼容时
+接下来，登录到 npm 帐户，运行以下命令来验证您的身份：
+
+1npm login
 
 
-5.0.x        忽略package.json, package-lock.json完全锁定；
-5.1.0 - 5.4.1   只要package.json中的更新了, 就无视package-lock.json下载新版本（并更新package-lock.json）；
-&gt;&#x3D;5.4.2      根据package.json, package-lock.json版本是否兼容共同确定，兼容以package-lock.json为准，不兼容以package.json为主（并更新package-lock.json）；
-npm ci
-推荐CI打包时使用；
-使用npm ci时必须有package-lock.json；
-npm ci确保不会更改package-lock.json中的版本，当package.json, package- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/26/blog71/" title="前端项目支持TS">前端项目支持TS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-05-26T04:02:03.000Z" title="Created 2022-05-26 12:02:03">2022-05-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/typescript/">typescript</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/typescript/">typescript</a></span></div><div class="content">vite 默认就支持 TS， 不过react需要加一些配置。
-创建 tsconfig.json 如果有 jsconfig.json的话， 就把jsconfig改名为tsconfig
-添加ts配置，最终如下参考
-1234567891011121314151617&#123;  &quot;compilerOptions&quot;: &#123;    &quot;jsx&quot;: &quot;react-jsx&quot;,    &quot;allowJs&quot;: true,    &quot;isolatedModules&quot;: true,    &quot;baseUrl&quot;: &quot;./&quot;,    &quot;paths&quot;: &#123;      &quot;@/*&quot;: [&quot;src/*&quot;],      &quot;common/*&quot;: [&quot;src/common/*&quot;],      &quot;config/*&quot;: [&quot;src/config/*&q ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/18/blog70/" title="nodejs-snowflake分布式ID">nodejs-snowflake分布式ID</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-04-18T02:02:03.000Z" title="Created 2022-04-18 10:02:03">2022-04-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/nodejs/">nodejs</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/nodejs/">nodejs</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8FID/">分布式ID</a></span></div><div class="content">雪花算法
-https://www.npmjs.com/package/nodejs-snowflake
-Number or String首先需要确定全局唯一ID是整型还是字符串？如果是字符串，那么现有的UUID就完全满足需求，不需要额外的工作。缺点是字符串作为ID占用空间大，索引效率比整型低。
-如果采用整型作为ID，那么首先排除掉32位int类型，因为范围太小，必须使用64位long型。
-数据库自增ID缺点数据库自增ID的缺点是数据在插入前，无法获得ID。数据在插入后，获取的ID虽然是唯一的，但一定要等到事务提交后，ID才算是有效的。有些双向引用的数据，不得不插入后再做一次更新
-snowflake分布式ID解决方案
-SnowFlake可以保证：
+一旦您成功登录，运行以下命令来发布新版本的 npm 包：
 
-同一台服务器所有生成的id按时间趋势递增
-整个分布式系统内不会产生重复id（因为有datacenterId和workerId来做区分）
+1npm publish
 
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/03/16/blog66/" title="业界mysql的实践方案调研">业界mysql的实践方案调研</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-03-16T02:02:03.000Z" title="Created 2022-03-16 10:02:03">2022-03-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/mysql/">mysql</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/nestjs/">nestjs</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/mysql/">mysql</a></span></div><div class="content">业界mysql的实践方案调研分类现存于 Node.js 和 TypeScript 生态环境中的数据库工具可以分为三类。
-手写 SQL自己手写 SQL（比如使用 pg 和 mysql 这样的 Node.js 数据库驱动）当然可以完全控制数据库操作，但是，生产力却不高，而且会遇到很多细碎的事情（如手动处理链接、操作模板）。
-这种方式的另一个问题在于你获取的查询结果时不是类型安全的。你可能会手动书写这些查询结果的类型，但这会花费大量的时间；另外，如果你对数据库进行了改动，你的类型文件也需要保持一致才行，这也会花费大量时间。
-此外，手动构造 SQL 字符串的时候，编辑器没法给你任何提示（只能提示一些 SQL 关键字），效率极差。
-特点：控制力极强，生产力弱
-SQL 构造器有不少人用的解决方案是使用 SQL 构造器（如 knex.js，SQL Bricks）以提高生产力。这种工具为构建 SQL 语句提供了封装层次较高的 API。
-但最大的问题在于这种工具需要开发者从 SQL 的角度来对待数据，但应用数据往往是关系型的对象，这就会导致了数据在认知层面与实际层面的差异。开发者不得不经常切换思维模型才 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/02/21/blog65/" title="NestJS 中使用esm">NestJS 中使用esm</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-02-21T07:06:01.000Z" title="Created 2022-02-21 15:06:01">2022-02-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/nodejs/">nodejs</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/nestjs/">nestjs</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/nodejs/">nodejs</a></span></div><div class="content">NestJS 中使用esm先说结论修改tsconfig 如下，修改 module&#x2F;moduleResolution 这两个字段
-1234567891011121314151617&#123;  &quot;compilerOptions&quot;: &#123;    &quot;module&quot;: &quot;Node16&quot;, // +    &quot;moduleResolution&quot;: &quot;Node&quot;, // +    &quot;declaration&quot;: true,    &quot;removeComments&quot;: true,    &quot;emitDecoratorMetadata&quot;: true,    &quot;experimentalDecorators&quot;: true,    &quot;allowSyntheticDefaultImports&quot;: true,    &quot;target&quot;: &quot;es2017&quot;,    & ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/12/25/blog64/" title="管理平台监控调研">管理平台监控调研</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-12-25T07:02:01.000Z" title="Created 2021-12-25 15:02:01">2021-12-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%9B%91%E6%8E%A7/">监控</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%9B%91%E6%8E%A7/">监控</a></span></div><div class="content">
-
-管理平台监控调研一、背景对于管理平台未提供前端监控，无法主动发现报错、页面首屏加载时长、用户浏览器环境等影响用户体验的问题。因此，有必要实现一套前端监控体系方案，旨在提升平台质量和降低排查问题成本。
-二、目标针对目前各管理平台项目没有提供监控体系功能，将制定一套前端监控体系 SDK，帮助平台开发者快速接入前端监控功能而无需手动实现。
-结合目前技术选型和业务情况，前端监控 SDK 需要支持的能力包括以下几点：
-异常监控
-API 请求异常监控
-JS 异常监控
-静态资源加载异常监控
-Promise 未捕获异常监控
-
-性能监控
-页面加载性能
-TTFE：首包响应时间
-First Paint：首屏渲染时间
-DOM Ready：DOM 就位时间
-First Interactive：首次可交互时间
+这将会将您的代码上传到 n ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/18/blog82/" title="组件设计原则">组件设计原则</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-18T10:01:00.000Z" title="Created 2023-03-18 18:01:00">2023-03-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BB%84%E4%BB%B6/">组件</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%BB%84%E4%BB%B6/">组件</a></span></div><div class="content">组件设计原则 原则 
+一句话总结: ui 组件设计看 antd&#x2F;element-ui，业务组件抽逻辑，dump 组件(展示型)纯模版，smart 组件带点 state。
+组件分类: 一个模块下可能现有容器组件(layout&#x2F;container)，包含多个业务组件；一个业务组件可能包含多个 UI 组件和展示型组件；
+组件的能力
+●资源高内聚（组件资源内部高内聚，组件资源由自身加载控制）
+●作用域独立（内部结构密封，不与全局或其他组件产生影响）
+●自定义标签（定义组件的使用方式）
+●可相互组合（组件间组装整合）
+●接口规范化（组件接口有统一规范，或者是生命周期的管理）
+组件的内容
+●每个组件对应一个目录，组件所需的各种资源都在这个目录下就近维护；（最具软件工程价值）
+●页面上的每个独立的可视&#x2F;可交互区域视为一个组件；
+●由于组件具有独立性，可以自由组合；
+●页面是组件的容器，负责组合组件形成功能完整的界面；
+●当不需要某个组件，或者想要替换组件时，可以整个目录删除&#x2F;替换
+组件的设计原则
+●标准性: 任何一个组件都应该遵守一套标准，可以使得不同区域的开 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/16/blog81/" title="vim|webstorm快捷键学习">vim|webstorm快捷键学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-02-16T03:01:00.000Z" title="Created 2023-02-16 11:01:00">2023-02-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vim/">vim</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/vim/">vim</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/webstorm/">webstorm</a></span></div><div class="content">vim|webstorm快捷键学习  vim 
+基本操作：
 
 
 
-埋点上报
-支持自动采集异常信息
-支持自动采集性能信息
-支持数据埋点
-浏览器环境
-页面访问 pv、uv
-手动埋点定制化数据
+Esc
+从当前模式转换到“普通模式”。所有的键对应到命令。
 
 
 
-报警响应
-支持报警规则配置
-支持 sea talk 通知
-支持邮件通知业务 owner
+i
+“插入模式”用于插入文字。回归按键的本职工作。
 
-三、方案这里我们主要讨论三个方案
 
-开源方案 — sentry
-自研 SDK
+:
+“命令行模式” Vim 希望你输入类似于保存该文档命令的地方。
 
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/11/30/blog63/" title="微前端简介">微前端简介</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-11-30T09:01:01.000Z" title="Created 2021-11-30 17:01:01">2021-11-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BE%AE%E5%89%8D%E7%AB%AF/">微前端</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/">微前端</a></span></div><div class="content">
 
-一、什么是微前端微前端（Micro-Frontends）是一种类似于微服务的架构，它将微服务的理念应用于浏览器端，即将 Web 应用由单一的单体应用转变为多个小型前端应用聚合为一的应用。各个前端应用还可以独立运行、独立开发、独立部署。微前端不是单纯的前端框架或者工具，而是一套架构体系。
-任何新技术的产生都是为了解决现有场景和需求下的技术痛点，微前端也不例外：
+基础：
+●当前文件搜索：&#x2F;+内容
+●x：删除一个字符
+●u：撤销一个操作（相当与 Ctrl+z）
+●dd：删除一行内容
+●dw：删除一个单词
+●yy：复制一行内容
+●yw：复制一个单词
+●p：粘贴一个之前删除或复制的行或者单词
+●e：跳到下个单词（LCTT 译注：词尾）（比单纯用方向键更快）
+●r：替换一个字母（按 r，松开，然后再按新字母）
+●切换文件窗口： ctrl + w
+●:sp 文本文件名：将屏幕水平分割成上下两半，新文件展示在另一半。
+●:vsp ：水平左右分割；
+●Ctrl+Shift+C 和 Ctrl+Shift+V：在终端中复制和粘贴文本。
+方向键：
 
-拆分和细化：当下前端领域，单页面应用（SPA）是非常流行的项目形态之一，而随着时间的推移以及应用功能的丰富，单页应用变得不再单一而是越来越庞大也越来越难以维护，往往是改一处而动全身，由此带来的发版成本也越来越高。微前端的意义就是将这些庞大应用进行拆分，并随之解耦，每个部分可以单独进行维护和部署，提升效率。
-整合历史系统：在不少的业务中，或多或少会存在一些历史项目，这些项目大多以采用老框架（Backbone.js，Angular.js ）的B端管理系统为主，介于日常运营，这些系统需要结合到新框架中来使用还不能抛弃，对此我们也没有理由浪费时间和精力重写旧的逻辑。而微前端可以将这些系统进行整合，在基本不修改来逻辑的同时来同时兼容新 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/10/25/blog62/" title="hive和数据库对比总结">hive和数据库对比总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-10-25T06:01:01.000Z" title="Created 2021-10-25 14:01:01">2021-10-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/hive/">hive</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hive/">hive</a></span></div><div class="content">
 
-hive和数据库对比总结基本概念Hadoop:
-Hadoop是一个由Apache基金会所开发的分布式系统基础架构。用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群的威力进行高速运算和存储。
-Hadoop实现了一个分布式文件系统（ Distributed File System），其中一个组件是HDFS（Hadoop Distributed File System）。HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上；而且它提供高吞吐量（high throughput）来访问应用程序的数据，适合那些有着超大数据集（large data set）的应用程序。HDFS放宽了POSIX（可移植操作系统接口）的要求，可以以流的形式访问（streaming access）文件系统中的数据。
-Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，而MapReduce则为海量的数据提供了计算。
-简单了解一下hadoop的前世今生：https://zhuanlan.zhihu.com/p/54994736?ut ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/09/25/blog67/" title="代码注释规范">代码注释规范</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-09-25T03:02:03.000Z" title="Created 2021-09-25 11:02:03">2021-09-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%A7%84%E8%8C%83/">规范</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A/">代码注释</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E8%A7%84%E8%8C%83/">规范</a></span></div><div class="content">1、文件注释&#x2F;** @Author:xxx@xx* @Date: 2021-09-25 17:02:51* @LastEditTime: 2021-09-30 00:26:09* @LastEditors:xxx@xx* @Description: 应用的入口文件* @FilePath: &#x2F;xx&#x2F;src&#x2F;index.jsx*&#x2F;
-2、函数注释&#x2F;*** @description: 给没有数据的日期填充undefined值* @param {Array} 填充前的数据* @param {String} 按哪个属性进行分组* @return {Array} 填充后的数据*&#x2F;
-3、块注释&#x2F;* 块注释 *&#x2F;
-4、行注释&#x2F;&#x2F; 行注释
-5、scss注释&#x2F;* 块注释 *&#x2F;
-&#x2F;&#x2F; 行注释
-6、vscode插件koroFileHeader
-</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_wxk.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">伍新奎</div><div class="author-info__description">前端开发工程师</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">134</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">57</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinkuiwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/25/blog83/" title="npm 发布小版本更新">npm 发布小版本更新</a><time datetime="2023-04-25T11:01:00.000Z" title="Created 2023-04-25 19:01:00">2023-04-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/18/blog82/" title="组件设计原则">组件设计原则</a><time datetime="2023-03-18T10:01:00.000Z" title="Created 2023-03-18 18:01:00">2023-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/16/blog81/" title="vim|webstorm快捷键学习">vim|webstorm快捷键学习</a><time datetime="2023-02-16T03:01:00.000Z" title="Created 2023-02-16 11:01:00">2023-02-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/10/blog80/" title="chrome调试技巧 - network">chrome调试技巧 - network</a><time datetime="2023-01-10T04:01:00.000Z" title="Created 2023-01-10 12:01:00">2023-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/26/blog79/" title="PDF 下载">PDF 下载</a><time datetime="2022-12-26T03:02:03.000Z" title="Created 2022-12-26 11:02:03">2022-12-26</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+
+h
+光标向左移动一个字符
+
+
+
+j 或 Ctrl + J
+光标向下移动一行
+
+
+k 或 Ctrl + P
+光标向上移动一行
+
+
+l
+光标向右移动一个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/10/blog80/" title="chrome调试技巧 - network">chrome调试技巧 - network</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-01-10T04:01:00.000Z" title="Created 2023-01-10 12:01:00">2023-01-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/chrome/">chrome</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/chrome/">chrome</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/network/">network</a></span></div><div class="content">network在线环境调试：源码保存为覆盖内容，
+
+在本地做文件映射，并且可以修改演示。
+
+修改接口返回的响应，做到后端数据的mock选择接口，选中覆盖项
+
+做本地映射，填写相关内容：
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/26/blog79/" title="PDF 下载">PDF 下载</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-12-26T03:02:03.000Z" title="Created 2022-12-26 11:02:03">2022-12-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/pdf/">pdf</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/pdf/">pdf</a></span></div><div class="content">PDF 下载客户端方面所能支持的下载方式，最常见的如下几种：
+
+a 标签，例如 下载
+location.href，例如 window.location.href &#x3D; xxx
+window.open，例如 window.open(xxx)
+Content-disposition，例如 Content-disposition：attachment；filename&#x3D;”xxx”
+
+ 实现下载 的 download 属性用于指示浏览器 下载 href 指定的 URL，而不是导航到该资源，通常会提示用户将其保存为本地文件，如果 download 属性有指定内容，这个值就会在下载保存过程中作为 预填充的文件名，主要是因为如下原因：
+
+这个值可能会通过 JavaScript 进行动态修改
+或者 Content-Disposition 中指定的 download 属性优先级高于 a.download
+
+这种应该是大家最熟悉的方式了，但熟悉归熟悉，还有一些值得注意的点：
+
+download 属性只适用于 同源 URL
+
+
+同源 URL 会进行 下载 操作
+非同源 URL 会进行 导航 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/22/blog78/" title="后端常用工具简介">后端常用工具简介</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-11-22T08:02:03.000Z" title="Created 2022-11-22 16:02:03">2022-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/backend/">backend</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/vite/">vite</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/SnowPack/">SnowPack</a></span></div><div class="content">NGINX：开源的一体式高级负载均衡器、内容缓存和网络服务器、反向代理(Advanced Load Balancer, Web Server, &amp; Reverse Proxy)
+
+负载均衡 LoadBalance 
+
+
+将网络请求，或者其他形式的负载“均摊”到不同的机器上。 避免集群中部分服务器压力过大，而另一些服务器比较空闲的情况。
+
+
+
+通过负载均衡，可以让每台服务器获取到适合自己处理能力的负载。 在为高负载服务器分流的同时，还可以避免资源浪费，一举两得。
+
+
+常见负载均衡算法工作原理 
+
+
+轮询
+
+
+
+
+顾名思义将请求按顺序轮流地分配到后端服务器上，它均衡地对待后端的每一台服务器，而不关心服务器实际的连接数和当前的系统负载。
+
+
+
+
+
+
+优点: 服务器请求数据相同
+
+
+
+
+
+
+不足: 服务器压力不同，不适合根据服务器配置不同的情况
+
+
+
+
+
+随机
+
+
+
+
+通过系统的随机算法，根据后端服务器的列表大小值来随机选取其中的一台服务器进行访问。
+
+
+
+
+
+
+
+由概率统计理论可以得知，随着客户端调用服务端的次数增多，其实际效果越来越接近于均分配调用量到后端的每一台服务器，也就是轮询 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/10/19/blog68/" title="antd table 设置横向滚动更新column遇到header错位">antd table 设置横向滚动更新column遇到header错位</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-19T02:02:03.000Z" title="Created 2022-10-19 10:02:03">2022-10-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/antd/">antd</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/antd/">antd</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/table/">table</a></span></div><div class="content">一、问题描述antd table不支持列可选，自己实现了一下列可选，但发现在横向滚动到中间位置时，选中某些列去展示时，会出现header错位，但此时横向滚动一下滚动条则会恢复正常header位置。
+问题现象图示：
+1、横向滚动到中间位置：
+
+2、选择之前没有渲染选中的列进行展示，此时header出现了回到初始状态位置，出现错位：
+
+3、但此时滚动一下横向滚动条，header瞬间复位成功：
+
+4、此外，对于之前渲染成功的列，在选择取消列展示时，不会出现header错位：
+
+（不会重置ant-table-header的scrollLeft为0）
+二、原因分析首先，在选择之前未渲染的列后，该column的header和data是渲染的，只是header回到了横向滚动的初始位置。
+
+header的横向滚动的位置计算出现了错误，赋值为0，但横向稍微滚动一下，又能够正确赋值为横向滚动位置，从而恢复header的错位展示问题。
+
+由于需求是需要table固定表头，对table的scroll属性设置了y，当没有对scroll设置y时，此时，选中列时，不会出现header错位：
+
+当设置固定定位后，he ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_wxk.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">伍新奎</div><div class="author-info__description">前端开发工程师</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">68</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinkuiwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/23/blog96/" title="nestjs学习-5种http数据传输方式">nestjs学习-5种http数据传输方式</a><time datetime="2023-11-23T08:02:00.000Z" title="Created 2023-11-23 16:02:00">2023-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/23/blog95/" title="nestjs学习-快速掌握 Nest CLI">nestjs学习-快速掌握 Nest CLI</a><time datetime="2023-11-23T08:02:00.000Z" title="Created 2023-11-23 16:02:00">2023-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/15/blog90/" title="前端工程化- webpack | 项目打包webpack优化">前端工程化- webpack | 项目打包webpack优化</a><time datetime="2023-11-15T03:02:00.000Z" title="Created 2023-11-15 11:02:00">2023-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/01/blog94/" title="单元测试-jest搭建和使用">单元测试-jest搭建和使用</a><time datetime="2023-11-01T06:02:00.000Z" title="Created 2023-11-01 14:02:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/20/blog93/" title="nodejs-PM2搭建和使用">nodejs-PM2搭建和使用</a><time datetime="2023-10-20T03:02:00.000Z" title="Created 2023-10-20 11:02:00">2023-10-20</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>Categories</span>
             <a class="card-more-btn" href="/categories/" title="View More">
@@ -283,4 +358,4 @@ Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/React/"><span class="card-category-list-name">React</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/VScode-%E9%85%8D%E7%BD%AE/"><span class="card-category-list-name">VScode 配置</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/antd/"><span class="card-category-list-name">antd</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/backend/"><span class="card-category-list-name">backend</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/chrome/"><span class="card-category-list-name">chrome</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hive/"><span class="card-category-list-name">hive</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/mysql/"><span class="card-category-list-name">mysql</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 1.1em; color: #999">异步</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85/" style="font-size: 1.1em; color: #999">网络请求封装</a> <a href="/tags/chrome/" style="font-size: 1.1em; color: #999">chrome</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.1em; color: #999">动态规划</a> <a href="/tags/ES6/" style="font-size: 1.4em; color: #99a5b6">ES6</a> <a href="/tags/%E7%9B%91%E6%8E%A7%EF%BC%8Cnodejs/" style="font-size: 1.1em; color: #999">监控，nodejs</a> <a href="/tags/React/" style="font-size: 1.3em; color: #99a1ac">React</a> <a href="/tags/supervisor%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">supervisor工具</a> <a href="/tags/%E7%BB%84%E4%BB%B6%E5%8C%96/" style="font-size: 1.1em; color: #999">组件化</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 1.1em; color: #999">闭包</a> <a href="/tags/vite/" style="font-size: 1.2em; color: #999da3">vite</a> <a href="/tags/HTTP%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">HTTP模块</a> <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">微前端</a> <a href="/tags/vue%E9%85%8D%E7%BD%AE/" style="font-size: 1.1em; color: #999">vue配置</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E5%A0%86/" style="font-size: 1.1em; color: #999">二叉堆</a> <a href="/tags/%E7%AE%A1%E9%81%93%E6%B5%81/" style="font-size: 1.1em; color: #999">管道流</a> <a href="/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/tags/lockfile/" style="font-size: 1.1em; color: #999">lockfile</a> <a href="/tags/this%E7%BB%91%E5%AE%9A/" style="font-size: 1.1em; color: #999">this绑定</a> <a href="/tags/npm/" style="font-size: 1.3em; color: #99a1ac">npm</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 1.1em; color: #999">配置</a> <a href="/tags/%E8%85%BE%E8%AE%AF/" style="font-size: 1.1em; color: #999">腾讯</a> <a href="/tags/hive/" style="font-size: 1.1em; color: #999">hive</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 1.1em; color: #999">红黑树</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 1.1em; color: #999">散列表</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 1.5em; color: #99a9bf">框架</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8/" style="font-size: 1.1em; color: #999">事件驱动</a> <a href="/tags/angular/" style="font-size: 1.1em; color: #999">angular</a> <a href="/tags/async/" style="font-size: 1.1em; color: #999">async</a> <a href="/tags/nestjs/" style="font-size: 1.2em; color: #999da3">nestjs</a> <a href="/tags/%E5%AF%BC%E5%85%A5/" style="font-size: 1.1em; color: #999">导入</a> <a href="/tags/Vuex/" style="font-size: 1.1em; color: #999">Vuex</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 1.1em; color: #999">递归</a> <a href="/tags/PATH%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">PATH模块</a> <a href="/tags/vue-router/" style="font-size: 1.2em; color: #999da3">vue router</a> <a href="/tags/pdf/" style="font-size: 1.1em; color: #999">pdf</a> <a href="/tags/FS%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">FS模块</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">第三方模块</a> <a href="/tags/express%E8%B7%AF%E7%94%B1/" style="font-size: 1.1em; color: #999">express路由</a> <a href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" style="font-size: 1.1em; color: #999">模块化</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 伍新奎</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8FID/" style="font-size: 1.1em; color: #999">分布式ID</a> <a href="/tags/Nest-CLI/" style="font-size: 1.1em; color: #999">Nest CLI</a> <a href="/tags/%E5%AF%BC%E5%87%BA/" style="font-size: 1.1em; color: #999">导出</a> <a href="/tags/TEG-%E5%AE%9E%E4%B9%A0/" style="font-size: 1.1em; color: #999">TEG 实习</a> <a href="/tags/typescript/" style="font-size: 1.3em; color: #99a1ac">typescript</a> <a href="/tags/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">回溯算法</a> <a href="/tags/Nodejs-%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">Nodejs 模块</a> <a href="/tags/webpack/" style="font-size: 1.1em; color: #999">webpack</a> <a href="/tags/URl%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">URl模块</a> <a href="/tags/npm/" style="font-size: 1.23em; color: #999ea6">npm</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">自定义模块</a> <a href="/tags/%E5%AF%BC%E5%85%A5/" style="font-size: 1.1em; color: #999">导入</a> <a href="/tags/SnowPack/" style="font-size: 1.17em; color: #999c9f">SnowPack</a> <a href="/tags/React/" style="font-size: 1.23em; color: #999ea6">React</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A/" style="font-size: 1.1em; color: #999">代码注释</a> <a href="/tags/TabBar/" style="font-size: 1.1em; color: #999">TabBar</a> <a href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" style="font-size: 1.1em; color: #999">模块化</a> <a href="/tags/svg/" style="font-size: 1.1em; color: #999">svg</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 1.17em; color: #999c9f">项目</a> <a href="/tags/vue-router/" style="font-size: 1.17em; color: #999c9f">vue router</a> <a href="/tags/%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%EF%BC%8Cnode/" style="font-size: 1.1em; color: #999">运行环境，node</a> <a href="/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 1.1em; color: #999">配置</a> <a href="/tags/react/" style="font-size: 1.37em; color: #99a4b2">react</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" style="font-size: 1.1em; color: #999">二叉搜索树</a> <a href="/tags/%E7%BB%84%E4%BB%B6/" style="font-size: 1.23em; color: #999ea6">组件</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 1.1em; color: #999">异步</a> <a href="/tags/vue/" style="font-size: 1.5em; color: #99a9bf">vue</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E5%A0%86/" style="font-size: 1.1em; color: #999">二叉堆</a> <a href="/tags/%E9%98%9F%E5%88%97/" style="font-size: 1.1em; color: #999">队列</a> <a href="/tags/async/" style="font-size: 1.1em; color: #999">async</a> <a href="/tags/Babel/" style="font-size: 1.1em; color: #999">Babel</a> <a href="/tags/supervisor%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">supervisor工具</a> <a href="/tags/%E5%85%83%E7%B4%A0%E6%B8%B2%E6%9F%93/" style="font-size: 1.17em; color: #999c9f">元素渲染</a> <a href="/tags/ES6/" style="font-size: 1.43em; color: #99a6b9">ES6</a> <a href="/tags/POST/" style="font-size: 1.1em; color: #999">POST</a> <a href="/tags/let/" style="font-size: 1.1em; color: #999">let</a> <a href="/tags/Visual-Studio-Code/" style="font-size: 1.1em; color: #999">Visual Studio Code</a> <a href="/tags/cnpm/" style="font-size: 1.1em; color: #999">cnpm</a> <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" style="font-size: 1.1em; color: #999">微前端</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023 By 伍新奎</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>nestjs学习-快速掌握 Nest CLI | 伍新奎的博客空间</title><meta name="author" content="伍新奎"><meta name="copyright" content="伍新奎"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="项目开发离不开工程化的部分，比如创建项目、编译构建、开发时 watch 文件变动自动构建等。Nest 项目自然也是这样，所以它在 @nestjs&#x2F;cli 这个包里提供了 nest 命令。可以直接 npx 执行，npm 会把它下载下来然后执行： 1npx @nestjs&#x2F;cli new 项目名  也可以安装到全局，然后执行，更推荐这种： 123npm install -g @nestjs&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nestjs学习-快速掌握 Nest CLI">
+<meta property="og:url" content="http://example.com/2023/11/23/blog95/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="项目开发离不开工程化的部分，比如创建项目、编译构建、开发时 watch 文件变动自动构建等。Nest 项目自然也是这样，所以它在 @nestjs&#x2F;cli 这个包里提供了 nest 命令。可以直接 npx 执行，npm 会把它下载下来然后执行： 1npx @nestjs&#x2F;cli new 项目名  也可以安装到全局，然后执行，更推荐这种： 123npm install -g @nestjs&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/blog_wxk.jpg">
+<meta property="article:published_time" content="2023-11-23T08:02:00.000Z">
+<meta property="article:modified_time" content="2023-12-05T13:04:53.535Z">
+<meta property="article:author" content="伍新奎">
+<meta property="article:tag" content="nestjs">
+<meta property="article:tag" content="Nest CLI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/blog_wxk.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/11/23/blog95/index.html"><link rel="preconnect" href="https://lib.baomitu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://lib.baomitu.com/egjs-infinitegrid/4.10.1/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'nestjs学习-快速掌握 Nest CLI',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-05 21:04:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_wxk.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">68</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">nestjs学习-快速掌握 Nest CLI</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2023-11-23T08:02:00.000Z" title="Created 2023-11-23 16:02:00">2023-11-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/nestjs/">nestjs</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/nestjs/Nest-CLI/">Nest CLI</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p>项目开发离不开工程化的部分，比如创建项目、编译构建、开发时 watch 文件变动自动构建等。<br>Nest 项目自然也是这样，所以它在 @nestjs&#x2F;cli 这个包里提供了 nest 命令。<br>可以直接 npx 执行，npm 会把它下载下来然后执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @nestjs/cli new 项目名</span><br></pre></td></tr></table></figure>
+
+<p>也可以安装到全局，然后执行，更推荐这种：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @nestjs/cli</span><br><span class="line"></span><br><span class="line">nest new 项目名</span><br></pre></td></tr></table></figure>
+
+<p>不过后者要时不时升级下版本，不然可能用它创建的项目版本不是最新的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update -g @nestjs/cli</span><br></pre></td></tr></table></figure>
+
+<p>那 nest 都提供了啥命令呢？<br>nest -h 看看:<br><img src="/2023/11/23/blog95/1700797021620-08435390-55b0-4059-8df6-a0f0ba52b3f7.webp"><br>有创建新项目的 nest new，有生成某些代码的 nest generate，还有编译构建的 nest build，开发模式的 nest start 等。<br>分别看一下：</p>
+<h2 id="nest-new"><a href="#nest-new" class="headerlink" title="nest new"></a>nest new</h2><p>nest new 我们用过，就是创建一个新的 nest 项目的。<br>它有这么几个选项：<br><img src="/2023/11/23/blog95/1700797021604-175f5826-67e9-4a60-858f-b14f07e47471.webp"><br>–skip-git 和 –skip-install 很容易理解，就是跳过 git 的初始化，跳过 npm install。<br>–package-manager 是指定包管理器的，之前创建项目的时候会让我们选择：<br><img src="/2023/11/23/blog95/1700797021605-6b8fb4e3-fe08-40ef-b7fc-320288a6bf79.webp"><br>指定之后，就跳过包管理器选择这步了：<br><img src="/2023/11/23/blog95/1700797021574-73205432-3ffd-44a1-9f1a-63dc7029a935.webp"><br>–language 可以指定 typescript 和 javascript，一般我们都选择 ts，用默认的就好。<br>–strict 是指定 ts 的编译选项是否开启严格模式的，也就是这么 5 个选项：<br><img src="/2023/11/23/blog95/1700797021600-371b94f8-c62d-463f-b559-0edc815d25f3.webp"><br>默认是 false，也可以指定为 true：<br><img src="/2023/11/23/blog95/1700797022219-85fa9c7d-e706-4c28-9a79-efb07efb4b51.webp"><br>这个之后需要的话再改就行。</p>
+<h2 id="nest-generate’"><a href="#nest-generate’" class="headerlink" title="nest generate’"></a>nest generate’</h2><p>nest 命令除了可以生成整个项目外，还可以生成一些别的代码，比如 controller、service、module 等。<br>比如生成 module：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arduino</span><br><span class="line">复制代码nest generate module aaa</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/23/blog95/1700797022236-fa52afc6-84ad-45af-a4c4-ae18d6b2a6cf.webp"><br>它会生成 module 的代码：<br><img src="/2023/11/23/blog95/1700797022306-f539abf6-86b5-4162-8365-c8c75324a08e.webp"><br>还会自动在 AppModule 里引入：<br><img src="/2023/11/23/blog95/1700797022257-c01bfdf6-6a6d-437f-af1c-6454fa7dd2c6.webp"><br>当然你也可以生成 controller、service 等代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制代码nest generate controller aaa</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/23/blog95/1700797022272-382d519d-b5c8-4150-b85e-2b95c0f75b00.webp"><br>同样，它也会更新到 module 的依赖里去。<br>生成 service 也是一样：<br><img src="/2023/11/23/blog95/1700797022586-346b47f5-3ace-4c60-a563-25f2d889a81f.webp"><br>当然，如果是要完整生成一个模块的代码，不需要一个个生成，可以用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复制代码nest generate resource xxx</span><br></pre></td></tr></table></figure>
+
+<p>它会让你选择是哪种代码，因为 nest 支持 http、websocket、graphql、tcp 等，这里我们选择 http 的 REST 风格 api：<br><img src="/2023/11/23/blog95/1700797022593-4f0d5811-f526-40b3-b532-2183c9428930.webp"><br>然后会让你选择是否生成 CRUD 代码：<br><img src="/2023/11/23/blog95/1700797022811-d0c73a8f-8252-4012-a0e0-ec5add4da37e.webp"><br>选择是。<br>然后就会生成整个模块的 CRUD + REST api 的代码：<br><img src="/2023/11/23/blog95/1700797022680-323053fb-f888-431d-890b-c18b11263905.webp"><br><img src="/2023/11/23/blog95/1700797022802-07ea8fd7-f6ed-4f97-b6b6-279d87428e54.webp"><br>当然，它同样会自动在 AppModule 引入：<br><img src="/2023/11/23/blog95/1700797022933-fd35917d-6347-4ab1-8c6f-2793b5f8c49c.webp"><br>这就是 nest generate，可以快速生成各种代码：<br><img src="/2023/11/23/blog95/1700797023045-bed96cce-ed51-4af2-a1e7-e3c4877adadc.webp"><br>这些代码模版的集合是在 @nestjs&#x2F;schematics 这个包里定义的。<br>nest new 创建项目的时候有个 –collection 选项，就是配置这个的。<br>不过一般我们不需要配置。<br>你可以在 <a href="https://link.juejin.cn/?target=https://github.com/nestjs/schematics/tree/master/src/lib">@nestjs&#x2F;schematics</a> 里看到这些代码模版的定义：<br><img src="/2023/11/23/blog95/1700797023099-36eaf5a9-b8ac-4a38-a32c-499f56493a55.webp"><br>它的实现原理很简单，就是模版引擎填充变量，打印成代码：<br><img src="/2023/11/23/blog95/1700797023148-6de37102-a8fc-4620-a7bf-ce0befdc47c0.webp"><br>nest generate 也有不少选项：<br><img src="/2023/11/23/blog95/1700797023193-c9c92706-cdbf-4d26-839d-52214004037c.webp"><br>–flat 和 –no-flat 是指定是否生成对应目录的：<br><img src="/2023/11/23/blog95/1700797023391-dc624818-9c28-4b19-82f7-434ee9aae73e.webp"><br>–spec 和 –no-spec 是指定是否生成测试文件：<br><img src="/2023/11/23/blog95/1700797023437-893132bd-5aab-42b9-8d10-eaf3e5b1317b.webp"><br>–skip-import 是指定不在 AppModule 里引入：<br><img src="/2023/11/23/blog95/1700797023493-1a473857-0d41-444a-b8db-29e9ecfa2cbf.webp"><br>也就是不生成这部分代码：<br><img src="/2023/11/23/blog95/1700797023588-743a2107-9bb9-4955-bbfc-38f7ad84334d.webp"><br>至于 –project，这是指定生成代码在哪个子项目的，等之后用到 monorepo 项目的时候再说。<br>这就是 nest cli 提供的快速生成各种代码的能力，是不是还挺方便的？</p>
+<h2 id="nest-build"><a href="#nest-build" class="headerlink" title="nest build"></a>nest build</h2><p>然后就是 nest build 了，它是用来构建项目的:<br><img src="/2023/11/23/blog95/1700797023562-297cd083-4571-4e4b-8361-58c2f667c75f.webp"><br>执行 nest build，会在 dist 目录下生成编译后的代码。<br>同样，它也有一些选项：<br><img src="/2023/11/23/blog95/1700797023823-3b523f38-6111-43fd-90ac-d92a4145dc94.webp"><br>–wepback 和 –tsc 是指定用什么编译，默认是 tsc 编译，也可以切换成 webpack。<br>这是 tsc 的编译产物：<br><img src="/2023/11/23/blog95/1700797023909-bc1b6179-377c-491a-bbef-a0a0b123b6e0.webp"><br>这是 webpack 的编译产物：<br><img src="/2023/11/23/blog95/1700797023943-8ea5016d-d528-42f5-83e0-567414c97642.webp"><br>tsc 不做打包、webpack 会做打包，两种方式都可以。<br>node 模块本来就不需要打包，但是打包成单模块能提升加载的性能。<br>–watch 是监听文件变动，自动 build 的。<br>但是 –watch 默认只是监听 ts、js 文件，加上 –watchAssets 会连别的文件一同监听变化，并输出到 dist 目录，比如 md、yml 等文件。<br>–path 是指定 tsc 配置文件的路径的。<br>那 –config 是指定什么配置文件呢？<br>是 nest cli 的配置文件。</p>
+<h2 id="nest-cli-json"><a href="#nest-cli-json" class="headerlink" title="nest-cli.json"></a>nest-cli.json</h2><p>刚刚我们说的那些选项都可以在 nest-cli.json 里配置：<br><img src="/2023/11/23/blog95/1700797023980-e34b7dbc-b711-41ae-b47c-6d84e288b9df.webp"><br>比如 compilerOptions 里设置 webpack 为 true 就相当于 nest build –webpack，一样的效果：<br><img src="/2023/11/23/blog95/1700797024055-378cadbb-daff-4ded-8283-11abffa3ff2b.webp"><br>webpack 设置为 false 就是用 tsc 了。<br>deleteOutDir 设置为 true，每次 build 都会都清空 dist 目录。<br>而 assets 是指定 nest build 的时候，把那些非 js、ts 文件也复制到 dist 目录下。<br>可以通过 include、exclude 来精确匹配，并且可以单独指定是否 watchAssets。<br>不过只支持 src 下文件的复制，如果是非 src 下的，可以自己写脚本复制：<br><img src="/2023/11/23/blog95/1700797024330-a44bce52-fb53-4a10-9bf8-23a3a6bce2c1.webp"><br>然后是 generateOptions，这些就和我们 nest generate 时的 –no-spec、–no-flat 一样的效果。<br>比如我把 flat 设置为 false、spec 设置为 false，那再 generate 代码时就是这样的：<br><img src="/2023/11/23/blog95/1700797024306-b5f38e39-3e7f-4145-b46d-9af580f49cc8.webp"><br>生成了一层目录，并且没有生成测试文件。<br>sourceRoot 是指定源码目录。<br>entryFile 是指定入口文件的名字，默认是 main。<br>而 $schema 是指定 nest-cli.json 的 schema，也就是可以有哪些属性的：<br><a href="https://link.juejin.cn/?target=https://json.schemastore.org/nest-cli">json.schemastore.org&#x2F;nest-cli</a><br>这是一种 json schema 的规范，还是挺容易看懂的：<br><img src="/2023/11/23/blog95/1700797024384-53926fed-119f-4d2d-9e8e-abaca22b8c71.webp"><br>如果想全面了解 nest-cli.json 都有啥属性，可以看看这个 schema 定义。</p>
+<h2 id="nest-start"><a href="#nest-start" class="headerlink" title="nest start"></a>nest start</h2><p>最后，再来看下 nest start 命令：<br><img src="/2023/11/23/blog95/1700797024398-92c40ba9-b798-4412-a688-0acd27d3c0fb.webp"><br>可以看到每次重新 build 了，并且用 node 把 main.js 跑了起来。<br>它有这些选项：<br><img src="/2023/11/23/blog95/1700797024426-865418ad-14f7-449d-83f3-e87aba902e85.webp"><br>–watch 是最常用的选项了，也就是改动文件之后自动重新 build：<br><img src="/2023/11/23/blog95/1700797024697-0a2c5e49-8117-42c2-9d73-22b682e6de95.webp"><br>–debug 是启动调试的 websocket 服务，用来 debug。<br><img src="/2023/11/23/blog95/1700797024701-5a32f253-c0c9-4ba4-b487-d7e1034baf90.webp"><br>–exec 可以指定用什么来跑，默认是用 node 跑，你也可以切换别的 runtime。<br>其余选项和 nest build 一样，就不复述了。</p>
+<h2 id="nest-info"><a href="#nest-info" class="headerlink" title="nest info"></a>nest info</h2><p>最后还有个 nest info 命令，这个就是查看项目信息的，包括系统信息、 node、npm 和依赖版本：<br><img src="/2023/11/23/blog95/1700797024768-57f5e438-0f6c-4547-b5fc-7efeaaf136d3.webp"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>nest 在 @nestjs&#x2F;cli 包里提供了 nest 命令，它可以用来做很多事情：</p>
+<ul>
+<li>生成项目结构和各种代码</li>
+<li>编译代码</li>
+<li>监听文件变动自动编译</li>
+<li>打印项目依赖信息</li>
+</ul>
+<p>也就是这些子命令：</p>
+<ul>
+<li>nest new 快速创建项目</li>
+<li>nest generate 快速生成各种代码</li>
+<li>nest build 使用 tsc 或者 webpack 构建代码</li>
+<li>nest start 启动开发服务，支持 watch 和调试</li>
+<li>nest info 打印 node、npm、nest 包的依赖版本</li>
+</ul>
+<p>并且，很多选项都可以在 nest-cli.json 里配置，比如 generateOptions、compilerOptions 等。<br>学会用 nest cli，是学好 nest 很重要的一步。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/nestjs/">nestjs</a><a class="post-meta__tags" href="/tags/Nest-CLI/">Nest CLI</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/23/blog96/" title="nestjs学习-5种http数据传输方式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">nestjs学习-5种http数据传输方式</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/15/blog90/" title="前端工程化- webpack | 项目打包webpack优化"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">前端工程化- webpack | 项目打包webpack优化</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/02/21/blog65/" title="NestJS 中使用esm"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-21</div><div class="title">NestJS 中使用esm</div></div></a></div><div><a href="/2022/03/16/blog66/" title="业界mysql的实践方案调研"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-16</div><div class="title">业界mysql的实践方案调研</div></div></a></div><div><a href="/2023/11/23/blog96/" title="nestjs学习-5种http数据传输方式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-23</div><div class="title">nestjs学习-5种http数据传输方式</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_wxk.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">伍新奎</div><div class="author-info__description">前端开发工程师</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">68</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinkuiwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nest-new"><span class="toc-number">1.</span> <span class="toc-text">nest new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nest-generate%E2%80%99"><span class="toc-number">2.</span> <span class="toc-text">nest generate’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nest-build"><span class="toc-number">3.</span> <span class="toc-text">nest build</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nest-cli-json"><span class="toc-number">4.</span> <span class="toc-text">nest-cli.json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nest-start"><span class="toc-number">5.</span> <span class="toc-text">nest start</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nest-info"><span class="toc-number">6.</span> <span class="toc-text">nest info</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/23/blog96/" title="nestjs学习-5种http数据传输方式">nestjs学习-5种http数据传输方式</a><time datetime="2023-11-23T08:02:00.000Z" title="Created 2023-11-23 16:02:00">2023-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/23/blog95/" title="nestjs学习-快速掌握 Nest CLI">nestjs学习-快速掌握 Nest CLI</a><time datetime="2023-11-23T08:02:00.000Z" title="Created 2023-11-23 16:02:00">2023-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/15/blog90/" title="前端工程化- webpack | 项目打包webpack优化">前端工程化- webpack | 项目打包webpack优化</a><time datetime="2023-11-15T03:02:00.000Z" title="Created 2023-11-15 11:02:00">2023-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/01/blog94/" title="单元测试-jest搭建和使用">单元测试-jest搭建和使用</a><time datetime="2023-11-01T06:02:00.000Z" title="Created 2023-11-01 14:02:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/20/blog93/" title="nodejs-PM2搭建和使用">nodejs-PM2搭建和使用</a><time datetime="2023-10-20T03:02:00.000Z" title="Created 2023-10-20 11:02:00">2023-10-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023 By 伍新奎</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>

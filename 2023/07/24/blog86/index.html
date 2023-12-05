@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>vue开发风格指南 | 伍新奎的博客空间</title><meta name="author" content="伍新奎"><meta name="copyright" content="伍新奎"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="总结vue2 风格指南和vue3 Style Guide camelCase:驼峰命名; PascalCase:首字母全大写; kebab-case:全小写用横线连接. 必要规则  组件名为多个单词: 组件名应该始终是多个单词的，根组件 App 以及 &lt;transition&gt;、&lt;component&gt; 之类的 Vue 内置组件除外  可以避免跟现有的以及未来的 HTML 元素">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue开发风格指南">
+<meta property="og:url" content="http://example.com/2023/07/24/blog86/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="总结vue2 风格指南和vue3 Style Guide camelCase:驼峰命名; PascalCase:首字母全大写; kebab-case:全小写用横线连接. 必要规则  组件名为多个单词: 组件名应该始终是多个单词的，根组件 App 以及 &lt;transition&gt;、&lt;component&gt; 之类的 Vue 内置组件除外  可以避免跟现有的以及未来的 HTML 元素">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/blog_wxk.jpg">
+<meta property="article:published_time" content="2023-07-24T09:01:00.000Z">
+<meta property="article:modified_time" content="2023-12-05T12:16:55.430Z">
+<meta property="article:author" content="伍新奎">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="开发风格">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/blog_wxk.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/07/24/blog86/index.html"><link rel="preconnect" href="https://lib.baomitu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://lib.baomitu.com/egjs-infinitegrid/4.10.1/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vue开发风格指南',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-05 20:16:55'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_wxk.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">68</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">vue开发风格指南</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2023-07-24T09:01:00.000Z" title="Created 2023-07-24 17:01:00">2023-07-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/vue/">vue</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p>总结<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/style-guide/index.html">vue2 风格指南</a>和<a target="_blank" rel="noopener" href="https://cn.vuejs.org/style-guide/rules-essential.html">vue3 Style Guide</a></p>
+<p>camelCase:驼峰命名; PascalCase:首字母全大写; kebab-case:全小写用横线连接.</p>
+<p><strong>必要规则</strong></p>
+<ul>
+<li><strong>组件名为多个单词</strong>: 组件名应该始终是多个单词的，根组件 App 以及 <code>&lt;transition&gt;</code>、<code>&lt;component&gt;</code> 之类的 Vue 内置组件除外 <ul>
+<li>可以避免跟现有的以及未来的 HTML 元素<strong>相冲突</strong>，因为所有的 HTML 元素名称都是单个单词的。</li>
+</ul>
+</li>
+<li><strong>组件数据</strong>: 组件的 _data 必须是一个函数_。(vue3 无此条)</li>
+<li><strong>Prop 定义</strong>应该尽量详细。_至少需要指定其类型_。</li>
+<li><strong>为 v-for 设置键值</strong>: 在组件上_总是必须用 key 配合 v-for_，以便维护内部组件及其子树的状态。</li>
+<li><strong>避免 v-if 和 v-for 用在一起</strong>: _永远不要把 v-if 和 v-for 同时用在同一个元素上。_如果两者同时存在于一个节点上时: <ul>
+<li>vue2 中，v-for 的优先级高于 v-if。_v-if 会在每一个 v-for 循环渲染出来的项上作用，造成性能上的浪费_。</li>
+<li>vue3 中，v-if 比 v-for 的优先级更高。这意味着 _v-if 的条件将无法访问到 v-for 作用域内定义的变量别名_。</li>
+</ul>
+</li>
+<li><strong>为组件样式设置作用域必要</strong>: 对于应用来说，顶级 App 组件和布局组件中的样式可以是全局的，但是其它所有组件都应该是有作用域的。 <ul>
+<li>这条规则_只和单文件组件_有关。不一定要使用 scoped attribute。设置作用域也可以通过 <a target="_blank" rel="noopener" href="https://vue-loader-v14.vuejs.org/zh-cn/features/css-modules.html">CSS Modules</a>(组件库开发更倾向)。</li>
+<li><strong>私有 property 名</strong>: 始终_使用_<code>_$__</code>_前缀_来表示插件、混合组件等中的_自定义私有属性_，这些属性不应该被视为公共 API。</li>
+</ul>
+</li>
+</ul>
+<p><strong>强烈推荐(增强可读性)</strong></p>
+<ul>
+<li><strong>组件文件</strong>: 只要有能够拼接文件的构建系统，就把每个组件单独分成文件。</li>
+<li><strong>单文件组件文件名的大小写</strong>: 单文件组件的文件名应该要么始终是_单词大写开头_ (PascalCase)，要么始终是_横线连接_ (kebab-case)。</li>
+<li><strong>基础组件名</strong>: 应用_特定样式和约定的基础组件_(展示类的、无逻辑的或无状态的组件)_全部以一个特定的前缀开头_，比如 Base、App 或 V。</li>
+<li><strong>单例组件名</strong>:只应该拥有单个活跃实例的组件应该以 The 前缀命名，以示其唯一性 <ul>
+<li>不意味着组件只可用于一个单页面，而是<strong>每个页面</strong>只使用一次。这些组件_永远不接受任何 prop_，因为它们是为你的应用定制的</li>
+<li>如果发现_有必要添加 prop_，那就表明这实际上是_一个可复用的组件_，_只是目前_在每个页面里只使用一次。</li>
+</ul>
+</li>
+<li><strong>紧密耦合的组件名</strong>: 和父组件紧密耦合的_子组件应该以父组件名作为前缀命名_。</li>
+<li><strong>组件名中的单词顺序</strong>: 组件名应该以_高级别的_(通常是一般化描述的)_单词开头_，_以描述性的修饰词结尾_。 <ul>
+<li>名词-形容词-副词-动词……这样，文件排序更好看。</li>
+<li>例如，<code>SearchButtonRun.vue</code>，<code>SettingsCheckboxLaunchOnStartup.vue</code></li>
+</ul>
+</li>
+<li><strong>自闭合组件</strong>: 在单文件组件、字符串模板和 JSX 中没有内容的组件应该是<strong>自闭合的</strong>——但在 DOM 模板里永远不要这样做。 <ul>
+<li>在单文件组件、字符串模板和<code>JSX</code>中<code>&lt;MyComponent/&gt;</code>;在<code>DOM</code>模板中:<code>&lt;my-component&gt;&lt;/my-component&gt;</code></li>
+</ul>
+</li>
+<li><strong>模板中的组件名大小写</strong>: 在单文件组件和字符串模板中组件名应该总是 PascalCase 的——但是在 DOM 模板中总是 kebab-case 的。 <ul>
+<li>PascalCase 相比 kebab-case 有一些优势： <ul>
+<li>_编辑器可以在模板里自动补全组件名_，因为 PascalCase 同样适用于 JavaScript。</li>
+<li><code>&lt;MyComponent&gt;</code> 视觉上比 <code>&lt;my-component&gt;</code> 更能够_和单个单词的 HTML 元素区别开来。_</li>
+<li>如果在模板中使用任何非 Vue 的自定义元素，PascalCase 确保了 Vue 组件在视觉上仍然是易识别的。</li>
+</ul>
+</li>
+<li>不幸的是，由于 <strong>HTML 是大小写不敏感</strong>的，在 DOM 模板中必须仍使用 kebab-case。</li>
+<li>在所有的地方都使用 kebab-case 同样是可以接受的。</li>
+</ul>
+</li>
+<li><strong>JS&#x2F;JSX 中的组件名大小写</strong>: JS&#x2F;JSX 中的组件名应该始终是 PascalCase 的。</li>
+<li><strong>完整单词的组件名</strong>: 组件名应该倾向于完整单词而不是缩写。</li>
+<li><strong>Prop 名大小写</strong>: 在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板和 JSX 中应该始终使用 kebab-case。</li>
+<li><strong>多个 attribute 的元素</strong>: 多个 attribute 的元素应该分多行撰写，每个 attribute 一行</li>
+<li><strong>模板中简单的表达式</strong>: 组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法。</li>
+<li><strong>简单的计算属性</strong>: 应该把复杂计算属性分割为尽可能多的更简单的 property。更简单的计算属性:易于测试、易于阅读、更好的“拥抱变化”</li>
+<li><strong>带引号的 attribute 值</strong>: 非空 HTML attribute 值应该始终带引号(单引号或双引号，以 JS 中未使用的为准)。</li>
+<li><strong>指令缩写</strong>: 指令缩写(用<code>:</code>表示<code>v-bind:</code>、用<code>@</code>表示<code>v-on:</code>和用<code>#</code>表示<code>v-slot:</code>)应该<strong>要么都用要么都不用</strong>。</li>
+</ul>
+<p><strong>推荐(将选择和认知成本最小化)</strong></p>
+<ul>
+<li>组件&#x2F;实例的选项的顺序:(编写一个组件从上往下)，也能知道从插件里添加的新 property 应该放到哪里。 <ul>
+<li>vue2: 1 副作用 (触发组件外的影响); 2 全局感知 (要求组件以外的知识); 3 组件类型 (更改组件的类型);4 模板修改器 (改变模板的编译方式); 5 模板依赖 (模板内使用的资源); 6 组合 (向选项里合并 property); 7 接口 (组件的接口); 8 本地状态 (本地的响应式 property); 9 事件 (通过响应式事件触发的回调); 10 非响应式的 property (不依赖响应系统的实例 property); 11 渲染 (组件输出的声明式描述)。</li>
+<li>el; name、parent; functional; delimiters、comments;components、directives、filters; extends、mixins; inheritAttrs、model、props&#x2F;propsData; data、computed; watch、Lifecycle Events; methods; template&#x2F;render、renderError。</li>
+<li>vue3: name; compilerOptions; components、directives; extends、mixins、provide&#x2F;inject; inheritAttrs、props、emits; setup; data、computed; watch、Lifecycle Events; methods;template&#x2F;render。</li>
+</ul>
+</li>
+<li>元素 (包括组件) 的 attribute 应该有统一的顺序。 <ul>
+<li>定义 (提供组件的选项) 列表渲染 (创建多个变化的相同元素) 条件渲染 (元素是否渲染&#x2F;显示) 渲染方式 (改变元素的渲染方式) 全局感知 (需要超越组件的知识) 唯一的 attribute (需要唯一值的 attribute) 双向绑定 (把绑定和事件结合起来) 其它 attribute (所有普通的绑定或未绑定的 attribute) 事件 (组件事件监听器) 内容 (覆写元素的内容)</li>
+<li>is、v-for、v-if、v-else-if、v-else、v-show、v-cloak、v-pre、v-once、id、ref、key、v-model、v-on、v-html、v-text</li>
+</ul>
+</li>
+<li>在多个 property 之间添加空行可以让其变得容易阅读。</li>
+<li>单文件组件应该总是让<code>&lt;script&gt;</code>、<code>&lt;template&gt;</code>和<code>&lt;style&gt;</code>标签的顺序保持一致。<code>&lt;style&gt;</code>要放在最后，因为另外两个至少要有一个。</li>
+</ul>
+<p><strong>谨慎使用(有潜在危险的模式)</strong></p>
+<ul>
+<li>没有在 <code>v-if/v-else-if/v-else</code> 中使用 key。(v3 版没说)</li>
+<li>元素选择器应该避免在 scoped 中出现。在 scoped 样式中，类选择器比元素选择器更好，因为_大量使用元素选择器是很慢的_。</li>
+<li>应该优先通过 prop 和事件进行父子组件之间的通信，而不是 <code>this.$parent</code> 或<code>变更 prop</code>。</li>
+<li>应该优先通过 Vuex 管理全局状态，而不是通过<code>this.$root</code> 或一个全局事件总线。(v3 版没说)</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vue/">vue</a><a class="post-meta__tags" href="/tags/%E5%BC%80%E5%8F%91%E9%A3%8E%E6%A0%BC/">开发风格</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/01/blog89/" title="node-sass版本导致npm install不成功问题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">node-sass版本导致npm install不成功问题</div></div></a></div><div class="next-post pull-right"><a href="/2023/06/22/blog85/" title="vue使用svg"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">vue使用svg</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/11/20/blog18/" title="前端学习之JavaScript的框架"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-20</div><div class="title">前端学习之JavaScript的框架</div></div></a></div><div><a href="/2019/12/03/blog19/" title="前端框架Vue学习的心得记录（基础篇）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-03</div><div class="title">前端框架Vue学习的心得记录（基础篇）</div></div></a></div><div><a href="/2019/12/06/blog20/" title="前端框架Vue学习的心得记录（深入了解组件）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-06</div><div class="title">前端框架Vue学习的心得记录（深入了解组件）</div></div></a></div><div><a href="/2019/12/09/blog22/" title="前端框架Vue学习的心得记录（可复用性&amp;组合）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-09</div><div class="title">前端框架Vue学习的心得记录（可复用性&amp;组合）</div></div></a></div><div><a href="/2019/12/10/blog24/" title="前端框架Vue学习的心得记录（规模化）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-10</div><div class="title">前端框架Vue学习的心得记录（规模化）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_wxk.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">伍新奎</div><div class="author-info__description">前端开发工程师</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">68</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinkuiwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/23/blog96/" title="nestjs学习-5种http数据传输方式">nestjs学习-5种http数据传输方式</a><time datetime="2023-11-23T08:02:00.000Z" title="Created 2023-11-23 16:02:00">2023-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/23/blog95/" title="nestjs学习-快速掌握 Nest CLI">nestjs学习-快速掌握 Nest CLI</a><time datetime="2023-11-23T08:02:00.000Z" title="Created 2023-11-23 16:02:00">2023-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/15/blog90/" title="前端工程化- webpack | 项目打包webpack优化">前端工程化- webpack | 项目打包webpack优化</a><time datetime="2023-11-15T03:02:00.000Z" title="Created 2023-11-15 11:02:00">2023-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/01/blog94/" title="单元测试-jest搭建和使用">单元测试-jest搭建和使用</a><time datetime="2023-11-01T06:02:00.000Z" title="Created 2023-11-01 14:02:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/20/blog93/" title="nodejs-PM2搭建和使用">nodejs-PM2搭建和使用</a><time datetime="2023-10-20T03:02:00.000Z" title="Created 2023-10-20 11:02:00">2023-10-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2023 By 伍新奎</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>
