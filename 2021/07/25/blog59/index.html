@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MySQL开发规范 | 伍新奎的博客空间</title><meta name="author" content="伍新奎"><meta name="copyright" content="伍新奎"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="介绍：MySQL 开发规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL开发规范">
+<meta property="og:url" content="http://example.com/2021/07/25/blog59/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="介绍：MySQL 开发规范">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/blog_wxk.jpg">
+<meta property="article:published_time" content="2021-07-25T06:00:01.000Z">
+<meta property="article:modified_time" content="2023-12-05T07:40:35.040Z">
+<meta property="article:author" content="伍新奎">
+<meta property="article:tag" content="规范，MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/blog_wxk.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/07/25/blog59/index.html"><link rel="preconnect" href="https://lib.baomitu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://lib.baomitu.com/egjs-infinitegrid/4.10.1/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL开发规范',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-05 15:40:35'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_wxk.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">118</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">50</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">MySQL开发规范</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2021-07-25T06:00:01.000Z" title="Created 2021-07-25 14:00:01">2021-07-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%A7%84%E8%8C%83/">规范</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p>介绍：MySQL 开发规范</p>
+<span id="more"></span>
+
+<h3 id="MySQL开发规范"><a href="#MySQL开发规范" class="headerlink" title="MySQL开发规范"></a>MySQL开发规范</h3><h1 id="MySQL-开发规范"><a href="#MySQL-开发规范" class="headerlink" title="MySQL 开发规范"></a>MySQL 开发规范</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>对目前Node项目内的MYSQL开发方式拟定一个大致的规范。</p>
+<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><ul>
+<li>统一按照<code>lower_case_with_underscores</code>的命名方式</li>
+<li>禁止使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/keywords.html">mysql的关键字和保留字</a></li>
+<li>命名的length长度小于32</li>
+</ul>
+<h3 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h3><ul>
+<li>以<code>_db</code>为后缀，如<code>account_db</code>, <code>shopee_account_db</code></li>
+<li>以业务代码为前缀，如<code>shopee_account_db</code>, <code>gop_txn_db</code></li>
+<li>如果db是单独为某个region，如<code>shopee_admin_vn_db</code></li>
+<li>如果要分库，把sharding id放到_db后面，sharding id从0开始，占8位，如<code>shopee_seller_dms_sg_db</code>和<code>shopee_seller_dms_id_db_00001000</code></li>
+<li>db名称长度需要小于42(DBA)</li>
+</ul>
+<h3 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h3><ul>
+<li>以<code>_tab</code>为后缀，表名不适用复数名词，如果要分表，把sharding id放到_tab后面，sharding id从0开始，占8位 ，如<code>order_tab_00000000</code>和<code>login_log_tab_00201801</code></li>
+<li>table名称长度需要小于48(DBA)</li>
+</ul>
+<h3 id="Field"><a href="#Field" class="headerlink" title="Field"></a>Field</h3><ul>
+<li>布尔类型字段，is_做为前缀，如<code>is_active</code></li>
+<li>如果该字段是外键，并且引用的另一个表是整数主键，则应以<code>_id</code>为后缀</li>
+</ul>
+<h3 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h3><ul>
+<li>唯一索引使用<code>uniq_</code>做为前缀，并按顺序紧跟字段名，如<code>uniq_key1_key2</code></li>
+<li>非唯一索引使用<code>idx_</code>做为前缀，并按顺序紧跟字段名,如<code>idx_key1_key2</code></li>
+</ul>
+<h2 id="建表规范"><a href="#建表规范" class="headerlink" title="建表规范"></a>建表规范</h2><ul>
+<li><code>ENGINE=InnoDB</code></li>
+<li>通常字符编码选用<code>utf8mb4_unicode_ci</code>,特殊情况可以考虑<code>latin1_general_ci</code>，其中<code>_ci</code>表明不区分大小写，而字符集可以参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2708958/differences-between-utf8-and-latin1">这里</a></li>
+<li>如果此字段需要区分大小写，需要在字段中使用<code>*_cs</code></li>
+<li>禁止在数据库中存储图片，文件等大的二进制数据。通常存储于文件服务器，数据库只存储文件地址信息</li>
+<li>禁止使用外键，如果要保证完整性，应由应用层实现<ul>
+<li>MySQL外键实现比较简单粗暴，性能不好</li>
+<li>不建议在 MySQL 上放置任何计算逻辑。我们将 MySQL 作为后端存储，不允许外键或存储例程</li>
+</ul>
+</li>
+<li>必须为字段添加注释，注释要言简意赅，不建议很长很详尽的注释</li>
+<li>必须包含三个字段<ul>
+<li>主键：<code>&#39;id&#39; bigint(20) unsigned NOT NULL AUTO_INCREMENT</code></li>
+<li>两个日期字段：<code>create_time</code>，<code>update_time</code>，对表的记录进行更新的时候，必须更新<code>update_time</code></li>
+</ul>
+</li>
+<li>新增列，禁止指定位置 （FIRST &#x2F; AFTER）,而是将新列仅作为最后一列附加</li>
+<li>所有字段均定义为NOT NULL</li>
+<li>禁止使用ENUM，用TINYINT代替<ul>
+<li>ENUM增加新值要进行DDL操作，而DDL对于MYSQL来说维护成本很高</li>
+</ul>
+</li>
+<li>使用INT UNSIGNED （UNIX timestamp）存储时间</li>
+<li>使用INT UNSIGNED存储IPV4地址</li>
+<li>除非必要，否则不要设置默认值<ul>
+<li>在现有表上添加新字段时建议使用默认值，以确保平滑升级&#x2F;回滚</li>
+</ul>
+</li>
+<li>数值类型尽量使用严格数值数据类型 （比如INT, DECIMAL），而不是近似数值数据类型 （比如FLOAT, DOUBLE）<ul>
+<li>在存储的时候，float 和 double 都存在精度损失的问题，很可能在比较值的时候，得到不正确的结果。如果存 储的数据范围超过 decimal 的范围，建议将数据拆成整数和小数并分开存储。</li>
+</ul>
+</li>
+<li>非负数值类型设置为UNSIGNED</li>
+<li>定义 ID 值尽可能使用<code>BIGINT unsigned</code></li>
+</ul>
+<h2 id="索引规范"><a href="#索引规范" class="headerlink" title="索引规范"></a>索引规范</h2><ul>
+<li>建议单表索引数量不超过5个<ul>
+<li>太多索引会影响写性能</li>
+<li>生成执行计划时，如果索引太多，会降低性能，并可能导致MySQL选择不到最优索引</li>
+<li>异常复杂的查询需求，可以选择ES等更为适合的方式存储</li>
+</ul>
+</li>
+<li>建议组合索引的字段不超过5个<ul>
+<li>如果5个字段还不能极大缩小row范围，八成是设计有问题</li>
+</ul>
+</li>
+<li>对于频繁的查询优先考虑使用覆盖索引</li>
+<li>不建议在频繁更新的字段上建立索引</li>
+<li>理解组合索引最左前缀原则，避免重复索引，如果建立了(a,b,c)，相当于建立了(a), (a,b), (a,b,c)</li>
+<li>非必要不要进行JOIN查询，如果要进行JOIN查询，被JOIN的字段必须类型相同，并建立索引<ul>
+<li>JOIN字段类型不一致，会自动进行类型转换，可能导致全表扫描</li>
+</ul>
+</li>
+</ul>
+<h2 id="查询规范"><a href="#查询规范" class="headerlink" title="查询规范"></a>查询规范</h2><ul>
+<li>禁止使用SELECT *，需要哪些字段必须明确写明，使用SELECT &lt;字段列表&gt; 查询<ul>
+<li>增加查询分析器解析成本</li>
+<li>无用字段增加网络消耗，尤其是 text 类型的字段</li>
+</ul>
+</li>
+<li>LIKE查询时，禁止用 % 通配符最左前导</li>
+<li>不要在WHERE使用函数</li>
+<li>不要使用SQL运算</li>
+<li>能用UNION ALL不要用UNION<ul>
+<li>UNION会对结果做去重，会产生临时表</li>
+</ul>
+</li>
+<li>超1000行的批量写（UPDATE、DELETE、INSERT）操作，要分批多次进行操作，每批次LIMIT 1000，并在两个批次之间引入延时（比如1s）</li>
+<li>不能用 use &lt;&gt; NULL, &#x3D; NULL, in (NULL), not in (NULL), group by NULL, aggregation method(NULL), 只能用<code>is NULL</code>和<code>is not NULL</code>，因为NULL 不是一个值，不能做任何比较</li>
+<li>不允许在 MySQL 客户端执行 SQL 直接更新生产数据库中的数据（例如修复数据）<ul>
+<li>您可以 DB Update Data在 <a target="_blank" rel="noopener" href="https://gts.garenanow.com/create-ticket">GTS</a>中创建 带有票证类型的票证，并将 SQL 放入票证中。DBA 将帮助运行 SQL</li>
+<li>您还可以编写脚本来更新数据，并将脚本传递给 DBA 进行审核，然后再在生产环境中运行脚本</li>
+<li>为了安全起见，请不要 在 GTS 票证中提供<code>DROP TABLE</code> 或命令。<code>DROP DATABASE</code>通常我们可以使用<code>RENAME TABLE</code> 更改表名来代替。要从实时数据库中物理删除表或数据库，通常我们重命名表，然后再等待 90 天。如果没有报告错误&#x2F;异常，或者没有人想恢复它们，那么可以安全地删除它们。</li>
+</ul>
+</li>
+</ul>
+<h2 id="MYSQL最佳实践"><a href="#MYSQL最佳实践" class="headerlink" title="MYSQL最佳实践"></a>MYSQL最佳实践</h2><h3 id="软删除"><a href="#软删除" class="headerlink" title="软删除"></a>软删除</h3><p>使用软删除，而不是硬删除，使用<code>is_deleted</code>的标志位来标识删除状态</p>
+<blockquote>
+<p>硬删除可能会导致数据库性能下降,有时硬删除确实有必要需要提单给DBA处理</p>
+</blockquote>
+<h3 id="TEXT-BLOB"><a href="#TEXT-BLOB" class="headerlink" title="TEXT&#x2F;BLOB"></a>TEXT&#x2F;BLOB</h3><p>尽可能不去使用TEXT&#x2F;BLOB，如确实需要，将比较大的列拆分到单独的表中</p>
+<blockquote>
+<ul>
+<li>DB大小越小，性能越好</li>
+<li>不推荐在InnoDB表里面包含多个TEXT&#x2F;BLOB列</li>
+<li>不推荐使用：MEDIUMTEXT&#x2F;LONGBLOB&#x2F;…</li>
+</ul>
+</blockquote>
+<h3 id="integer-timestamp"><a href="#integer-timestamp" class="headerlink" title="integer timestamp"></a>integer timestamp</h3><ul>
+<li>建议使用INT UNSIGNED 或者 BIGINT Unix timestamp</li>
+<li>永远使用UTC timestamp<ul>
+<li>UTC时间戳更容易在多个时区之间进行时间转换</li>
+<li>不需要额外的字段存储时区信息</li>
+</ul>
+</li>
+<li>int类型更高效</li>
+</ul>
+<h3 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h3><ul>
+<li>单表&gt;单库分表&gt;分库分表，在满足业务场景的情况下，优先级逐渐降低</li>
+</ul>
+<h2 id="额外"><a href="#额外" class="headerlink" title="额外"></a>额外</h2><p>针对dataZoo这里比较大的查询SQL，咨询了服务端的处理方式，也没有太好的做法，一般就是利用orm库来减轻一些拼接sql的负担。</p>
+<p>对于类似SUM和if()判断等求和&#x2F;判断逻辑一般也是交由给SQL来做，交由给业务层，一方面要额外写聚合逻辑，另一方面如果数据量大，内存操作可能会有oom的风险。</p>
+<p><img src="/2021/07/25/blog59/image2022-8-23_11-9-2-1701696559248-1.png" alt="img"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%A7%84%E8%8C%83%EF%BC%8CMySQL/">规范，MySQL</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/14/blog60/" title="Nodejs监控方案"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">Nodejs监控方案</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/16/blog58/" title="项目结构规范"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">项目结构规范</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_wxk.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">伍新奎</div><div class="author-info__description">前端开发工程师</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">118</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">50</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinkuiwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="toc-number">1.</span> <span class="toc-text">MySQL开发规范</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="toc-number"></span> <span class="toc-text">MySQL 开发规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number"></span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="toc-number"></span> <span class="toc-text">命名规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DB"><span class="toc-number">1.</span> <span class="toc-text">DB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Table"><span class="toc-number">2.</span> <span class="toc-text">Table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Field"><span class="toc-number">3.</span> <span class="toc-text">Field</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Index"><span class="toc-number">4.</span> <span class="toc-text">Index</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E8%A1%A8%E8%A7%84%E8%8C%83"><span class="toc-number"></span> <span class="toc-text">建表规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E8%A7%84%E8%8C%83"><span class="toc-number"></span> <span class="toc-text">索引规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%A7%84%E8%8C%83"><span class="toc-number"></span> <span class="toc-text">查询规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MYSQL%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number"></span> <span class="toc-text">MYSQL最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E5%88%A0%E9%99%A4"><span class="toc-number">1.</span> <span class="toc-text">软删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TEXT-BLOB"><span class="toc-number">2.</span> <span class="toc-text">TEXT&#x2F;BLOB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#integer-timestamp"><span class="toc-number">3.</span> <span class="toc-text">integer timestamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8"><span class="toc-number">4.</span> <span class="toc-text">分库分表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96"><span class="toc-number"></span> <span class="toc-text">额外</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/05/blog69/" title="blog69">blog69</a><time datetime="2023-12-05T08:19:36.000Z" title="Created 2023-12-05 16:19:36">2023-12-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/19/blog68/" title="antd table 设置横向滚动更新column遇到header错位">antd table 设置横向滚动更新column遇到header错位</a><time datetime="2022-10-19T02:02:03.000Z" title="Created 2022-10-19 10:02:03">2022-10-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/16/blog66/" title="业界mysql的实践方案调研">业界mysql的实践方案调研</a><time datetime="2022-03-16T02:02:03.000Z" title="Created 2022-03-16 10:02:03">2022-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/21/blog65/" title="NestJS 中使用esm">NestJS 中使用esm</a><time datetime="2022-02-21T07:06:01.000Z" title="Created 2022-02-21 15:06:01">2022-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/25/blog64/" title="管理平台监控调研">管理平台监控调研</a><time datetime="2021-12-25T07:02:01.000Z" title="Created 2021-12-25 15:02:01">2021-12-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 伍新奎</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>管理平台监控调研 | 伍新奎的博客空间</title><meta name="author" content="伍新奎"><meta name="copyright" content="伍新奎"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="管理平台监控调研一、背景对于管理平台未提供前端监控，无法主动发现报错、页面首屏加载时长、用户浏览器环境等影响用户体验的问题。因此，有必要实现一套前端监控体系方案，旨在提升平台质量和降低排查问题成本。 二、目标针对目前各管理平台项目没有提供监控体系功能，将制定一套前端监控体系 SDK，帮助平台开发者快速接入前端监控功能而无需手动实现。 结合目前技术选型和业务情况，前端监控 SDK 需要支持的能力">
+<meta property="og:type" content="article">
+<meta property="og:title" content="管理平台监控调研">
+<meta property="og:url" content="http://example.com/2021/12/25/blog64/index.html">
+<meta property="og:site_name" content="伍新奎的博客空间">
+<meta property="og:description" content="管理平台监控调研一、背景对于管理平台未提供前端监控，无法主动发现报错、页面首屏加载时长、用户浏览器环境等影响用户体验的问题。因此，有必要实现一套前端监控体系方案，旨在提升平台质量和降低排查问题成本。 二、目标针对目前各管理平台项目没有提供监控体系功能，将制定一套前端监控体系 SDK，帮助平台开发者快速接入前端监控功能而无需手动实现。 结合目前技术选型和业务情况，前端监控 SDK 需要支持的能力">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/blog_wxk.jpg">
+<meta property="article:published_time" content="2021-12-25T07:02:01.000Z">
+<meta property="article:modified_time" content="2023-12-05T08:00:53.014Z">
+<meta property="article:author" content="伍新奎">
+<meta property="article:tag" content="监控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/blog_wxk.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/12/25/blog64/index.html"><link rel="preconnect" href="https://lib.baomitu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://lib.baomitu.com/egjs-infinitegrid/4.10.1/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '管理平台监控调研',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-05 16:00:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/blog_wxk.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">118</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">50</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="伍新奎的博客空间"><span class="site-name">伍新奎的博客空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">管理平台监控调研</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2021-12-25T07:02:01.000Z" title="Created 2021-12-25 15:02:01">2021-12-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%9B%91%E6%8E%A7/">监控</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><span id="more"></span>
+
+<h1 id="管理平台监控调研"><a href="#管理平台监控调研" class="headerlink" title="管理平台监控调研"></a>管理平台监控调研</h1><h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>对于管理平台未提供前端监控，无法主动发现报错、页面首屏加载时长、用户浏览器环境等影响用户体验的问题。因此，有必要实现一套前端监控体系方案，旨在提升平台质量和降低排查问题成本。</p>
+<h1 id="二、目标"><a href="#二、目标" class="headerlink" title="二、目标"></a>二、目标</h1><p>针对目前各管理平台项目没有提供监控体系功能，将制定一套前端监控体系 SDK，帮助平台开发者快速接入前端监控功能而无需手动实现。</p>
+<p>结合目前技术选型和业务情况，前端监控 SDK 需要支持的能力包括以下几点：</p>
+<h3 id="异常监控"><a href="#异常监控" class="headerlink" title="异常监控"></a>异常监控</h3><ul>
+<li>API 请求异常监控</li>
+<li>JS 异常监控</li>
+<li>静态资源加载异常监控</li>
+<li>Promise 未捕获异常监控</li>
+</ul>
+<h3 id="性能监控"><a href="#性能监控" class="headerlink" title="性能监控"></a>性能监控</h3><ul>
+<li>页面加载性能<ol>
+<li>TTFE：首包响应时间</li>
+<li>First Paint：首屏渲染时间</li>
+<li>DOM Ready：DOM 就位时间</li>
+<li>First Interactive：首次可交互时间</li>
+</ol>
+</li>
+</ul>
+<h3 id="埋点上报"><a href="#埋点上报" class="headerlink" title="埋点上报"></a>埋点上报</h3><ul>
+<li>支持自动采集异常信息</li>
+<li>支持自动采集性能信息</li>
+<li>支持数据埋点<ul>
+<li>浏览器环境</li>
+<li>页面访问 pv、uv</li>
+<li>手动埋点定制化数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="报警响应"><a href="#报警响应" class="headerlink" title="报警响应"></a>报警响应</h3><ul>
+<li>支持报警规则配置</li>
+<li>支持 sea talk 通知</li>
+<li>支持邮件通知业务 owner</li>
+</ul>
+<h1 id="三、方案"><a href="#三、方案" class="headerlink" title="三、方案"></a>三、方案</h1><p>这里我们主要讨论三个方案</p>
+<ol>
+<li>开源方案 — sentry</li>
+<li>自研 SDK</li>
+</ol>
+<h2 id="开源方案-—-sentry"><a href="#开源方案-—-sentry" class="headerlink" title="开源方案 — sentry"></a>开源方案 — sentry</h2><p>Sentry 是第三方前端监控开源方案</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>免费</li>
+<li>Sentry 可直接使用也可自行搭建</li>
+<li>兼容性强，基本不受语言限制，搭建一套系统可用于多个项目</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>定制化程度低，普遍靠使用已有 api</li>
+<li>后期维护报警很麻烦</li>
+</ul>
+<h3 id="异常监控-1"><a href="#异常监控-1" class="headerlink" title="异常监控"></a>异常监控</h3><p>Sentry 只需要注册后，就可以自动采集异常信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Sentry.init(&#123;</span><br><span class="line">  // Sentry 项目的 dsn，可从项目设置中获取</span><br><span class="line">  dsn: &quot;https://xxxxxx@161.xxx.xxx.xxx:9000/2&quot;,</span><br><span class="line">  // 初始参数配置内容</span><br><span class="line">  integrations: [new Integrations.BrowserTracing()],</span><br><span class="line">  // 触发异常后发送给 Sentry 的概率</span><br><span class="line">  tracesSampleRate: 1.0,</span><br><span class="line">  // 控制应捕获的面包屑(行为栈)的总量</span><br><span class="line">  maxBreadcrumbs: 20,</span><br><span class="line">  // 规定上下文数据结构的深度，默认为 3</span><br><span class="line">  normalizeDepth: 100,</span><br><span class="line">  // 版本信息</span><br><span class="line">  release: &quot;common@1.0.0&quot;,</span><br><span class="line">  // 环境信息</span><br><span class="line">  environment: process.env.NODE_ENV,</span><br><span class="line">  // 钩子函数，在每次发送 event 前触发</span><br><span class="line">  beforeSend(event) &#123;</span><br><span class="line">    // 网页应用刷新后设置的变量会消失，所以我选择在 beforeSend 触发时插入用户信息</span><br><span class="line">    event.user = &#123;</span><br><span class="line">      userNick: &quot;xxx&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">    return event;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="性能监控-1"><a href="#性能监控-1" class="headerlink" title="性能监控"></a>性能监控</h3><p>Sentry 除了异常监控之外，还集成了强大的性能监控。通过监视应用程序的性能，可以准确定位线上服务问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new` `TracingIntegrations.BrowserTracing(), ``// 性能监控</span><br></pre></td></tr></table></figure>
+
+<h3 id="埋点上报-1"><a href="#埋点上报-1" class="headerlink" title="埋点上报"></a>埋点上报</h3><p>Sentry 可以配置上报规则，由 SDK 自行上报</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Sentry.captureMessage(&quot;Something went fundamentally wrong&quot;, &#123;</span><br><span class="line">  contexts: &#123;</span><br><span class="line">    text: &#123;</span><br><span class="line">      hahah: 22,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  level: Sentry.Severity.Info,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="报警响应-1"><a href="#报警响应-1" class="headerlink" title="报警响应"></a>报警响应</h3><p>Sentry 可以为每个项目创建各种警报规则，并让 Sentry 知道应用程序中发生错误时通知的时间(when)、方式(how)和对象(whom)。 警报规则(Alert rules)由条件(Conditions)和操作(Actions)组成，它们在满足相关条件时执行。</p>
+<h2 id="自研-SDK"><a href="#自研-SDK" class="headerlink" title="自研 SDK"></a>自研 SDK</h2><p>自研 SDK 是通过自主研发前端监控 SDK 的一种方案</p>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><p>其定制化程度很高</p>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><p>但是耗费研发资源</p>
+<h3 id="异常监控-2"><a href="#异常监控-2" class="headerlink" title="异常监控"></a>异常监控</h3><p>主要通过拦截器、全局注册 onerror 监听事件、自定义 handler 以及手动 try-catch 实现异常采集</p>
+<h3 id="性能监控-2"><a href="#性能监控-2" class="headerlink" title="性能监控"></a>性能监控</h3><p>主要通过 W3C 提供的 performance api 采集性能相关数据</p>
+<h3 id="埋点上报-2"><a href="#埋点上报-2" class="headerlink" title="埋点上报"></a>埋点上报</h3><p>主要通过 Navigator.sendBeacon() 进行数据上报，降级方案采用 new Img() 以及 http post 方案</p>
+<h3 id="报警响应-2"><a href="#报警响应-2" class="headerlink" title="报警响应"></a>报警响应</h3><p>对接告警平台进行告警设置，主要有普罗米修斯、Grafana 平台等</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li>前端监控 — 分析定位：<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1i6LUx2NlImTor20md-Sws9cKY6y4aZ5e_LoBEs_8qNw/edit#slide=id.g113cad12bf9_2_34">https://docs.google.com/presentation/d/1i6LUx2NlImTor20md-Sws9cKY6y4aZ5e_LoBEs_8qNw/edit#slide=id.g113cad12bf9_2_34</a></li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%9B%91%E6%8E%A7/">监控</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/02/21/blog65/" title="NestJS 中使用esm"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">NestJS 中使用esm</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/30/blog63/" title="微前端简介"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">微前端简介</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/blog_wxk.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">伍新奎</div><div class="author-info__description">前端开发工程师</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">118</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">50</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinkuiwu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E7%9B%91%E6%8E%A7%E8%B0%83%E7%A0%94"><span class="toc-number">1.</span> <span class="toc-text">管理平台监控调研</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%83%8C%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">一、背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%9B%AE%E6%A0%87"><span class="toc-number">3.</span> <span class="toc-text">二、目标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7"><span class="toc-number">3.0.1.</span> <span class="toc-text">异常监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7"><span class="toc-number">3.0.2.</span> <span class="toc-text">性能监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9%E4%B8%8A%E6%8A%A5"><span class="toc-number">3.0.3.</span> <span class="toc-text">埋点上报</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E8%AD%A6%E5%93%8D%E5%BA%94"><span class="toc-number">3.0.4.</span> <span class="toc-text">报警响应</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%96%B9%E6%A1%88"><span class="toc-number">4.</span> <span class="toc-text">三、方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%96%B9%E6%A1%88-%E2%80%94-sentry"><span class="toc-number">4.1.</span> <span class="toc-text">开源方案 — sentry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">4.1.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">4.1.2.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7-1"><span class="toc-number">4.1.3.</span> <span class="toc-text">异常监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7-1"><span class="toc-number">4.1.4.</span> <span class="toc-text">性能监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9%E4%B8%8A%E6%8A%A5-1"><span class="toc-number">4.1.5.</span> <span class="toc-text">埋点上报</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E8%AD%A6%E5%93%8D%E5%BA%94-1"><span class="toc-number">4.1.6.</span> <span class="toc-text">报警响应</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%A0%94-SDK"><span class="toc-number">4.2.</span> <span class="toc-text">自研 SDK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-1"><span class="toc-number">4.2.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="toc-number">4.2.2.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7-2"><span class="toc-number">4.2.3.</span> <span class="toc-text">异常监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7-2"><span class="toc-number">4.2.4.</span> <span class="toc-text">性能监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9%E4%B8%8A%E6%8A%A5-2"><span class="toc-number">4.2.5.</span> <span class="toc-text">埋点上报</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E8%AD%A6%E5%93%8D%E5%BA%94-2"><span class="toc-number">4.2.6.</span> <span class="toc-text">报警响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.2.7.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/05/blog69/" title="blog69">blog69</a><time datetime="2023-12-05T08:19:36.000Z" title="Created 2023-12-05 16:19:36">2023-12-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/19/blog68/" title="antd table 设置横向滚动更新column遇到header错位">antd table 设置横向滚动更新column遇到header错位</a><time datetime="2022-10-19T02:02:03.000Z" title="Created 2022-10-19 10:02:03">2022-10-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/16/blog66/" title="业界mysql的实践方案调研">业界mysql的实践方案调研</a><time datetime="2022-03-16T02:02:03.000Z" title="Created 2022-03-16 10:02:03">2022-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/21/blog65/" title="NestJS 中使用esm">NestJS 中使用esm</a><time datetime="2022-02-21T07:06:01.000Z" title="Created 2022-02-21 15:06:01">2022-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/25/blog64/" title="管理平台监控调研">管理平台监控调研</a><time datetime="2021-12-25T07:02:01.000Z" title="Created 2021-12-25 15:02:01">2021-12-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 伍新奎</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://lib.baomitu.com/fancyapps-ui/5.0.24/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>
